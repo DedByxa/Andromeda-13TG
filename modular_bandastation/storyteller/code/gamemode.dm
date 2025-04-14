@@ -1587,8 +1587,8 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/create_roundend_score()
 	var/list/parts = list()
-	parts += "<div class='panel stationborder'><span class='header'>[("Storyteller: [SSgamemode.current_storyteller ? SSgamemode.current_storyteller.name : "N/A"]")]</span><br><br>"
-	parts += "Spawned durning this round events:<br>"
+	parts += "<div class='panel stationborder'><span class='header'>[("Рассказчик: [SSgamemode.current_storyteller ? SSgamemode.current_storyteller.name : "N/A"]")]</span><br><br>"
+	parts += "Игровые события, что появились во время раунда:<br>"
 	for(var/i in SSgamemode.runned_events)
 		parts += "<span class='info ml-1'>[i]</span><br>"
 
