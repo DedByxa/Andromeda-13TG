@@ -7,13 +7,13 @@
 GLOBAL_VAR_INIT(ert_request_answered, FALSE)
 GLOBAL_LIST_EMPTY(ert_request_messages)
 
-ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(ert_manager, R_ADMIN, "Управление ОБР", "Управляйте запросами ОБР.", ADMIN_CATEGORY_GAME)
 	var/datum/ert_manager/tgui = new(user)
 	tgui.ui_interact(user.mob)
-	BLACKBOX_LOG_ADMIN_VERB("ERT Manager")
+	BLACKBOX_LOG_ADMIN_VERB("Управление ОБР")
 
 /datum/ert_manager
-	var/name = "ERT Manager"
+	var/name = "Управление ОБР"
 	var/ert_type = "Red"
 	var/admin_slots = 0 // default
 	var/commander_slots = 1 // defaults for open slots
@@ -82,20 +82,20 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 		if("dispatchErt")
 			var/datum/ert/new_ert
 			switch(ert_type)
-				if("Amber")
-					new_ert = new /datum/ert/amber
 				if("Red")
 					new_ert = new /datum/ert/red
 				if("Gamma")
 					new_ert = new /datum/ert/gamma
+				if("Epsilon")
+					new_ert = new /datum/ert/deathsquad
 				else
-					to_chat(usr, "<span class='userdanger'>Invalid ERT type.</span>")
+					to_chat(usr, "<span class='userdanger'>Недопустимый тип ОБР.</span>")
 					return
 
 			if((commander_slots + medical_slots + janitor_slots + inquisitor_slots + security_slots + engineering_slots) == 0)
-				message_admins("[key_name_admin(usr)] tried to create a [ert_type] ERT with zero slots available!")
-				log_admin("[key_name(usr)] tried to create a [ert_type] ERT with zero slots available.")
-				to_chat(usr, span_userdanger("ERT must have at least 1 slot available!"))
+				message_admins("[key_name_admin(usr)] попытался создать [ert_type] ОБР с нулевым количеством доступных слотов!")
+				log_admin("[key_name(usr)] попытался создать [ert_type] ОБР с нулевым количеством доступных слотов.")
+				to_chat(usr, span_userdanger("В ОБР должен быть доступен как минимум 1 слот!"))
 				return
 
 			new_ert.teamsize = commander_slots + security_slots + medical_slots + engineering_slots + janitor_slots + inquisitor_slots
@@ -117,10 +117,10 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 				slots_list += "inquisitor: [inquisitor_slots]"
 
 			var/slot_text = english_list(slots_list)
-			message_admins("[key_name_admin(usr)] dispatched a [ert_type] ERT. Slots: [slot_text]")
-			log_admin("[key_name(usr)] dispatched a [ert_type] ERT. Slots: [slot_text]")
+			message_admins("[key_name_admin(usr)] начал набор [ert_type] ОБР. Слоты для набора: [slot_text]")
+			log_admin("[key_name(usr)] начал набор [ert_type] ОБР. Слоты для набора: [slot_text]")
 			if(should_be_announced)
-				priority_announce("Внимание, [station_name()]. Мы рассматриваем возможность отправки ОБР, ожидайте.", "Активирован протокол ОБР")
+				priority_announce("Внимание, [station_name()]. Мы рассматриваем возможность отправки ОБР, ожидайте.", "Активирован протокол ОБР", sound = 'modular_andromeda/sound/announcer/classic/obr_request.ogg')
 			makeERTFromSlots(new_ert, admin_slots, commander_slots, security_slots, medical_slots, engineering_slots, janitor_slots, inquisitor_slots)
 
 		if("view_player_panel")
@@ -130,15 +130,15 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 			GLOB.ert_request_answered = TRUE
 			var/message = "[station_name()], к сожалению, в данный момент мы не можем направить к вам ОБР."
 			if(params["reason"])
-				message += " Your ERT request has been denied for the following reasons:\n\n[params["reason"]]"
-			priority_announce(message, "ОБР недоступно")
+				message += " Ваш запрос ОБР был отклонен по следующим причинам:\n\n[params["reason"]]"
+			priority_announce(message, "ОБР недоступно", sound = 'modular_andromeda/sound/announcer/classic/obr_no.ogg')
 		else
 			return FALSE
 
 /datum/ert_manager/proc/slots_to_roles(security_slots, medical_slots, engineering_slots, janitor_slots, inquisitor_slots, ert_type)
 	var/list/roles = list()
 	var/slots_sans_leader = security_slots + medical_slots + engineering_slots + janitor_slots + inquisitor_slots
-	if(ert_type != "Amber")
+	if(ert_type != "Red")
 		for(var/role in 1 to slots_sans_leader)
 			if(security_slots > 0)
 				roles.Add(/datum/antagonist/ert/security/red)
@@ -183,7 +183,7 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 	var/list/spawnpoints = GLOB.emergencyresponseteamspawn
 	var/index = 0
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Хотите ли вы, чтобы вас рассматривали для участия в [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "Отряд Быстрого Реагирования")
 	var/teamSpawned = FALSE
 
 	// This list will take priority over spawnpoints if not empty
@@ -194,7 +194,7 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 
 	if(!length(candidates))
 		if(should_be_announced)
-			minor_announce("Внимание, [station_name()]. К сожалению, в настоящее время мы не можем направить к вам отряд быстрого реагирования.", "ОБР недоступен")
+			priority_announce("Внимание, [station_name()]. К сожалению, в настоящее время мы не можем направить к вам отряд быстрого реагирования.", "ОБР недоступен", sound = 'modular_andromeda/sound/announcer/classic/obr_no.ogg')
 		return FALSE
 
 	if(ertemplate.spawn_admin)
@@ -205,7 +205,7 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 			admin_officer.equipOutfit(chosen_outfit)
 			admin_officer.PossessByPlayer(usr.key)
 		else
-			to_chat(usr, span_warning("Could not spawn you in as briefing officer as you are not a ghost!"))
+			to_chat(usr, span_warning("Ты не можешь стать инструктором, т.к. не призрак."))
 
 	//Pick the (un)lucky players
 	var/numagents = min(ertemplate.teamsize, length(candidates))
@@ -281,20 +281,20 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 		ert_operative.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
 
 		//Logging and cleanup
-		ert_operative.log_message("has been selected as \a [ert_antag.name].", LOG_GAME)
+		ert_operative.log_message("был выбран как [ert_antag.name].", LOG_GAME)
 		numagents--
 		teamSpawned++
 
 	if (teamSpawned)
-		message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
+		message_admins("[ertemplate.polldesc] появился с миссией [ertemplate.mission]")
 		if(should_be_announced)
 			switch(ert_type)
-				if("Amber")
-					priority_announce("Внимание, [station_name()]. Мы направляем стандартный отряд быстрого реагирования кода «ЭМБЕР». Ожидайте.", "ОБР в пути")
 				if("Red")
-					priority_announce("Внимание, [station_name()]. Мы направляем усиленный отряд быстрого реагирования кода «РЭД». Ожидайте.", "ОБР в пути")
+					priority_announce("Внимание, станция [station_name()]. Мы направляем отряд быстрого реагирования кода «КРАСНЫЙ». Ожидайте.", "ОБР в пути", sound = 'modular_andromeda/sound/announcer/classic/obr_yes.ogg')
 				if("Gamma")
-					priority_announce("Внимание, [station_name()]. Мы направляем элитный отряд быстрого реагирования кода «ГАММА». Ожидайте.", "ОБР в пути")
+					priority_announce("Внимание, станция [station_name()]. Мы направляем элитный отряд быстрого реагирования кода «ГАММА». Ожидайте.", "ОБР в пути", sound = 'modular_andromeda/sound/announcer/classic/obr_yes.ogg')
+				if("Epsilon")
+					priority_announce("Нарушение контракта с корпорацией Нанотрейзен. Специальное подразделение направлено на станцию, чтоб забрать активы корпорации. Сохраняйте спокойствие, спасибо что выбрали корпорацию Нанотрейзен!", "Департамент Специальных Операций", sound = 'modular_andromeda/sound/announcer/classic/deathsquad.ogg')
 
 	//Open the Armory doors
 	if(ertemplate.opendoors)
@@ -302,11 +302,6 @@ ADMIN_VERB(ert_manager, R_ADMIN, "ERT Manager", "Manage ERT reqests.", ADMIN_CAT
 			door.open()
 			CHECK_TICK
 	return TRUE
-
-/datum/ert/gamma
-	leader_role = /datum/antagonist/ert/commander/red
-	roles = list(/datum/antagonist/ert/security/red, /datum/antagonist/ert/medic/red, /datum/antagonist/ert/engineer/red)
-	code = "Gamma"
 
 /obj/effect/landmark/ert_brief_spawn
 	name = "ertbriefspawn"

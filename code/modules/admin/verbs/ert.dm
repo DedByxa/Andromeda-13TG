@@ -17,11 +17,11 @@
 	.["mainsettings"]["teamsize"]["value"] = newtemplate.teamsize
 	.["mainsettings"]["mission"]["value"] = newtemplate.mission
 	.["mainsettings"]["polldesc"]["value"] = newtemplate.polldesc
-	.["mainsettings"]["open_armory"]["value"] = newtemplate.opendoors ? "Yes" : "No"
-	.["mainsettings"]["leader_experience"]["value"] = newtemplate.leader_experience ? "Yes" : "No"
-	.["mainsettings"]["random_names"]["value"] = newtemplate.random_names ? "Yes" : "No"
-	.["mainsettings"]["spawn_admin"]["value"] = newtemplate.spawn_admin ? "Yes" : "No"
-	.["mainsettings"]["use_custom_shuttle"]["value"] = newtemplate.use_custom_shuttle ? "Yes" : "No"
+	.["mainsettings"]["open_armory"]["value"] = newtemplate.opendoors ? "Да" : "Нет"
+	.["mainsettings"]["leader_experience"]["value"] = newtemplate.leader_experience ? "Да" : "Нет"
+	.["mainsettings"]["random_names"]["value"] = newtemplate.random_names ? "Да" : "Нет"
+	.["mainsettings"]["spawn_admin"]["value"] = newtemplate.spawn_admin ? "Да" : "Нет"
+	.["mainsettings"]["use_custom_shuttle"]["value"] = newtemplate.use_custom_shuttle ? "Да" : "Нет"
 
 
 /datum/admins/proc/equipAntagOnDummy(mob/living/carbon/human/dummy/mannequin, datum/antagonist/antag)
@@ -82,21 +82,21 @@
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
-		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
-		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
-		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
-		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(human_authority_setting == HUMAN_AUTHORITY_ENFORCED ? "Yes" : "No")]"),
-		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
-		"leader_experience" = list("desc" = "Pick an experienced leader", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
-		"random_names" = list("desc" = "Randomize names", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
-		"spawn_admin" = list("desc" = "Spawn yourself as briefing officer", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
-		"use_custom_shuttle" = list("desc" = "Use the ERT's custom shuttle (if it has one)", "type" = "boolean", "value" = "[(ertemplate.use_custom_shuttle ? "Yes" : "No")]"),
-		"mob_type" = list("desc" = "Base Species", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/mob/living/carbon/human", "subtypesonly" = TRUE, "value" = ertemplate.mob_type),
+		"template" = list("desc" = "Шаблон", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"teamsize" = list("desc" = "Кол-во человек", "type" = "number", "value" = ertemplate.teamsize),
+		"mission" = list("desc" = "Миссия", "type" = "string", "value" = ertemplate.mission),
+		"polldesc" = list("desc" = "Описание призрачного опроса", "type" = "string", "value" = ertemplate.polldesc),
+		"enforce_human" = list("desc" = "Обеспечение соблюдения прав человека", "type" = "boolean", "value" = "[(human_authority_setting == HUMAN_AUTHORITY_ENFORCED ? "Yes" : "No")]"),
+		"open_armory" = list("desc" = "Открыть оружейку", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"leader_experience" = list("desc" = "Выберите опытного руководителя", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
+		"random_names" = list("desc" = "Рандомные имена", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
+		"spawn_admin" = list("desc" = "Станьте офицером-инструктором", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
+		"use_custom_shuttle" = list("desc" = "Воспользуйтесь специальным трансфером ОБР", "type" = "boolean", "value" = "[(ertemplate.use_custom_shuttle ? "Yes" : "No")]"),
+		"mob_type" = list("desc" = "Базовая раса", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/mob/living/carbon/human", "subtypesonly" = TRUE, "value" = ertemplate.mob_type),
 		)
 	)
 
-	var/list/prefreturn = presentpreflikepicker(usr, "Customize ERT", "Customize ERT", Button1="Ok", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
+	var/list/prefreturn = presentpreflikepicker(usr, "Настройка ОБР", "Настройка ОБР", Button1="Готово", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
 
 	if (isnull(prefreturn))
 		return FALSE
@@ -125,7 +125,7 @@
 		var/list/spawnpoints = GLOB.emergencyresponseteamspawn
 		var/index = 0
 
-		var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
+		var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Вы хотите, чтобы вас рассматривали в качестве кандидата [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
 		var/teamSpawned = FALSE
 
 		// This list will take priority over spawnpoints if not empty
@@ -269,14 +269,14 @@
 
 	return
 
-ADMIN_VERB(summon_ert, R_FUN, "Summon ERT", "Summons an emergency response team.", ADMIN_CATEGORY_FUN)
-	message_admins("[key_name_admin(user)] is creating a CentCom response team...")
+ADMIN_VERB(summon_ert, R_FUN, "ЦентКом отряд", "Направить отряд.", ADMIN_CATEGORY_FUN)
+	message_admins("[key_name_admin(user)] создает группу реагирования CentCom...")
 	if(user.holder?.makeEmergencyresponseteam())
-		message_admins("[key_name_admin(user)] created a CentCom response team.")
-		log_admin("[key_name(user)] created a CentCom response team.")
+		message_admins("[key_name_admin(user)] создал группу реагирования CentCom.")
+		log_admin("[key_name(user)] создал группу реагирования CentCom.")
 	else
-		message_admins("[key_name_admin(user)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
-		log_admin("[key_name(user)] failed to create a CentCom response team.")
+		message_admins("[key_name_admin(user)] пытался создать группу реагирования CentCom. К сожалению, было недостаточно доступных кандидатов.")
+		log_admin("[key_name(user)] не удалось создать группу реагирования CentCom.")
 
 #undef ERT_EXPERIENCED_LEADER_CHOOSE_TOP
 #undef DUMMY_HUMAN_SLOT_ADMIN

@@ -59,7 +59,7 @@ export const ErtManager = (props) => {
                 }}
                 icon="ambulance"
               >
-                Send ERT
+                Отправить ОБР
               </Tabs.Tab>
               <Tabs.Tab
                 key="ReadERTRequests"
@@ -69,7 +69,7 @@ export const ErtManager = (props) => {
                 }}
                 icon="book"
               >
-                Read ERT Requests
+                Запросы ОБР
               </Tabs.Tab>
               <Tabs.Tab
                 key="DenyERT"
@@ -79,7 +79,7 @@ export const ErtManager = (props) => {
                 }}
                 icon="times"
               >
-                Deny ERT
+                Отказать запросу
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -109,24 +109,24 @@ const ERTOverview = (props) => {
 
   return (
     <Stack.Item>
-      <Section title="Overview">
+      <Section title="Настройка отряда">
         <LabeledList>
-          <LabeledList.Item label="Current Alert">
+          <LabeledList.Item label="Текущий код">
             <Button icon="triangle-exclamation" color={securityLevelColor}>
               {securityLevel}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="ERT Request">
+          <LabeledList.Item label="Запрос ОБР">
             <Button.Checkbox
               selected={null}
               checked={ertRequestAnswered}
               textColor={ertRequestAnswered ? null : 'bad'}
               tooltip={
-                'Checking this box will disable the next ERT reminder notification'
+                'Установка этого флажка отключит следующее уведомление с напоминанием о ОБР'
               }
               onClick={() => act('toggleErtRequestAnswered')}
             >
-              {ertRequestAnswered ? 'Answered' : 'Unanswered'}
+              {ertRequestAnswered ? 'Ответил' : 'Безответный'}
             </Button.Checkbox>
           </LabeledList.Item>
         </LabeledList>
@@ -156,16 +156,16 @@ const SendERT = (props) => {
   }
 
   enum ERTTYPE {
-    Amber = 'orange',
     Red = 'red',
-    Gamma = 'yellow',
+    Gamma = 'orange',
+    Epsilon = 'purple',
   }
 
   return (
     <Stack.Item grow>
       <Section
         fill
-        title="Send ERT"
+        title="Отправить ОБР"
         buttons={
           <>
             {Object.entries(ERTTYPE).map(([typeName, typeColor]) => (
@@ -185,34 +185,34 @@ const SendERT = (props) => {
         <Stack fill vertical>
           <Stack.Item grow>
             <LabeledList>
-              <LabeledList.Item label="Spawn on briefing?">
+              <LabeledList.Item label="Появиться на брифинге?">
                 <Button
                   icon={adminSlots ? 'toggle-on' : 'toggle-off'}
                   selected={adminSlots}
                   tooltip="Нужно быть гостом"
                   onClick={() => act('toggleAdmin')}
                 >
-                  {adminSlots ? 'Yes' : 'No'}
+                  {adminSlots ? 'Да' : 'Нет'}
                 </Button>
               </LabeledList.Item>
-              <LabeledList.Item label="Should be announced?">
+              <LabeledList.Item label="Должно ли быть объявлено об этом?">
                 <Button
                   icon={shouldBeAnnounced ? 'toggle-on' : 'toggle-off'}
                   selected={shouldBeAnnounced}
                   tooltip="Последует ли оповещение после отказа/одобрения запроса?"
                   onClick={() => act('toggleAnnounce')}
                 >
-                  {shouldBeAnnounced ? 'Yes' : 'No'}
+                  {shouldBeAnnounced ? 'Да' : 'Нет'}
                 </Button>
               </LabeledList.Item>
-              <LabeledList.Item label="Commander">
+              <LabeledList.Item label="Командир">
                 <Button
                   icon={commanderSlots ? 'toggle-on' : 'toggle-off'}
                   selected={commanderSlots}
                   tooltip="Будет лидер при создании отряда или нет?"
                   onClick={() => act('toggleCom')}
                 >
-                  {commanderSlots ? 'Yes' : 'No'}
+                  {commanderSlots ? 'Да' : 'Нет'}
                 </Button>
               </LabeledList.Item>
 
@@ -236,9 +236,9 @@ const SendERT = (props) => {
                 );
               })}
 
-              <LabeledList.Item label="Total Slots">
+              <LabeledList.Item label="Количество слотов">
                 <Box color={totalSlots > ertSpawnpoints ? 'red' : 'green'}>
-                  {totalSlots} total, versus {ertSpawnpoints} spawnpoints
+                  {totalSlots} исользованно из {ertSpawnpoints}
                 </Box>
               </LabeledList.Item>
             </LabeledList>
@@ -250,7 +250,7 @@ const SendERT = (props) => {
               icon="ambulance"
               onClick={() => act('dispatchErt')}
             >
-              Send ERT
+              Отправить ОБР
             </Button>
           </Stack.Item>
         </Stack>
@@ -299,7 +299,7 @@ const ReadERTRequests = (props) => {
                 <Icon name="slash" size={5} color="red" />
               </Icon.Stack>
               <br />
-              No ERT requests.
+              Никаких запросов ОБР.
             </Stack.Item>
           </Stack>
         )}
@@ -319,7 +319,7 @@ const DenyERT = (props) => {
           <Stack.Item grow>
             <TextArea
               height={'100%'}
-              placeholder="Enter ERT denial reason here. Multiline input is accepted."
+              placeholder="Введите здесь причину отказа в ОБР. Допускается многострочный ввод."
               value={text}
               onChange={(e, value) => setText(value)}
             />
@@ -331,7 +331,7 @@ const DenyERT = (props) => {
               textAlign="center"
               onClick={() => act('denyErt', { reason: text })}
             >
-              Deny ERT
+              Отказать в ОБР
             </Button.Confirm>
           </Stack.Item>
         </Stack>

@@ -24,5 +24,3 @@
 		ANNOUNCER_OBR_YES = 'modular_andromeda/sound/announcer/classic/obr_yes.ogg',
 		ANNOUNCER_OBR_NO = 'modular_andromeda/sound/announcer/classic/obr_no.ogg',
 		ANNOUNCER_DEATHSQUAD = 'modular_andromeda/sound/announcer/classic/deathsquad.ogg')
-
-	custom_alert_message = span_alert("Пожалуйста, ожидайте важного сообщения от дежурного оператора.<br>")
