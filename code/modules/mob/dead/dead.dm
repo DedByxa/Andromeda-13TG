@@ -1,4 +1,4 @@
-//Dead mobs can exist whenever. This is needful
+//Dead mobs can exist whenever. This is needful	///Мертвые мобы могут существовать в любое время. Это необходимо
 
 INITIALIZE_IMMEDIATE(/mob/dead)
 
@@ -11,7 +11,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	if(flags_1 & INITIALIZED_1)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
+		stack_trace("Предупреждение: [src]([type]) инициализировался несколько раз!")
 	flags_1 |= INITIALIZED_1
 	// Initial is non standard here, but ghosts move before they get here so it's needed. this is a cold path too so it's ok
 	SET_PLANE_IMPLICIT(src, initial(plane))
@@ -23,7 +23,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		add_verb(src, /mob/dead/proc/server_hop)
 	set_focus(src)
 	become_hearing_sensitive()
-	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[src.type]\]")
+	log_mob_tag("ТЕГ: [tag] СОЗДАН: [key_name(src)] \[[src.type]\]")
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dead/canUseStorage()
@@ -35,25 +35,25 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		. += "Time To Start: [round(time_remaining/10)]s"
+		. += "До начала раунда: [round(time_remaining/10)]s"
 	else if(time_remaining == -10)
-		. += "Time To Start: DELAYED"
+		. += "До начала раунда: DELAYED"
 	else
-		. += "Time To Start: SOON"
+		. += "До начала раунда: SOON"
 
 	// . += "Players: [LAZYLEN(GLOB.clients)]"  // BANDASTATION REMOVAL
-	. += "Players Ready: [SSticker.totalPlayersReady]" // BANDASTATION ADD
+	. += "Готовых игроков: [SSticker.totalPlayersReady]" // BANDASTATION ADD
 	if(client.holder)
 		// . += "Players Ready: [SSticker.totalPlayersReady]" // BANDASTATION REMOVAL
-		. += "Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]"
+		. += "Готовых администраторов: [SSticker.total_admins_ready] / [length(GLOB.admins)]"
 
 #define SERVER_HOPPER_TRAIT "server_hopper"
 
 /mob/dead/proc/server_hop()
 	set category = "OOC"
-	set name = "Server Hop"
-	set desc= "Jump to the other server"
-	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM)) // in case the round is ending and a cinematic is already playing we don't wanna clash with that (yes i know)
+	set name = "Переход к серверу"
+	set desc= "Перейти на другой сервер"
+	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM)) // in case the round is ending and a cinematic is already playing we don't wanna clash with that (yes i know) /// в случае, если раунд заканчивается, а фильм уже идет, мы не хотим с этим сталкиваться (да, я знаю).
 		return
 	var/list/our_id = CONFIG_GET(string/cross_comms_name)
 	var/list/csa = CONFIG_GET(keyed_list/cross_server) - our_id
@@ -61,22 +61,22 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	switch(length(csa))
 		if(0)
 			remove_verb(src, /mob/dead/proc/server_hop)
-			to_chat(src, span_notice("Server Hop has been disabled."))
+			to_chat(src, span_notice("Переход к серверу был отключен."))
 		if(1)
 			pick = csa[1]
 		else
-			pick = tgui_input_list(src, "Server to jump to", "Server Hop", csa)
+			pick = tgui_input_list(src, "Сервер для перехода", "Переход на сервер", csa)
 
 	if(isnull(pick))
 		return
 
 	var/addr = csa[pick]
 
-	if(tgui_alert(usr, "Jump to server [pick] ([addr])?", "Server Hop", list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, "Перейти на сервер [pick] ([addr])?", "Переход на сервер", list("Да", "Нет")) != "Да")
 		return
 
 	var/client/hopper = client
-	to_chat(hopper, span_notice("Sending you to [pick]."))
+	to_chat(hopper, span_notice("Отправляю вас на [pick]."))
 	var/atom/movable/screen/splash/fade_in = new(null, src, hopper, FALSE)
 	fade_in.Fade(FALSE)
 
