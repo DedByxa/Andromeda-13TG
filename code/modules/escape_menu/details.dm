@@ -21,7 +21,7 @@ GLOBAL_DATUM(escape_menu_details, /atom/movable/screen/escape_menu/details)
 
 /atom/movable/screen/escape_menu/details/Destroy()
 	if (GLOB.escape_menu_details == src)
-		stack_trace("Something tried to delete the escape menu details screen")
+		stack_trace("Что-то пыталось удалить экран сведений о escape-меню")
 		return QDEL_HINT_LETMELIVE
 
 	STOP_PROCESSING(SSescape_menu, src)
@@ -33,10 +33,10 @@ GLOBAL_DATUM(escape_menu_details, /atom/movable/screen/escape_menu/details)
 /atom/movable/screen/escape_menu/details/proc/update_text()
 	var/new_maptext = {"
 		<span style='text-align: right; line-height: 0.7'>
-			Round ID: [GLOB.round_id || "Unset"]<br />
-			[SSticker.round_start_time ? "Round Time" : "Lobby Time"]: [ROUND_TIME()]<br />
-			Map: [SSmapping.current_map.map_name || "Loading..."]<br />
-			Time Dilation: [round(SStime_track.time_dilation_current,1)]%<br />
+			ID Раунда: [GLOB.round_id || "Unset"]<br />
+			[SSticker.round_start_time ? "Время раунда" : "Время лобии"]: [ROUND_TIME()]<br />
+			Карта: [SSmapping.current_map.map_name || "Загрузка..."]<br />
+			Замедление времени: [round(SStime_track.time_dilation_current,1)]%<br />
 		</span>
 	"}
 
