@@ -5,9 +5,9 @@
 
 	var/number_to_ask = round(LAZYLEN(GLOB.joined_player_list) * CONFIG_GET(number/commendation_percent_poll)) + rand(0,1)
 	if(number_to_ask == 0)
-		message_admins("Not enough eligible players to poll for commendations.")
+		message_admins("Недостаточно игроков, имеющих право участвовать в опросе для получения благодарностей.")
 		return
-	message_admins("Polling [number_to_ask] players for commendations.")
+	message_admins("Опрос [number_to_ask] игроков для получения благодарностей.")
 
 	// We need the list to be random, otherwise we'll end up always asking the same people to give out commendations.
 	var/list/eligible_player_list = shuffle(GLOB.joined_player_list)
@@ -24,7 +24,7 @@
 
 /// Once the round is actually over, cycle through the ckeys in the hearts list and give them the hearted status
 /datum/controller/subsystem/ticker/proc/handle_hearts()
-	var/list/message = list("The following players were commended this round: ")
+	var/list/message = list("В этом раунде были отмечены следующие игроки: ")
 	var/i = 0
 	for(var/hearted_ckey in hearts)
 		i++
@@ -39,17 +39,17 @@
 /mob/proc/query_heart(attempt=1)
 	if(!client || attempt > 3)
 		return
-	if(attempt == 1 && tgui_alert(src, "Was there another character you noticed being kind this round that you would like to anonymously thank?", "<3?", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
+	if(attempt == 1 && tgui_alert(src, "Был ли в этом раунде еще один персонаж, которого вы заметили добрым, и которого вы хотели бы анонимно поблагодарить?", "<3?", list("Да", "Нет"), timeout = 30 SECONDS) != "Да")
 		return
 
 	var/heart_nominee
 	switch(attempt)
 		if(1)
-			heart_nominee = tgui_input_text(src, "What was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "Как их звали? Может быть достаточно просто имени или фамилии.", "<3?", max_length = MAX_NAME_LEN)
 		if(2)
-			heart_nominee = tgui_input_text(src, "Try again, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "Попробуйте еще раз, как их звали? Возможно, будет достаточно просто имени или фамилии.", "<3?", max_length = MAX_NAME_LEN)
 		if(3)
-			heart_nominee = tgui_input_text(src, "One more try, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "Еще одна попытка, как их звали? Возможно, будет достаточно просто имени или фамилии.", "<3?", max_length = MAX_NAME_LEN)
 
 	if(!heart_nominee)
 		return
@@ -66,11 +66,11 @@
 		if(heart_contender == src)
 			continue
 
-		switch(tgui_alert(src, "Is this the person: [heart_contender.real_name]?", "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
-			if("Yes!")
+		switch(tgui_alert(src, "Это тот самый человек: [heart_contender.real_name]?", "<3?", list("Да!", "Нет", "Отмена"), timeout = 15 SECONDS))
+			if("Да!")
 				heart_contender.receive_heart(src)
 				return
-			if("Nope")
+			if("Нет")
 				continue
 			else
 				return
@@ -91,9 +91,9 @@
 /mob/proc/receive_heart(mob/heart_sender, duration = 24 HOURS, instant = FALSE)
 	if(!client)
 		return
-	to_chat(heart_sender, span_nicegreen("Commendation sent!"))
-	message_admins("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
-	log_admin("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
+	to_chat(heart_sender, span_nicegreen("Отправлена благодарность! Думаю, игрок будет рад :)"))
+	message_admins("[key_name(heart_sender)] благодарность [key_name(src)] [instant ? "(instant)" : ""]")
+	log_admin("[key_name(heart_sender)] благодарность [key_name(src)] [instant ? "(instant)" : ""]")
 	if(instant || SSticker.current_state == GAME_STATE_FINISHED)
 		client.adjust_heart(duration)
 	else
