@@ -1,14 +1,15 @@
 ///Data holder for the announcers that can be used in a game, this can be used to have alternative announcements outside of the default e.g.the intern
+///Держатель данных для дикторов, которые могут быть использованы в игре, это может быть использовано для получения альтернативных объявлений, отличных от стандартных, например, для стажера
 /datum/centcom_announcer
-	///Roundshift start audio
+	///Раундстарт анонс
 	var/welcome_sounds = list()
-	///Sounds made when announcement is receivedc
+	///Звуки, издаваемые при получении объявления.
 	var/alert_sounds = list()
-	///Sounds made when command report is received
+	///Звуки, издаваемые при получении командного объявления.
 	var/command_report_sounds = list()
-	///Event audio, can be used for specific event announcements and is assoc key - sound. If no sound is found the default is used.area
+	///Звук, издаваемые при получении событии. Если звук не найден, используется звук по умолчанию.
 	var/event_sounds = list()
-	///Override this to have a custom message to show instead of the normal priority announcement
+	///Кастомные анонсы
 	var/custom_alert_message
 
 

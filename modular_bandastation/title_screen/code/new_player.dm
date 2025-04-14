@@ -126,7 +126,7 @@
 		SSticker.SetTimeLeft(time)
 		SSticker.start_immediately = FALSE
 		to_chat(world, span_infoplain(span_bold("Игра начнётся через [DisplayTimeText(time)].")), confidential = TRUE)
-		SEND_SOUND(world, sound('sound/announcer/default/attention.ogg'))
+		SEND_SOUND(world, sound('modular_andromeda/sound/announcer/classic/attention.ogg'))
 		log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(time)].")
 		BLACKBOX_LOG_ADMIN_VERB("Delay Game Start")
 

@@ -143,7 +143,7 @@
 #define SOUND_AREA_WOODFLOOR SOUND_ENVIRONMENT_CITY
 
 
-///Announcer audio keys
+///Announcer audio keys ///Звуковые ключи анонсера(диктора)
 #define ANNOUNCER_AIMALF "announcer_aimalf"
 #define ANNOUNCER_ALIENS "announcer_aliens"
 #define ANNOUNCER_ANIMES "announcer_animes"
@@ -160,8 +160,18 @@
 #define ANNOUNCER_SHUTTLEDOCK "announcer_shuttledock"
 #define ANNOUNCER_SHUTTLERECALLED "announcer_shuttlerecalled"
 #define ANNOUNCER_SPANOMALIES "announcer_spanomalies"
+/// ADD Andromeda-13
+#define ANNOUNCER_SM_EXPLOSION "announcer_sm_explosion"
+#define ANNOUNCER_BSA_ARTILLERY "announcer_bsa_artillery"
+#define ANNOUNCER_OBR_REQUEST "announcer_obr_request"
+#define ANNOUNCER_OBR_YES "announcer_obr_yes"
+#define ANNOUNCER_OBR_NO "announcer_obr_no"
+#define ANNOUNCER_DEATHSQUAD "announcer_deathsquad"
+/// END ADD Andromeda-13
 
-/// Global list of all of our announcer keys.
+
+
+/// Global list of all of our announcer keys. /// Общий список всех наших ключей анонсера(диктора).
 GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_AIMALF,
 	ANNOUNCER_ALIENS,
@@ -179,6 +189,15 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_SHUTTLEDOCK,
 	ANNOUNCER_SHUTTLERECALLED,
 	ANNOUNCER_SPANOMALIES,
+	/// ADD Andromeda-13
+	ANNOUNCER_SM_EXPLOSION,
+	ANNOUNCER_BSA_ARTILLERY,
+	ANNOUNCER_OBR_REQUEST,
+	ANNOUNCER_OBR_YES,
+	ANNOUNCER_OBR_NO,
+	ANNOUNCER_DEATHSQUAD
+	ANNOUNCER_
+	/// END ADD Andromeda-13
 ))
 
 /// List of all of our sound keys.
