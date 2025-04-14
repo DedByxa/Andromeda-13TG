@@ -39,14 +39,14 @@
 	if (!istype(ACI))
 		ACI = new(asset_name, asset, file_hash, dmi_file_path)
 		if (!ACI || !ACI.hash)
-			CRASH("ERROR: Invalid asset: [asset_name]:[asset]:[ACI]")
+			CRASH("ОШИБКА: Недопустимый актив: [asset_name]:[asset]:[ACI]")
 	if (SSassets.cache[asset_name])
 		var/datum/asset_cache_item/OACI = SSassets.cache[asset_name]
 		OACI.legacy = ACI.legacy = (ACI.legacy|OACI.legacy)
 		OACI.namespace_parent = ACI.namespace_parent = (ACI.namespace_parent | OACI.namespace_parent)
 		OACI.namespace = OACI.namespace || ACI.namespace
 		if (OACI.hash != ACI.hash)
-			var/error_msg = "ERROR: new asset added to the asset cache with the same name as another asset: [asset_name] existing asset hash: [OACI.hash] new asset hash:[ACI.hash]"
+			var/error_msg = "ОШИБКА: в кэш активов добавлен новый актив с тем же именем, что и у другого актива: [asset_name] существующий хэш актива: [OACI.hash] новый хэш актива:[ACI.hash]"
 			stack_trace(error_msg)
 			log_asset(error_msg)
 		else
@@ -96,7 +96,7 @@
 			else //no stacktrace because this will mainly happen because the client went away
 				return
 		else
-			CRASH("Invalid argument: client: `[client]`")
+			CRASH("Недопустимый аргумент: клиент: `[client]`")
 	if (!islist(asset_list))
 		asset_list = list(asset_list)
 	var/list/unreceived = list()
@@ -104,11 +104,11 @@
 	for (var/asset_name in asset_list)
 		var/datum/asset_cache_item/ACI = asset_list[asset_name]
 		if (!istype(ACI) && !(ACI = SSassets.cache[asset_name]))
-			log_asset("ERROR: can't send asset `[asset_name]`: unregistered or invalid state: `[ACI]`")
+			log_asset("ОШИБКА: не удается отправить актив `[asset_name]`: незарегистрированный или недопустимое состояние: `[ACI]`")
 			continue
 		var/asset_file = ACI.resource
 		if (!asset_file)
-			log_asset("ERROR: can't send asset `[asset_name]`: invalid registered resource: `[ACI.resource]`")
+			log_asset("ОШИБКА: не удается отправить актив `[asset_name]`: недействительный зарегистрированный ресурс: `[ACI.resource]`")
 			continue
 
 		var/asset_hash = ACI.hash
@@ -121,13 +121,13 @@
 			new_asset_name = "asset.[ACI.hash][ACI.ext]"
 		if (client.sent_assets[new_asset_name] == asset_hash)
 			if (GLOB.Debug2)
-				log_asset("DEBUG: Skipping send of `[asset_name]` (as `[new_asset_name]`) for `[client]` because it already exists in the client's sent_assets list")
+				log_asset("DEBUG: пропуск отправки `[asset_name]` (как `[new_asset_name]`) для `[client]`  поскольку он уже существует в списке отправленных активов клиента (sent_assets list)")
 			continue
 		unreceived[asset_name] = ACI
 
 	if (unreceived.len)
 		if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-			to_chat(client, span_infoplain("Sending Resources..."))
+			to_chat(client, span_infoplain("Загрузка, подождите..."))
 
 		for (var/asset_name in unreceived)
 			var/new_asset_name = asset_name
@@ -138,7 +138,7 @@
 				|| (ACI.namespace && !ACI.namespace_parent)
 			if (!keep_local_name)
 				new_asset_name = "asset.[ACI.hash][ACI.ext]"
-			log_asset("Sending asset `[asset_name]` to client `[client]` as `[new_asset_name]`")
+			log_asset("Отправка актива `[asset_name]` клиенту `[client]` как `[new_asset_name]`")
 			client << browse_rsc(ACI.resource, new_asset_name)
 
 			client.sent_assets[new_asset_name] = ACI.hash
