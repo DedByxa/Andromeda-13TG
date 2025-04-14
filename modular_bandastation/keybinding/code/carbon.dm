@@ -5,7 +5,7 @@
 
 /datum/keybinding/carbon/hold_throw_mode
 	full_name = "Режим броска (зажать)"
-	hotkey_keys = list("Space")
+	hotkey_keys = list("K")
 	description = "Удерживайте, чтобы включить режим броска, и отпустите, чтобы выключить его"
 
 /datum/keybinding/carbon/give

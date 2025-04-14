@@ -39,6 +39,10 @@
 	ADD_TRAIT(src, TRAIT_CAN_MOUNT_HUMANS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_CAN_MOUNT_CYBORGS, INNATE_TRAIT)
 
+	/// ADD Andromeda-13
+	set_jump_component()
+	/// END Andromeda-13
+
 /mob/living/carbon/human/proc/setup_physiology()
 	physiology = new()
 
