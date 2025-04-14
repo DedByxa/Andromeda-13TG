@@ -15,9 +15,9 @@ if (!String.prototype.trim) {
 }
 
 // Status panel implementation ------------------------------------------------
-var status_tab_parts = ["Loading..."];
+var status_tab_parts = ["Загрузка..."];
 var current_tab = null;
-var mc_tab_parts = [["Loading...", ""]];
+var mc_tab_parts = [["Загрузка...", ""]];
 var href_token = null;
 var spells = [];
 var spell_tabs = [];
