@@ -126,7 +126,7 @@ GLOBAL_VAR(restart_counter)
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-	log_world("World loaded at [time_stamp()]!")
+	log_world("Мир загружен в [time_stamp()]!")
 
 	// From a really fucking old commit (91d7150)
 	// I wanted to move it but I think this needs to be after /world/New is called but before any sleeps?
@@ -290,19 +290,19 @@ GLOBAL_VAR(restart_counter)
 	var/list/fail_reasons
 	if(GLOB)
 		if(GLOB.total_runtimes != 0)
-			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+			fail_reasons = list("Общий runtimes: [GLOB.total_runtimes]")
 #ifdef UNIT_TESTS
 		if(GLOB.failed_any_test)
-			LAZYADD(fail_reasons, "Unit Tests failed!")
+			LAZYADD(fail_reasons, "Модульные тесты провалены!")
 #endif
 		if(!GLOB.log_directory)
-			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+			LAZYADD(fail_reasons, "Отсутствует GLOB.log_directory!")
 	else
-		fail_reasons = list("Missing GLOB!")
+		fail_reasons = list("Отсутствует GLOB!")
 	if(!fail_reasons)
-		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
+		text2file("Успех!", "[GLOB.log_directory]/clean_run.lk")
 	else
-		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+		log_world("Тестовый запуск не удался!\n[fail_reasons.Join("\n")]")
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
@@ -329,11 +329,11 @@ GLOBAL_VAR(restart_counter)
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
-			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
-			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, span_boldannounce("Rebooting World immediately due to host request."))
+			log_admin("[key_name(usr)] Запросил немедленный перезапуск сервера с помощью средств отладки на стороне клиента")
+			message_admins("[key_name_admin(usr)] Запросил немедленный перезапуск сервера с помощью средств отладки на стороне клиента")
+		to_chat(world, span_boldannounce("Немедленная перезагрузка сервера по запросу хостинга."))
 	else
-		to_chat(world, span_boldannounce("Rebooting world..."))
+		to_chat(world, span_boldannounce("Сервер перезагружается..."))
 		Master.Shutdown() //run SS shutdowns
 
 	#ifdef UNIT_TESTS
@@ -341,14 +341,14 @@ GLOBAL_VAR(restart_counter)
 	return
 	#else
 	if(check_hard_reboot())
-		log_world("World hard rebooted at [time_stamp()]")
+		log_world("Мир был жестко перезагружен в [time_stamp()]")
 		shutdown_logging() // See comment below.
 		QDEL_NULL(Tracy)
 		QDEL_NULL(Debugger)
 		TgsEndProcess()
 		return ..()
 
-	log_world("World rebooted at [time_stamp()]")
+	log_world("Мир перезагрузился в [time_stamp()]")
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	QDEL_NULL(Tracy)
@@ -365,6 +365,7 @@ GLOBAL_VAR(restart_counter)
 	rustg_close_async_http_client() // BANDSATION ADDITION - Rust Utils
 	. = ..()
 
+/// Статус в ХАБЕ Byond
 /world/proc/update_status()
 
 	var/list/features = list()
