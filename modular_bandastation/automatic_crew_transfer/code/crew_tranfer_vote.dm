@@ -2,7 +2,7 @@
 #define CHOICE_CONTINUE "Continue Playing"
 
 /datum/vote/crew_transfer
-	name = "Crew Transfer"
+	name = "Вызвать шаттл"
 	default_choices = list(
 		CHOICE_INITIATE_CREW_TRANSFER,
 		CHOICE_CONTINUE,
@@ -39,22 +39,22 @@
 			initiate_tranfer()
 			return
 		else
-			CRASH("[type] wasn't passed a valid winning choice. (Got: [winning_option || "null"])")
+			CRASH("[type] не был передан правильный выбор победителя. (Получено: [winning_option || "null"])")
 
 /datum/vote/crew_transfer/proc/initiate_tranfer()
 	PRIVATE_PROC(TRUE)
 
 	if(!EMERGENCY_IDLE_OR_RECALLED)
-		log_admin("Shuttle can't be called by automatic crew transfer vote because it's already in use or disabled.")
-		message_admins(span_adminnotice("Shuttle can't be called by automatic crew transfer vote because it's already in use or disabled."))
+		log_admin("Шаттл не может быть вызван автоматическим голосованием за перевод экипажа, потому что он уже используется или отключен.")
+		message_admins(span_adminnotice("Шаттл не может быть вызван автоматическим голосованием за перевод экипажа, потому что он уже используется или отключен."))
 		return
 
 	SSshuttle.admin_emergency_no_recall = TRUE
 	SSshuttle.emergency.mode = SHUTTLE_IDLE
 	SSshuttle.emergency.request(reason = " Автоматическое окончание смены")
 
-	log_admin("Shuttle called due to automatic crew transfer vote.")
-	message_admins(span_adminnotice("Shuttle called due to automatic crew transfer vote."))
+	log_admin("Шаттл вызван в связи с голосованием по автоматическому переводу экипажа.")
+	message_admins(span_adminnotice("Шаттл вызван в связи с голосованием по автоматическому переводу экипажа."))
 
 #undef CHOICE_INITIATE_CREW_TRANSFER
 #undef CHOICE_CONTINUE

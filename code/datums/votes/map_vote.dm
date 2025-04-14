@@ -1,6 +1,6 @@
 /datum/vote/map_vote
-	name = "Map"
-	default_message = "Vote for next round's map!"
+	name = "Карта"
+	default_message = "Голосуйте за карту следующего раунда!"
 	count_method = VOTE_COUNT_METHOD_SINGLE
 	winner_method = VOTE_WINNER_METHOD_NONE
 	display_statistics = FALSE
@@ -19,12 +19,12 @@
 	if(length(choices) == 1) // Only one choice, no need to vote. Let's just auto-rotate it to the only remaining map because it would just happen anyways.
 		var/datum/map_config/change_me_out = global.config.maplist[choices[1]]
 		finalize_vote(choices[1])// voted by not voting, very sad.
-		to_chat(world, span_boldannounce("The map vote has been skipped because there is only one map left to vote for. \
-			The map has been changed to [change_me_out.map_name]."))
+		to_chat(world, span_boldannounce("Голосование по карте было пропущено, так как осталось проголосовать только за одну карту. \
+			Карта была изменена на [change_me_out.map_name]."))
 		return FALSE
 	if(length(choices) == 0)
-		to_chat(world, span_boldannounce("A map vote was called, but there are no maps to vote for! \
-			Players, complain to the admins. Admins, complain to the coders."))
+		to_chat(world, span_boldannounce("Было объявлено голосование по картам, но карт для голосования нет! \
+			Игроки, пожалуйтесь администраторам. Администраторы, пожалуйтесь кодерам."))
 		return FALSE
 
 	return TRUE
@@ -41,14 +41,14 @@
 		return .
 
 	if(SSmap_vote.next_map_config)
-		return "The next map has already been selected."
+		return "Следующая карта уже выбрана."
 
 	var/list/new_choices = SSmap_vote.get_valid_map_vote_choices()
 	if (new_choices)
 		default_choices = new_choices
 	var/num_choices = length(default_choices)
 	if(num_choices <= 1)
-		return "There [num_choices == 1 ? "is only one map" : "are no maps"] to choose from."
+		return "Есть [num_choices == 1 ? "только одна карта" : "карт нет"] на выбор."
 
 	return VOTE_AVAILABLE
 

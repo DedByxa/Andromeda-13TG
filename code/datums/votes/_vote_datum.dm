@@ -16,7 +16,7 @@
 	/// Does the name of this vote contain the word "vote"?
 	var/contains_vote_in_name = FALSE
 	/// What message do we show as the tooltip of this vote if the vote can be initiated?
-	var/default_message = "Click to initiate a vote."
+	var/default_message = "Нажмите, чтобы начать голосование."
 	/// The counting method we use for votes.
 	var/count_method = VOTE_COUNT_METHOD_SINGLE
 	/// The method for selecting a winner.
@@ -86,7 +86,7 @@
 	// BANDASTATION EDIT END - STORYTELLER
 
 	if(!forced && !is_config_enabled())
-		return "This vote is currently disabled by the server configuration."
+		return "В настоящее время это голосование отключено из-за конфигурации сервера."
 
 	return VOTE_AVAILABLE
 
@@ -116,7 +116,7 @@
 	started_time = world.time
 	time_remaining = round(duration / 10)
 
-	return "[contains_vote_in_name ? "[capitalize(name)]" : "[capitalize(name)] vote"] started by [initiator || "Central Command"]."
+	return "[contains_vote_in_name ? "[capitalize(name)]" : "[capitalize(name)] голосование"] начал [initiator || "Центральное Командование"]."
 
 /**
  * Gets the result of the vote.
@@ -140,7 +140,7 @@
 		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
 			return get_random_winner()
 
-	stack_trace("invalid select winner method: [winner_method]. Defaulting to simple.")
+	stack_trace("недопустимый метод выбора победителя: [winner_method]. По умолчанию используется значение Простой.")
 	return get_simple_winner()
 
 /// Gets the winner of the vote, selecting the choice with the most votes.
@@ -181,26 +181,26 @@
 	if(override_question)
 		title_text += span_bold(override_question)
 	else
-		title_text += span_bold("[capitalize(name)] Vote")
+		title_text += span_bold("[capitalize(name)] Голосовать")
 
-	returned_text += "Winner Selection: "
+	returned_text += "Выбор победителя: "
 	switch(winner_method)
 		if(VOTE_WINNER_METHOD_NONE)
-			returned_text += "None"
+			returned_text += "Никто"
 		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
-			returned_text += "Weighted Random"
+			returned_text += "Случайные голоса"
 		else
-			returned_text += "Simple"
+			returned_text += "Простой"
 
 	var/total_votes = 0 // for determining percentage of votes
 	for(var/option in choices)
 		total_votes += choices[option]
 
 	if(total_votes <= 0)
-		return span_bold("Vote Result: Inconclusive - No Votes!")
+		return span_bold("Результат голосования: Безрезультатный - Голосов нет!")
 
 	if (display_statistics)
-		returned_text += "\nResults:"
+		returned_text += "\nРезультаты:"
 		for(var/option in choices)
 			returned_text += "\n"
 			var/votes = choices[option]
@@ -236,11 +236,11 @@
 /datum/vote/proc/get_winner_text(list/all_winners, real_winner, list/non_voters)
 	var/returned_text = ""
 	if(length(all_winners) > 1)
-		returned_text += "\n[span_bold("Vote Tied Between:")]"
+		returned_text += "\n[span_bold("Голоса разделились между:")]"
 		for(var/a_winner in all_winners)
 			returned_text += "\n\t[a_winner]"
 
-	returned_text += span_bold("\nVote Result: [real_winner]")
+	returned_text += span_bold("\nРезультат голосования: [real_winner]")
 	return returned_text
 
 /**

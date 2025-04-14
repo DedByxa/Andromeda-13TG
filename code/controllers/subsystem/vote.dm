@@ -100,14 +100,14 @@ SUBSYSTEM_DEF(vote)
 
 	// stringify the winners to prevent potential unimplemented serialization errors.
 	// Perhaps this can be removed in the future and we assert that vote choices must implement serialization.
-	var/final_winner_string = (final_winner && "[final_winner]") || "NO WINNER"
+	var/final_winner_string = (final_winner && "[final_winner]") || "НЕТ ПОБЕДИТЕЛЕЙ"
 	var/list/winners_string = list()
 
 	if(length(winners))
 		for(var/winner in winners)
 			winners_string += "[winner]"
 	else
-		winners_string = list("NO WINNER")
+		winners_string = list("НЕТ ПОБЕДИТЕЛЕЙ")
 
 	var/list/vote_log_data = list(
 		"type" = "[current_vote.type]",
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(vote)
 		"winners" = winners_string,
 		"final_winner" = final_winner_string,
 	)
-	log_vote("vote finalized", vote_log_data)
+	log_vote("голосование закончено", vote_log_data)
 	if(to_display)
 		to_chat(world, span_infoplain(vote_font("[to_display]")))
 
@@ -206,12 +206,12 @@ SUBSYSTEM_DEF(vote)
 	else
 		to_vote = possible_votes[vote_type]
 		if(!to_vote)
-			stack_trace("Voting initiate_vote was passed an invalid vote type. (Got: [vote_type || "null"])")
+			stack_trace("Для инициатора голосования был присвоен недопустимый тип голоса. (Получено: [vote_type || "null"])")
 
 	// No valid vote found? No vote
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("Invalid voting choice."))
+			to_chat(vote_initiator, span_warning("Недействительный выбор при голосовании."))
 		return FALSE
 
 	// Vote can't be initiated in our circumstances? No vote
@@ -237,14 +237,27 @@ SUBSYSTEM_DEF(vote)
 	var/to_display = current_vote.initiate_vote(vote_initiator_name, duration)
 
 	log_vote(to_display)
+
+/// ADD Andromeda-13
+/// Andromeda-Kostili
+
+/// Эта функция вызывала окно голосования при нажатии "here" или нынешней "здесь". Но из-за русского названия (set name = "Голосование"), оно не вызывается.
+/// По этому решил сделать иначе, как будут мозги или помощь от кого-то, сделаем по красоте. -Rewokin :)
+
+///	to_chat(world, custom_boxed_message("purple_box center", span_infoplain(vote_font("[span_bold(to_display)]<br>
+///		Дайте свой <b>голос</b>, если не появилось окно, то нажмите <a href='byond://winset?command=vote'>здесь</a>.\n
+///		У вас есть [DisplayTimeText(duration)] для голосования."))))
+
 	to_chat(world, custom_boxed_message("purple_box center", span_infoplain(vote_font("[span_bold(to_display)]<br>\
-		Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\n\
-		You have [DisplayTimeText(duration)] to vote."))))
+		Началось голосование! Если не появилось окно голосования, то нажмите <b>OOC</b> и <b>Голосование</b>.\n\
+		У вас есть [DisplayTimeText(duration)] для голосования."))))
+
+/// END ADD Andromeda-13
 
 	// And now that it's going, give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
 		var/datum/action/vote/voting_action = new()
-		voting_action.name = "Vote: [current_vote.override_question || current_vote.name]"
+		voting_action.name = "Голосование: [current_vote.override_question || current_vote.name]"
 		voting_action.Grant(new_voter.mob)
 
 		new_voter.persistent_client.player_actions += voting_action
@@ -266,7 +279,7 @@ SUBSYSTEM_DEF(vote)
 	// Even if it's forced we can't vote before we're set up
 	if(!MC_RUNNING(init_stage))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("You cannot start a vote now, the server is not done initializing."))
+			to_chat(vote_initiator, span_warning("Вы не можете начать голосование сейчас, так как инициализация сервера еще не завершена."))
 		return FALSE
 
 	if(forced)
@@ -275,12 +288,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("A vote was initiated recently. You must wait [DisplayTimeText(next_allowed_time - world.time)] before a new vote can be started!"))
+			to_chat(vote_initiator, span_warning("Недавно было инициировано голосование. Вы должны подождать [DisplayTimeText(next_allowed_time - world.time)] прежде чем можно будет начать новое голосование!"))
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("There is already a vote in progress! Please wait for it to finish."))
+			to_chat(vote_initiator, span_warning("Голосование уже проводится! Пожалуйста, дождитесь его окончания."))
 		return FALSE
 
 	return TRUE
@@ -288,10 +301,10 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/toggle_dead_voting(mob/toggle_initiator)
 	var/switch_deadvote_config = !CONFIG_GET(flag/no_dead_vote)
 	CONFIG_SET(flag/no_dead_vote, switch_deadvote_config)
-	var/text_verb = !switch_deadvote_config ? "enabled" : "disabled"
-	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
-	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
+	var/text_verb = !switch_deadvote_config ? "включен" : "отключён"
+	log_admin("[key_name(toggle_initiator)] [text_verb] Голоса от мёртвых.")
+	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Голоса от мёртвых.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Переключить Голоса от мёртвых", text_verb))
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -382,31 +395,31 @@ SUBSYSTEM_DEF(vote)
 	switch(action)
 		if("cancel")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to cancel the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] пытался отменить текущее голосование, не имея прав администратора, \
+					это потенциально вредоносный эксплойт, на который стоит обратить внимание.")
 				return
 
-			voter.log_message("cancelled a vote.", LOG_ADMIN)
-			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
+			voter.log_message("отменил голосование.", LOG_ADMIN)
+			message_admins("[key_name_admin(voter)] отменил текущее голосование.")
 			SStgui.close_uis(src)
 			reset()
 			return TRUE
 
 		if("endNow")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to end the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] пытался завершить сейчас текущее голосование, не имея прав администратора, \
+					это потенциально вредоносный эксплойт, на который стоит обратить внимание.")
 				return
 
-			voter.log_message("ended the current vote early", LOG_ADMIN)
-			message_admins("[key_name_admin(voter)] has ended the current vote.")
+			voter.log_message("досрочное завершение текущего голосования", LOG_ADMIN)
+			message_admins("[key_name_admin(voter)] текущее голосование завершено.")
 			end_vote()
 			return TRUE
 
 		if("toggleDeadVote")
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote abillity for ghosts while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] пытался переключить возможность голосования для призраков, имея ненадлежащие права, \
+					это потенциально вредоносный эксплойт, на который стоит обратить внимание.")
 				return
 
 			toggle_dead_voting(voter)
@@ -417,8 +430,8 @@ SUBSYSTEM_DEF(vote)
 			if(!istype(selected))
 				return
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote availability while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]  пытался переключить доступность голосования, имея ненадлежащие права, \
+					это потенциально вредоносный эксплойт, на который стоит обратить внимание.")
 				return
 
 			return selected.toggle_votable()
@@ -445,8 +458,8 @@ SUBSYSTEM_DEF(vote)
 
 		if("resetCooldown")
 			if(!voter.client.holder)
-				message_admins("[key_name(voter)] tried to reset the vote cooldown while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] попытался сбросить время ожидания голосования, пока у него не было администратора, \
+					это потенциально вредоносный эксплойт, на который стоит обратить внимание..")
 				return
 
 			last_vote_time = -INFINITY
@@ -458,17 +471,17 @@ SUBSYSTEM_DEF(vote)
 /// Mob level verb that allows players to vote on the current vote.
 /mob/verb/vote()
 	set category = "OOC"
-	set name = "Vote"
+	set name = "Голосование"
 
 	if(!SSvote.initialized)
-		to_chat(usr, span_notice("<i>Voting is not set up yet!</i>"))
+		to_chat(usr, span_notice("<i>Голосование еще не назначено!</i>"))
 		return
 
 	SSvote.ui_interact(usr)
 
 /// Datum action given to mobs that allows players to vote on the current vote.
 /datum/action/vote
-	name = "Vote!"
+	name = "Голосование!"
 	button_icon_state = "vote"
 	show_to_observers = FALSE
 

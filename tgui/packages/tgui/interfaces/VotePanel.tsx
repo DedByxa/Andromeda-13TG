@@ -72,7 +72,7 @@ export const VotePanel = (props) => {
   /**
    * Adds the voting type to title if there is an ongoing vote.
    */
-  let windowTitle = 'Vote';
+  let windowTitle = 'Голосование';
   if (currentVote) {
     windowTitle +=
       ': ' +
@@ -86,14 +86,14 @@ export const VotePanel = (props) => {
       <Window.Content>
         <Stack fill vertical>
           <Section
-            title="Create Vote"
+            title="Создать голосование"
             buttons={
               !!user.isLowerAdmin && (
                 <Stack>
                   <Stack.Item>
                     <Button
                       icon="refresh"
-                      content="Reset Cooldown"
+                      content="Сбросить КД"
                       disabled={LastVoteTime + VoteCD <= 0}
                       onClick={() => act('resetCooldown')}
                     />
@@ -101,7 +101,7 @@ export const VotePanel = (props) => {
                   <Stack.Item>
                     <Button
                       icon="skull"
-                      content="Toggle dead vote"
+                      content="Переключить голоса от мёртвых"
                       disabled={!user.isUpperAdmin}
                       onClick={() => act('toggleDeadVote')}
                     />
@@ -147,7 +147,7 @@ const VoteOptions = (props) => {
 
   return (
     <Stack.Item>
-      <Collapsible title="Start a Vote">
+      <Collapsible title="Начать голосование">
         <Section>
           {LastVoteTime + VoteCD > 0 && <VoteOptionDimmer />}
           <Stack vertical justify="space-between">
@@ -166,13 +166,11 @@ const VoteOptions = (props) => {
                         }
                         tooltip={
                           option.config === VoteConfig.None
-                            ? 'This vote cannot be disabled.'
+                            ? 'Это голосование не может быть отключено.'
                             : null
                         }
                         content={
-                          option.config === VoteConfig.Enabled
-                            ? 'Enabled'
-                            : 'Disabled'
+                          option.config === VoteConfig.Enabled ? 'Вкл' : 'Выкл'
                         }
                         onClick={() =>
                           act('toggleVote', {
@@ -216,7 +214,7 @@ const VotersList = (props) => {
   return (
     <Stack.Item>
       <Collapsible
-        title={`View Active Voters${
+        title={`Просмотр активных голосующих${
           data.voting.length ? ` (${data.voting.length})` : ''
         }`}
       >
@@ -240,9 +238,9 @@ const ChoicesPanel = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section fill scrollable title="Active Vote">
+      <Section fill scrollable title="Активные голосования">
         {currentVote && currentVote.countMethod === VoteSystem.VOTE_SINGLE ? (
-          <NoticeBox success>Select one option</NoticeBox>
+          <NoticeBox success>Выберите один из вариантов</NoticeBox>
         ) : null}
         {currentVote &&
         currentVote.choices.length !== 0 &&
@@ -256,7 +254,7 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={
-                        user.isGhost && 'Ghost voting was disabled by an admin.'
+                        user.isGhost && 'Голоса от мёртвых отключено админином.'
                       }
                       disabled={
                         user.singleSelection === choice.name || user.isGhost
@@ -265,7 +263,7 @@ const ChoicesPanel = (props) => {
                         act('voteSingle', { voteOption: choice.name });
                       }}
                     >
-                      Vote
+                      Голос
                     </Button>
                   }
                 >
@@ -288,7 +286,7 @@ const ChoicesPanel = (props) => {
           </LabeledList>
         ) : null}
         {currentVote && currentVote.countMethod === VoteSystem.VOTE_MULTI ? (
-          <NoticeBox success>Select any number of options</NoticeBox>
+          <NoticeBox success>Выберите любое количество вариантов</NoticeBox>
         ) : null}
         {currentVote &&
         currentVote.choices.length !== 0 &&
@@ -302,14 +300,14 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={
-                        user.isGhost && 'Ghost voting was disabled by an admin.'
+                        user.isGhost && 'Голоса от мёртвых отключено админином.'
                       }
                       disabled={user.isGhost}
                       onClick={() => {
                         act('voteMulti', { voteOption: choice.name });
                       }}
                     >
-                      Vote
+                      Голос
                     </Button>
                   }
                 >
@@ -317,14 +315,14 @@ const ChoicesPanel = (props) => {
                   user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
                     <Icon align="right" mr={2} color="blue" name="vote-yea" />
                   ) : null}
-                  {choice.votes} Votes
+                  {choice.votes} Голоса
                 </LabeledList.Item>
                 <LabeledList.Divider />
               </Box>
             ))}
           </LabeledList>
         ) : null}
-        {currentVote ? null : <NoticeBox>No vote active!</NoticeBox>}
+        {currentVote ? null : <NoticeBox>Голосование неактивно!</NoticeBox>}
       </Section>
     </Stack.Item>
   );
@@ -343,7 +341,7 @@ const TimePanel = (props) => {
       <Section>
         <Stack justify="space-between">
           <Box fontSize={1.5}>
-            Time Remaining:&nbsp;
+            Оставшееся время:&nbsp;
             {currentVote?.timeRemaining || 0}s
           </Box>
           {!!user.isLowerAdmin && (
@@ -354,7 +352,7 @@ const TimePanel = (props) => {
                   disabled={!user.isLowerAdmin || !currentVote}
                   onClick={() => act('endNow')}
                 >
-                  End Now
+                  Закончить сейчас
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -363,7 +361,7 @@ const TimePanel = (props) => {
                   disabled={!user.isLowerAdmin || !currentVote}
                   onClick={() => act('cancel')}
                 >
-                  Cancel Vote
+                  Отменить голосование
                 </Button>
               </Stack.Item>
             </Stack>
