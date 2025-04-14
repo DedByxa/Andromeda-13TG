@@ -22,11 +22,11 @@
 	var/poll_key
 	///Response messages sent in specific key areas for full customization of polling.
 	var/list/response_messages = list(
-		POLL_RESPONSE_SIGNUP = "You have signed up for %ROLE%! A candidate will be picked randomly soon.",
-		POLL_RESPONSE_ALREADY_SIGNED = "You have already signed up for this!",
-		POLL_RESPONSE_NOT_SIGNED = "You aren't signed up for this!",
-		POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "It's too late to unregister yourself, selection has already begun!",
-		POLL_RESPONSE_UNREGISTERED = "You have been unregistered as a candidate for %ROLE%. You can sign up again before the poll ends.",
+		POLL_RESPONSE_SIGNUP = "Вы подписались на %ROLE%! Кандидат будет выбран случайным образом в ближайшее время.",
+		POLL_RESPONSE_ALREADY_SIGNED = "Вы уже подписались на это!",
+		POLL_RESPONSE_NOT_SIGNED = "Вы на это не подписывались!",
+		POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "Уже слишком поздно отменять подписку!",
+		POLL_RESPONSE_UNREGISTERED = "Вы были отписаны в качестве кандидата на %ROLE%.  Вы можете зарегистрироваться еще раз до окончания голосования.",
 	)
 	var/list/chosen_candidates = list()
 
@@ -73,7 +73,7 @@
 		return FALSE
 	if(time_left() <= 0)
 		if(!silent)
-			to_chat(candidate, span_danger("Sorry, you were too late for the consideration!"))
+			to_chat(candidate, span_danger("Извините, вы опоздали!"))
 			SEND_SOUND(candidate, 'sound/machines/buzz/buzz-sigh.ogg')
 		return FALSE
 
@@ -117,12 +117,12 @@
 	if(!ignore_list)
 		GLOB.poll_ignore[ignoring_category] = list()
 	GLOB.poll_ignore[ignoring_category] += candidate.ckey
-	to_chat(candidate, span_danger("Choice registered: Never for this round."))
+	to_chat(candidate, span_danger("Зарегистрирован выбор: Никогда в этом раунде."))
 	remove_candidate(candidate, silent = TRUE)
 
 /datum/candidate_poll/proc/undo_never_for_this_round(mob/candidate)
 	GLOB.poll_ignore[ignoring_category] -= candidate.ckey
-	to_chat(candidate, span_notice("Choice registered: Eligible for this round"))
+	to_chat(candidate, span_notice("Зарегистрированный участник: имеет право на участие в этом раунде."))
 
 /datum/candidate_poll/proc/trim_candidates()
 	list_clear_nulls(signed_up)
@@ -141,4 +141,4 @@
 	for(var/mob/chosen in chosen_candidates)
 		var/client/chosen_client = chosen.client
 		for(var/mob/poll_recipient as anything in poll_recipients)
-			to_chat(poll_recipient, span_ooc("[isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null][span_warning(" [full_capitalize(role)] Poll: ")][key_name(chosen_client, include_name = FALSE)] was selected."))
+			to_chat(poll_recipient, span_ooc("[isobserver(poll_recipient) ? FOLLOW_LINK(poll_recipient, chosen_client.mob) : null][span_warning(" [full_capitalize(role)] Выбор: ")][key_name(chosen_client, include_name = FALSE)] был выбран."))
