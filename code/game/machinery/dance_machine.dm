@@ -138,7 +138,7 @@
 	music_player.unlisten_all()
 
 	if(!QDELING(src))
-		COOLDOWN_START(src, jukebox_song_cd, 10 SECONDS)
+		COOLDOWN_START(src, jukebox_song_cd, 1 SECONDS)
 		playsound(src,'sound/machines/terminal/terminal_off.ogg',50,TRUE)
 		update_use_power(IDLE_POWER_USE)
 		update_appearance(UPDATE_ICON_STATE)
@@ -226,7 +226,7 @@
 /obj/machinery/jukebox/disco/proc/hierofunk()
 	for(var/i in 1 to 10)
 		spawn_atom_to_turf(/obj/effect/temp_visual/hierophant/telegraph/edge, src, 1, FALSE)
-		sleep(0.5 SECONDS)
+		sleep(0.1 SECONDS)
 
 #define DISCO_INFENO_RANGE (rand(85, 115)*0.01)
 
