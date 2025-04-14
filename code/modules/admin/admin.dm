@@ -1,13 +1,13 @@
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">АДМИН ЛОГИ:</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">РЕТРАНСЛЯЦИЯ:</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
@@ -34,13 +34,13 @@
 	if(SSticker.IsRoundInProgress())
 		dat += "<A href='byond://??src=[REF(src)];[HrefToken()];f_dynamic_ruleset_manage=1'>(Manage Dynamic Rulesets)</A><br>"
 		*/
-	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Game Mode Panel)</a><BR>"
+	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Панель игрового режима)</a><BR>"
 	// BANDASTATION EDIT END - STORYTELLER
 	dat += {"
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_turf=1'>Create Turf</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_mob=1'>Create Mob</A><br>
+		<A href='byond://?src=[REF(src)];[HrefToken()];create_object=1'>Создать объект</A><br>
+		<A href='byond://?src=[REF(src)];[HrefToken()];quick_create_object=1'>Быстрое создание объекта</A><br>
+		<A href='byond://?src=[REF(src)];[HrefToken()];create_turf=1'>Создайте тайтл</A><br>
+		<A href='byond://?src=[REF(src)];[HrefToken()];create_mob=1'>Создать моба</A><br>
 		"}
 
 	if(marked_datum && istype(marked_datum, /atom))
@@ -53,7 +53,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "Spawn an atom.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(spawn_atom, R_SPAWN, "Создать объект", "Spawn an atom.", ADMIN_CATEGORY_DEBUG, object as text)
 	if(!object)
 		return
 	var/list/preparsed = splittext(object,":")
@@ -74,10 +74,10 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "Spawn an atom.", ADMIN_CATEGORY_DEBUG,
 			var/atom/A = new chosen(T)
 			A.flags_1 |= ADMIN_SPAWNED_1
 
-	log_admin("[key_name(user)] spawned [amount] x [chosen] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user)] создаёт [amount] x [chosen] в [AREACOORD(user.mob)]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Atom")
 
-ADMIN_VERB(spawn_atom_pod, R_SPAWN, "PodSpawn", "Spawn an atom via supply drop.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(spawn_atom_pod, R_SPAWN, "Создать под", "Spawn an atom via supply drop.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/chosen = pick_closest_path(object)
 	if(!chosen)
 		return
@@ -94,10 +94,10 @@ ADMIN_VERB(spawn_atom_pod, R_SPAWN, "PodSpawn", "Spawn an atom via supply drop."
 		var/atom/A = new chosen(pod)
 		A.flags_1 |= ADMIN_SPAWNED_1
 
-	log_admin("[key_name(user)] pod-spawned [chosen] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user)] создал под [chosen] в [AREACOORD(user.mob)]")
 	BLACKBOX_LOG_ADMIN_VERB("Podspawn Atom")
 
-ADMIN_VERB(spawn_cargo, R_SPAWN, "Spawn Cargo", "Spawn a cargo crate.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(spawn_cargo, R_SPAWN, "Создать груз (Карго)", "Spawn a cargo crate.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/datum/supply_pack)))
 	if(!chosen)
 		return
@@ -105,7 +105,7 @@ ADMIN_VERB(spawn_cargo, R_SPAWN, "Spawn Cargo", "Spawn a cargo crate.", ADMIN_CA
 	S.admin_spawned = TRUE
 	S.generate(get_turf(user.mob))
 
-	log_admin("[key_name(user)] spawned cargo pack [chosen] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user)] создал груз [chosen] в [AREACOORD(user.mob)]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Cargo")
 
 /datum/admins/proc/dynamic_mode_options(mob/user)
