@@ -83,7 +83,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_SHUTTLE "Админ.Шаттл"
 
 // Special categories that are separated
-#define ADMIN_CATEGORY_DEBUG "Debug"
+#define ADMIN_CATEGORY_DEBUG "Дебаг"
 #define ADMIN_CATEGORY_SERVER "Сервер"
 #define ADMIN_CATEGORY_OBJECT "Объект"
 #define ADMIN_CATEGORY_MAPPING "Маппинг"
@@ -91,4 +91,4 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_IPINTEL "Админ.IPIntel"
 
 // Visibility flags
-#define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"
+#define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Карта-Дебаг"
