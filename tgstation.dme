@@ -6609,6 +6609,7 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
+#include "modular_andromeda\code\datums\announcers\classic_announcer.dm"
 // END_INCLUDE
 
 // BANDASTATION
