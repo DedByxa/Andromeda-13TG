@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(gamemode)
 		else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
 			///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
 			sch_event.alerted_admins = TRUE
-			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+			message_admins("Запланированное событие: [sch_event.event] будет запущено через [(sch_event.start_time - world.time) / 10] секунд. (<a href='byond://?src=[REF(sch_event)];action=cancel'>ОТМЕНИТЬ</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>ВОЗВРАТ</a>)")
 	if(!halted_storyteller && next_storyteller_process <= world.time && current_storyteller)
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
@@ -398,7 +398,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(current_storyteller.disable_distribution)
 		return
 	if(halted_storyteller)
-		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
+		message_admins("ПРЕДУПРЕЖДЕНИЕ: Не были запущены события раундстарта (включая антагонистов) из-за того, что рассказчик был остановлен.")
 		return
 	handle_pre_setup_occupations()
 	SSjob.reset_occupations()
@@ -449,9 +449,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/scheduled_event/scheduled = new (passed_event, world.time + passed_time, passed_cost, passed_ignore, passed_announce)
 	var/round_started = SSticker.HasRoundStarted()
 	if(round_started)
-		message_admins("Event: [passed_event] has been scheduled to run in [passed_time / 10] seconds. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(scheduled)];action=refund'>REFUND</a>)")
+		message_admins("Событие: [passed_event] запланировано к запуску через [passed_time / 10] секунд. (<a href='byond://?src=[REF(scheduled)];action=cancel'>ОТМЕНИТЬ</a>) (<a href='byond://?src=[REF(scheduled)];action=refund'>ВОЗВРАТ</a>)")
 	else //Only roundstart events can be scheduled before round start
-		message_admins("Event: [passed_event] has been scheduled to run on roundstart. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>)")
+		message_admins("Событие: [passed_event] запланировано к запуску в режиме раундстарт. (<a href='byond://?src=[REF(scheduled)];action=cancel'>ОТМЕНИТЬ</a>)")
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
@@ -555,7 +555,7 @@ SUBSYSTEM_DEF(gamemode)
 	event_frequency_multiplier = 1
 
 /client/proc/forceEvent()
-	set name = "Trigger Event"
+	set name = "Запустить Ивент"
 	set category = "Admin.Events"
 	if(!holder ||!check_rights(R_FUN))
 		return
@@ -568,7 +568,7 @@ SUBSYSTEM_DEF(gamemode)
 	SSgamemode.event_panel(usr)
 
 /client/proc/forceGamemode()
-	set name = "Open Gamemode Panel"
+	set name = "Открыть гейммод панель"
 	set category = "Admin.Events"
 	if(!holder ||!check_rights(R_FUN))
 		return
@@ -579,8 +579,8 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/toggleWizardmode()
 	wizardmode = !wizardmode //TODO: decide what to do with wiz events
-	message_admins("Summon Events has been [wizardmode ? "enabled, events will occur [SSgamemode.event_frequency_multiplier] times as fast" : "disabled"]!")
-	log_game("Summon Events was [wizardmode ? "enabled" : "disabled"]!")
+	message_admins("Вызов событий был [wizardmode ? "включен, события будут происходить [SSgamemode.event_frequency_multiplier] в несколько раз быстрее" : "отключён"]!")
+	log_game("Summon Events was [wizardmode ? "включен" : "отключён"]!")
 
 ///Attempts to select players for special roles the mode might have.
 /datum/controller/subsystem/gamemode/proc/pre_setup()
@@ -747,24 +747,24 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/round_start_handle()
 	recalculate_ready_pop()
 	recalculate_roundstart_budget()
-	message_admins("Storyteller begin to get roundstart events with budget [roundstart_budget].")
+	message_admins("Рассказчик начинает организовывать событие с ограниченным бюджетом [roundstart_budget].")
 
 	var/track = EVENT_TRACK_ROLESET
 	if(forced_next_events[track])
 		for(var/datum/round_event_control/forced_event in forced_next_events[track])
 			if(forced_event.exclusive_roundstart_event)
 				forced_event = exclusives_add_antags(forced_event, forced = TRUE)
-			message_admins("Storyteller purchased and triggered forced roundstart event [forced_event].")
+			message_admins("Рассказчик приобрел и запустил принудительное событие раундстарт [forced_event].")
 			TriggerEvent(forced_event, forced = TRUE)
-			runned_events += "Runned forced roundstart: [forced_event.name]"
+			runned_events += "Запущенный принудительный раундстарт: [forced_event.name]"
 		forced_next_events[track] = list()
 
 
 	event_track_points[track] = 0
 	var/pop_count = ready_players + (length(department_crew_count[STS_SEC]) * current_storyteller.sec_antag_modifier)
 	if(pop_count < current_storyteller.min_antag_popcount)
-		message_admins("Not enough ready players to run general and scheduled roundstart events.")
-		message_admins("Storyteller finished to get roundstart events.")
+		message_admins("Недостаточно готовых игроков для проведения общих и запланированных стартовых событий.")
+		message_admins("Рассказчик завершил подготовку к стартовым событиям.")
 		return
 
 	var/list/valid_events = recalculate_roundstart_costs(track)
@@ -773,7 +773,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	rountstart_general_events_run(valid_events, track)
 
-	message_admins("Storyteller finished to get roundstart events with points left - [roundstart_budget].")
+	message_admins("Рассказчик закончил, и у него остались очки для участия в событиях раундстарт - [roundstart_budget].")
 	current_storyteller.roundstart_cap_multiplier = 1
 
 /datum/controller/subsystem/gamemode/proc/recalculate_roundstart_budget()
@@ -784,7 +784,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/rountstart_general_events_run(valid_events, track)
 
 	if(!length(valid_events))
-		message_admins("Storyteller failed to pick an events for roundstart.")
+		message_admins("Рассказчику не удалось выбрать событие для начала раунда.")
 		event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 		return
 
@@ -795,7 +795,7 @@ SUBSYSTEM_DEF(gamemode)
 		var/datum/round_event_control/picked_event = pick_weight(valid_events)
 		if(picked_event.can_spawn_event(ready_players) && (roundstart_budget >= picked_event.get_pre_cost()))
 			roundstart_budget -= picked_event.get_pre_cost()
-			message_admins("Storyteller purchased and triggered [picked_event] event for [picked_event.get_pre_cost()]. Left balance: [roundstart_budget].")
+			message_admins("Рассказчик приобрел и запустил событие [picked_event] для [picked_event.get_pre_cost()]. Оставшийся баланс: [roundstart_budget].")
 			if(picked_event.exclusive_roundstart_event)
 				valid_events = list()
 				picked_event = exclusives_add_antags(picked_event, forced = FALSE)
@@ -805,7 +805,7 @@ SUBSYSTEM_DEF(gamemode)
 					if(exclude_event.exclusive_roundstart_event)
 						valid_events -= exclude_event
 			TriggerEvent(picked_event, forced = FALSE)
-			runned_events += "Runned roundstart: [picked_event.name]"
+			runned_events += "Запущенный раундстарт: [picked_event.name]"
 			// Если первое событие эксклюзивное, то отчищаем список
 
 		else
@@ -830,7 +830,7 @@ SUBSYSTEM_DEF(gamemode)
 		var/datum/round_event_control/scheduled_event = pick_weight(scheduled_events_roleset)
 		if(scheduled_event.can_spawn_event(ready_players) && (roundstart_budget >= scheduled_event.get_pre_cost()))
 			roundstart_budget -= scheduled_event.get_pre_cost()
-			message_admins("Storyteller purchased and triggered scheduled event [scheduled_event] for [scheduled_event.get_pre_cost()]. Left balance: [roundstart_budget].")
+			message_admins("Рассказчик приобрел и запустил запланированное событие [scheduled_event] за [scheduled_event.get_pre_cost()]. Оставшийся баланс: [roundstart_budget].")
 			if(scheduled_event.exclusive_roundstart_event)
 				valid_events = list()
 				scheduled_event = exclusives_add_antags(scheduled_event, forced = FALSE)
@@ -843,11 +843,11 @@ SUBSYSTEM_DEF(gamemode)
 					if(exclude_event.exclusive_roundstart_event)
 						valid_events -= exclude_event
 			TriggerEvent(scheduled_event, forced = FALSE)
-			runned_events += "Runned scheduled roundstart: [scheduled_event.name]"
+			runned_events += "Запущенный запланированный раундстарт: [scheduled_event.name]"
 			scheduled_events_roleset -= scheduled_event
 
 		else
-			message_admins("Storyteller failed to purchase scheduled event [scheduled_event] for [scheduled_event.roundstart_cost]. Left balance: [roundstart_budget].")
+			message_admins("Рассказчик не удалось приобрести запланированное событие [scheduled_event] за [scheduled_event.roundstart_cost]. Оставшийся баланс: [roundstart_budget].")
 			scheduled_events_roleset -= scheduled_event
 
 	return valid_events
@@ -861,7 +861,7 @@ SUBSYSTEM_DEF(gamemode)
 		while(exclusive_event.price_to_buy_adds <= roundstart_budget)
 			roundstart_budget -= exclusive_event.price_to_buy_adds
 			addition_antags++
-			message_admins("Storyteller purchased and triggered [exclusive_event] and buy additional antag. Left balance: [roundstart_budget].")
+			message_admins("Рассказчик приобрел и запустил [exclusive_event], а также купил дополнительных/го антагонистов/тa. Оставшийся баланс: [roundstart_budget].")
 	//Расчитать новый максимум и минимум антагов
 	exclusive_event.base_antags += addition_antags
 	exclusive_event.maximum_antags += addition_antags
@@ -882,7 +882,7 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in event_pools[track])
 		if(event.can_spawn_event(ready_players))
 			if(QDELETED(event))
-				message_admins("[event.name] was deleted!")
+				message_admins("[event.name] был удален!")
 				continue
 			valid_events[event] = round(event.calculated_weight * 10)
 	if(!length(valid_events))
@@ -901,7 +901,7 @@ SUBSYSTEM_DEF(gamemode)
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
-	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
+	var/list/msg = list("[span_boldnotice("Отчет о выходе из системы Раундстарт")]\n\n")
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		var/mob/living/carbon/C = L
@@ -909,13 +909,13 @@ SUBSYSTEM_DEF(gamemode)
 			continue  // never had a client
 
 		if(L.ckey && !GLOB.directory[L.ckey])
-			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Отключённый</b></font>)\n"
 
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= ROUNDSTART_LOGOUT_AFK_THRESHOLD) //Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Подключенный, неактивный</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
 				if(HAS_TRAIT(L, TRAIT_SUICIDED)) //Suicider
@@ -1077,9 +1077,9 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type)
 	if(!storytellers[passed_type])
-		message_admins("Attempted to set an invalid storyteller type: [passed_type], force setting to guide instead.")
+		message_admins("Попытался задать недопустимый тип рассказчика: [passed_type], вместо этого принудительно установил значение руководство.")
 		current_storyteller = /datum/storyteller/default //if we dont have any then we brick, lets not do that
-		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
+		CRASH("Попытался задать недопустимый тип рассказчика: [passed_type].")
 	var/passed_state = FALSE
 	var/passed_multiplayer
 	if (current_storyteller)
@@ -1090,10 +1090,10 @@ SUBSYSTEM_DEF(gamemode)
 	current_storyteller.round_started = passed_state
 	current_storyteller.round_started = passed_multiplayer
 	if(!secret_storyteller)
-		send_to_playing_players(span_notice("<b>Storyteller is [current_storyteller.name]!</b>"))
+		send_to_playing_players(span_notice("<b>Рассказчик - это  [current_storyteller.name]!</b>"))
 		send_to_playing_players(span_notice("[current_storyteller.welcome_text]"))
 	else
-		send_to_observers(span_boldbig("<b>Storyteller is [current_storyteller.name]!</b>")) //observers still get to know
+		send_to_observers(span_boldbig("<b>Рассказчик - это  [current_storyteller.name]!</b>")) //observers still get to know
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
