@@ -85,7 +85,7 @@
 
 	observer.started_as_observer = TRUE
 	var/obj/effect/landmark/observer_start/O = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-	to_chat(src, span_notice("Теперь телепортируюсь."))
+	to_chat(src, span_notice("Можно телепортироваться."))
 	if (O)
 		observer.forceMove(O.loc)
 	else
