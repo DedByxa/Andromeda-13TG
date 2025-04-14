@@ -564,7 +564,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
 	dat += "<b>State: [ticket_status()]</b>"
 	dat += "[FOURSPACES][TicketHref("Refresh", ref_src)][FOURSPACES][TicketHref("Re-Title", ref_src, "retitle")]"
-	if(state != AHELP_ACTIVE) 
+	if(state != AHELP_ACTIVE)
 		dat += "[FOURSPACES][TicketHref("Reopen", ref_src, "reopen")]"
 	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
 	if(closed_at)
@@ -804,13 +804,13 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	GLOB.admin_help_ui_handler.perform_adminhelp(src, message, FALSE)
 
 /client/verb/adminhelp()
-	set category = "Admin"
+	set category = "Админ"
 	set name = "Adminhelp"
 	GLOB.admin_help_ui_handler.ui_interact(mob)
 	to_chat(src, span_boldnotice("Adminhelp failing to open or work? <a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>Click here</a>"))
 
 /client/verb/view_latest_ticket()
-	set category = "Admin"
+	set category = "Админ"
 	set name = "View Latest Ticket"
 
 	if(!current_ticket)

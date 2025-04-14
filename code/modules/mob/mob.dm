@@ -200,7 +200,7 @@
  * Some kind of debug verb that gives atmosphere environment details
  */
 /mob/proc/Cell()
-	set category = "Admin"
+	set category = "Админ"
 	set hidden = TRUE
 
 	if(!loc)
@@ -720,7 +720,7 @@
  */
 /mob/verb/mode()
 	set name = "Activate Held Object"
-	set category = "Object"
+	set category = "Объект"
 	set src = usr
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_mode)))
@@ -749,7 +749,7 @@
  * Only works if flag/allow_respawn is allowed in config
  */
 /mob/verb/abandon_mob()
-	set name = "Respawn"
+	set name = "В ЛОББИ"
 	set category = "OOC"
 
 	switch(CONFIG_GET(flag/allow_respawn))

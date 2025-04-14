@@ -12,7 +12,7 @@
 
 /client/proc/readmin()
 	set name = "Readmin"
-	set category = "Admin"
+	set category = "Админ"
 	set desc = "Regain your admin powers."
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
@@ -37,7 +37,7 @@
 
 /client/proc/admin_2fa_verify()
 	set name = "Verify Admin"
-	set category = "Admin"
+	set category = "Админ"
 
 	var/datum/admins/admin = GLOB.admin_datums[ckey]
 	admin?.associate(src)

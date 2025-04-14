@@ -235,7 +235,7 @@
 	var/datum/tgui_who/who = null
 
 /client/who()
-	set name = "Who"
+	set name = "Игроки"
 	set category = "OOC"
 
 	if(isnull(who))

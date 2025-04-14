@@ -140,7 +140,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/set_ooc()
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Server"
+	set category = "Сервер"
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -156,7 +156,7 @@ ADMIN_VERB(set_ooc_color, R_FUN, "Set Player OOC Color", "Modifies the global OO
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Server"
+	set category = "Сервер"
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -170,7 +170,7 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 //Checks admin notice
 /client/verb/admin_notice()
 	set name = "Adminnotice"
-	set category = "Admin"
+	set category = "Админ"
 	set desc ="Check the admin notice if it has been set"
 
 	if(GLOB.admin_notice)
@@ -470,5 +470,5 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 /client/verb/map_vote_tally_count()
 	set name = "Show Map Vote Tallies"
 	set desc = "View the current map vote tally counts."
-	set category = "Server"
+	set category = "Сервер"
 	to_chat(mob, SSmap_vote.tally_printout)
