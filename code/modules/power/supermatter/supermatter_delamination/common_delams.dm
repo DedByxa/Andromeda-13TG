@@ -11,14 +11,14 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"Warning: Critical coolant mass reached.",
+		"Предупреждение: достигнута критическая масса охлаждающей жидкости.",
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
 
 /datum/sm_delam/singularity/delaminate(obj/machinery/power/supermatter_crystal/sm)
-	message_admins("Supermatter [sm] at [ADMIN_VERBOSEJMP(sm)] triggered a singularity delam.")
-	sm.investigate_log("triggered a singularity delam.", INVESTIGATE_ENGINE)
+	message_admins("Суперматерия [sm] в [ADMIN_VERBOSEJMP(sm)] вызвала порождение сингулярности.")
+	sm.investigate_log("вызвала порождение сингулярности.", INVESTIGATE_ENGINE)
 
 	effect_irradiate(sm)
 	effect_demoralize(sm)
@@ -72,14 +72,14 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.",
+		"ОПАСНОСТЬ: ПРОИСХОДИТ ЦЕПНАЯ РЕАКЦИЯ.",
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
 
 /datum/sm_delam/tesla/delaminate(obj/machinery/power/supermatter_crystal/sm)
-	message_admins("Supermatter [sm] at [ADMIN_VERBOSEJMP(sm)] triggered a tesla delam.")
-	sm.investigate_log("triggered a tesla delam.", INVESTIGATE_ENGINE)
+	message_admins("Суперматерия [sm] в [ADMIN_VERBOSEJMP(sm)] вызвала отключение теслы.")
+	sm.investigate_log("вызвала отключение теслы.", INVESTIGATE_ENGINE)
 
 	effect_irradiate(sm)
 	effect_demoralize(sm)
@@ -118,8 +118,17 @@
 	return TRUE
 
 /datum/sm_delam/explosive/delaminate(obj/machinery/power/supermatter_crystal/sm)
-	message_admins("Supermatter [sm] at [ADMIN_VERBOSEJMP(sm)] triggered a normal delam.")
-	sm.investigate_log("triggered a normal delam.", INVESTIGATE_ENGINE)
+	message_admins("Суперматерия [sm] в [ADMIN_VERBOSEJMP(sm)] вызвал обычный сбой.")
+	sm.investigate_log("вызвал обычный сбой.", INVESTIGATE_ENGINE)
+
+/// ADD Andromeda-13
+	priority_announce(
+				title = "Техногенная авария",
+		text = "Кристалл суперматерии подвергся расслоению, выжившим членам экипажа немедленно покинуть зону отчуждения.",
+		sound =  'modular_andromeda/sound/announcer/classic/sm_explosion.ogg',
+		color_override = "red",
+	)
+/// END Andromeda-13
 
 	effect_irradiate(sm)
 	effect_demoralize(sm)

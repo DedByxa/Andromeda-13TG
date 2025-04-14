@@ -75,7 +75,7 @@
 	SIGNAL_HANDLER
 	if(!computer.get_ntnet_status())
 		return
-	computer.alert_call(src, "Crystal delamination in progress!")
+	computer.alert_call(src, "Происходит расслаивание кристалла!")
 	alert_pending = TRUE
 
 /datum/computer_file/program/supermatter_monitor/proc/clear_supermatter(obj/machinery/power/supermatter_crystal/sm)
