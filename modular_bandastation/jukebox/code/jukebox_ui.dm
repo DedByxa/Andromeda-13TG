@@ -87,7 +87,7 @@
 		return
 
 	var/config_file = "[name]" + "+" + "[length]" + "+" + "[beat]"
-	if(!fcopy(file, "[global.config.directory]/jukebox_music/sounds/[config_file].ogg"))
+	if(!fcopy(file, "[global.config.directory]/jukebox_music/music/[config_file].ogg"))
 		to_chat(user, span_warning("По какой-то причине, трек не был сохранён, попробуйте ещё раз. <br> Входной файл: [file] <br> Выходной файл: [config_file].ogg"))
 		return
 	to_chat(user, span_notice("Ваш трек успешно загружен на сервер под следующим названием: [config_file].ogg"))

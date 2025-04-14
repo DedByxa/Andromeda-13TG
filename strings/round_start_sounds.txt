@@ -1,5 +1,11 @@
-sound/music/lobby_music/title0.ogg
-sound/music/lobby_music/title1.mod
-sound/music/lobby_music/title2.ogg
-sound/music/lobby_music/title3.ogg
-sound/music/lobby_music/clown.ogg
+config/title_music/music/Blinding_Lights.ogg
+config/title_music/music/Dantes_dance_music.ogg
+config/title_music/music/Dushevnaia_Gitara.ogg
+config/title_music/music/Flip_flap.ogg
+config/title_music/music/Gachi.ogg
+config/title_music/music/INVISIBLE.ogg
+config/title_music/music/Magic_Fly.ogg
+config/title_music/music/Nightcall.ogg
+config/title_music/music/Sigma_Tzar.ogg
+config/title_music/music/Syndicate.ogg
+config/title_music/music/Two_Of_Us.ogg
