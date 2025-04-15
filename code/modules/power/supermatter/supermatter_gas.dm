@@ -19,21 +19,21 @@
 		if(sm_gas.power_transmission)
 			var/list/si_derived_data = siunit_isolated(sm_gas.power_transmission * BASE_POWER_TRANSMISSION_RATE, "W/MeV", 2)
 			numeric_data += list(list(
-				"name" = "Power Transmission Bonus",
+				"name" = "Бонусная передаваемая мощность",
 				"amount" = si_derived_data["coefficient"],
 				"unit" = si_derived_data["unit"],
 				"positive" = TRUE,
 			))
 		if(sm_gas.heat_modifier)
 			numeric_data += list(list(
-				"name" = "Waste Multiplier",
+				"name" = "Множитель отходов",
 				"amount" = 100 * sm_gas.heat_modifier,
 				"unit" = "%",
 				"positive" = FALSE,
 			))
 		if(sm_gas.heat_resistance)
 			numeric_data += list(list(
-				"name" = "Heat Resistance",
+				"name" = "Термостойкость",
 				"amount" = 100 * sm_gas.heat_resistance,
 				"unit" = "%",
 				"positive" = TRUE,
@@ -41,14 +41,14 @@
 		if(sm_gas.heat_power_generation)
 			var/list/si_derived_data = siunit_isolated(sm_gas.heat_power_generation * GAS_HEAT_POWER_SCALING_COEFFICIENT MEGA SECONDS / SSair.wait, "eV/K/s", 2)
 			numeric_data += list(list(
-				"name" = "Heat Power Gain",
+				"name" = "Прирост тепловой мощности",
 				"amount" = si_derived_data["coefficient"],
 				"unit" = si_derived_data["unit"],
 				"positive" = TRUE,
 			))
 		if(sm_gas.powerloss_inhibition)
 			numeric_data += list(list(
-				"name" = "Power Decay Negation",
+				"name" = "Отрицание распада энергии",
 				"amount" = 100 * sm_gas.powerloss_inhibition,
 				"unit" = "%",
 				"positive" = TRUE,

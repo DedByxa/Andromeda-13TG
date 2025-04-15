@@ -125,7 +125,7 @@
 	priority_announce(
 				title = "Техногенная авария",
 		text = "Кристалл суперматерии подвергся расслоению, выжившим членам экипажа немедленно покинуть зону отчуждения.",
-		sound =  'modular_andromeda/sound/announcer/classic/sm_explosion.ogg',
+		sound =  'sound/announcer/default/sm_explosion.ogg',
 		color_override = "red",
 	)
 /// END Andromeda-13

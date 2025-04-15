@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 /// First message is start of count down, second message is quitting of count down (if sm healed), third is 5 second intervals
 /datum/sm_delam/proc/count_down_messages(obj/machinery/power/supermatter_crystal/sm)
 	var/list/messages = list()
-	messages += "НЕИЗБЕЖНОЕ РАССЛОЕНИЕ КРИСТАЛЛА. Сверхматерия достигла критического уровня целостности!"
+	messages += "НЕИЗБЕЖНОЕ РАССЛОЕНИЕ КРИСТАЛЛА. Суперматерия достигла критического уровня целостности!"
 	messages += "Кристаллическая гиперструктура возвращается к безопасным рабочим параметрам!"
 	messages += "до полного расслоения."
 	return messages
