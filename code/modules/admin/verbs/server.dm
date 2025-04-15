@@ -109,7 +109,7 @@ ADMIN_VERB(start_now, R_SERVER, "Начать Раунд", "Начинайте �
 		SSticker.start_immediately = FALSE
 		SSticker.SetTimeLeft(3 MINUTES)
 		to_chat(world, span_big(span_notice("Игра начнется через 3 минуты.")))
-		SEND_SOUND(world, sound('modular_andromeda/sound/announcer/classic/attention.ogg'))
+		SEND_SOUND(world, sound('sound/announcer/default/attention.ogg'))
 		message_admins(span_adminnotice("[key_name_admin(user)] отменил немедленное начало игры. Игра начнется через 3 минуты.."))
 		log_admin("[key_name(user)] отменил немедленный запуск игры.")
 		return
@@ -219,7 +219,7 @@ ADMIN_VERB(delay, R_SERVER, "Delay Pre-Game", "Delay the game start.", ADMIN_CAT
 		log_admin("[key_name(user)] delayed the round start.")
 	else
 		to_chat(world, span_infoplain(span_bold("The game will start in [DisplayTimeText(newtime)].")), confidential = TRUE)
-		SEND_SOUND(world, sound('modular_andromeda/sound/announcer/classic/attention.ogg'))
+		SEND_SOUND(world, sound('sound/announcer/default/attention.ogg'))
 		log_admin("[key_name(user)] set the pre-game delay to [DisplayTimeText(newtime)].")
 	BLACKBOX_LOG_ADMIN_VERB("Delay Game Start")
 
