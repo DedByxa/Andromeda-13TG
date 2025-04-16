@@ -27,11 +27,11 @@ map deltastation
 	votable
 endmap
 
-map icebox
-	#maxplayers
-	#minplayers
-	votable
-endmap
+#map icebox
+#	#maxplayers
+#	#minplayers
+#	votable
+#endmap
 
 map metastation
 	#maxplayers
