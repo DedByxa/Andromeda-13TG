@@ -77,10 +77,10 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 // Admin verb categories
 #define ADMIN_CATEGORY_MAIN "Админ"
-#define ADMIN_CATEGORY_EVENTS "Админ.Ивент"
-#define ADMIN_CATEGORY_FUN "Админ.Веселье"
-#define ADMIN_CATEGORY_GAME "Админ.Игра"
-#define ADMIN_CATEGORY_SHUTTLE "Админ.Шаттл"
+#define ADMIN_CATEGORY_EVENTS "Ивент"
+#define ADMIN_CATEGORY_FUN "Веселье"
+#define ADMIN_CATEGORY_GAME "Игра"
+#define ADMIN_CATEGORY_SHUTTLE "Шаттл"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Дебаг"
