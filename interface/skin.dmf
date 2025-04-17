@@ -242,7 +242,7 @@ window "infobuttons"
 		anchor1 = 85,0
 		anchor2 = 99,100
 		saved-params = "is-checked"
-		text = "Fullscreen"
+		text = "Fullscreen F11"
 		command = "fullscreen"
 
 window "infowindow"
