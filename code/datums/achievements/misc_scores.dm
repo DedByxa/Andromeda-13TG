@@ -65,9 +65,9 @@
 
 /datum/award/score/progress/fish/get_progress(datum/achievement_data/holder)
 	var/list/data = list(
-		"name" = "Fishdex",
+		"name" = "Рыбак",
 		"percent" = 0,
-		"value_text" = "Subsystems still initializing...",
+		"value_text" = "Подсистемы все еще инициализируются...",
 		"entries" = list(),
 	)
 	if(!SSfishing.initialized)

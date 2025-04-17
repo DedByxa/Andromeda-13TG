@@ -77,7 +77,7 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Создать объект", "Spawn an atom.",
 	log_admin("[key_name(user)] создаёт [amount] x [chosen] в [AREACOORD(user.mob)]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Atom")
 
-ADMIN_VERB(spawn_atom_pod, R_SPAWN, "Создать под", "Spawn an atom via supply drop.", ADMIN_CATEGORY_DEBUG, object as text)
+ADMIN_VERB(spawn_atom_pod, R_SPAWN, "Создать объект (портал)", "Создайте атом с помощью сброса запасов.", ADMIN_CATEGORY_DEBUG, object as text)
 	var/chosen = pick_closest_path(object)
 	if(!chosen)
 		return

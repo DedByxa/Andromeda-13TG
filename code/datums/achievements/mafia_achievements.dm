@@ -1,5 +1,5 @@
 /datum/award/achievement/mafia
-	category = "Mafia"
+	category = "Мафия"
 
 ///ALL THE ACHIEVEMENTS FOR WINNING A ROUND AS A ROLE///
 

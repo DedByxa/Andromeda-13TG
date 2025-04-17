@@ -393,7 +393,7 @@
 	return all_accessories
 
 /obj/item/clothing/under/verb/toggle()
-	set name = "Adjust Suit Sensors"
+	set name = "Отрегулируйте датчики костюма"
 	set category = "Объект"
 	set src in usr
 	var/mob/user_mob = usr

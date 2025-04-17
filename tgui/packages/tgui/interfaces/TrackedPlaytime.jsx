@@ -24,7 +24,7 @@ const PlaytimeSection = (props) => {
   );
 
   if (!sortedPlaytimes.length) {
-    return 'No recorded playtime hours for this section.';
+    return 'Для этого раздела не записаны часы воспроизведения.';
   }
 
   const mostPlayed = sortedPlaytimes[0][1];
@@ -77,17 +77,17 @@ export const TrackedPlaytime = (props) => {
     adminTime,
   } = data;
   return (
-    <Window title="Tracked Playtime" width={550} height={650}>
+    <Window title="Игровые часы" width={550} height={650}>
       <Window.Content scrollable>
         {(failReason &&
           ((failReason === JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED && (
-            <Box>This server has disabled tracking.</Box>
+            <Box>На этом сервере отключено отслеживание.</Box>
           )) ||
             (failReason === JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS && (
-              <Box>You have no records.</Box>
+              <Box>У вас нет никаких записей.</Box>
             )))) || (
           <Box>
-            <Section title="Total">
+            <Section title="Всё">
               <PlaytimeSection
                 playtimes={{
                   Ghost: ghostTime,
@@ -97,21 +97,21 @@ export const TrackedPlaytime = (props) => {
               />
             </Section>
             <Section
-              title="Jobs"
+              title="Должность"
               buttons={
                 !!isAdmin && (
                   <Button.Checkbox
                     checked={!!exemptStatus}
                     onClick={() => act('toggle_exempt')}
                   >
-                    Job Playtime Exempt
+                    Следить за временем
                   </Button.Checkbox>
                 )
               }
             >
               <PlaytimeSection playtimes={jobPlaytimes} />
             </Section>
-            <Section title="Special">
+            <Section title="Особый">
               <PlaytimeSection playtimes={specialPlaytimes} />
             </Section>
           </Box>

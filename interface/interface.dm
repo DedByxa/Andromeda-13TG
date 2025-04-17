@@ -99,7 +99,7 @@
 
 
 /client/verb/changelog()
-	set name = "Changelog"
+	set name = "Обновления"
 	set category = "OOC"
 	if(!GLOB.changelog_tgui)
 		GLOB.changelog_tgui = new /datum/changelog()
@@ -111,7 +111,7 @@
 		winset(src, "infobuttons.changelog", "font-style=;")
 
 /client/verb/hotkeys_help()
-	set name = "Hotkeys Help"
+	set name = "Горячие клавиши"
 	set category = "OOC"
 
 	if(!GLOB.hotkeys_tgui)

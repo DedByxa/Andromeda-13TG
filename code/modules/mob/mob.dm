@@ -817,7 +817,7 @@
  * Sometimes helps if the user is stuck in another perspective or camera
  */
 /mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
+	set name = "Отменить просмотр с камеры"
 	set category = "OOC"
 	reset_perspective(null)
 

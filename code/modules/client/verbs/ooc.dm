@@ -179,15 +179,15 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 		to_chat(src, span_notice("На данный момент никаких уведомлений от администратора нет."))
 
 /client/verb/motd()
-	set name = "MOTD"
+	set name = "Титульный лист"
 	set category = "OOC"
-	set desc ="Check the Message of the Day"
+	set desc ="Проверьте сообщение дня"
 
 	var/motd = global.config.motd
 	if(motd)
 		to_chat(src, "<span class='infoplain'><div class=\"motd\">[motd]</div></span>", handle_whitespace=FALSE)
 	else
-		to_chat(src, span_notice("The Message of the Day has not been set."))
+		to_chat(src, span_notice("Сообщение дня еще не было выбрано."))
 
 /client/proc/self_notes()
 	set name = "View Admin Remarks"
@@ -201,21 +201,21 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	browse_messages(null, usr.ckey, null, TRUE)
 
 /client/proc/self_playtime()
-	set name = "View tracked playtime"
+	set name = "Наигранные часы"
 	set category = "OOC"
-	set desc = "View the amount of playtime for roles the server has tracked."
+	set desc = "Просмотр количества игрового времени для ролей, отслеживаемого сервером."
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_notice("Sorry, tracking is currently disabled."))
+		to_chat(usr, span_notice("К сожалению, отслеживание в данный момент отключено."))
 		return
 
 	new /datum/job_report_menu(src, usr)
 
 // Ignore verb
 /client/verb/select_ignore()
-	set name = "Ignore"
+	set name = "Игнорировать в OOC"
 	set category = "OOC"
-	set desc ="Ignore a player's messages on the OOC channel"
+	set desc ="Игнорировать сообщения игроков в OOC"
 
 	// Make a list to choose players from
 	var/list/players = list()
@@ -258,7 +258,7 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	// Check if the list is empty
 	if(!length(players))
 		// Express that there are no players we can ignore in chat
-		to_chat(src, span_infoplain("There are no other players you can ignore!"))
+		to_chat(src, span_infoplain("Нет других игроков, которых вы могли бы игнорировать!"))
 
 		// Stop running
 		return
@@ -279,7 +279,7 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	// Check if the selected player is on our ignore list
 	if(selection in prefs.ignoring)
 		// Express that the selected player is already on our ignore list in chat
-		to_chat(src, span_infoplain("You are already ignoring [selection]!"))
+		to_chat(src, span_infoplain("Вы уже игнорируете [selection]!"))
 
 		// Stop running
 		return
@@ -291,18 +291,18 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	prefs.save_preferences()
 
 	// Express that we've ignored the selected player in chat
-	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+	to_chat(src, span_infoplain("Теперь вы игнорируете [selection] в канале OOC."))
 
 // Unignore verb
 /client/verb/select_unignore()
-	set name = "Unignore"
+	set name = "Не игнорировать в OOC"
 	set category = "OOC"
-	set desc = "Stop ignoring a player's messages on the OOC channel"
+	set desc = "Прекратите игнорировать сообщения игроков в OOC"
 
 	// Check if we've ignored any players
 	if(!length(prefs.ignoring))
 		// Express that we haven't ignored any players in chat
-		to_chat(src, span_infoplain("You haven't ignored any players!"))
+		to_chat(src, span_infoplain("Вы не игнорируете ни одного игрока!"))
 
 		// Stop running
 		return
@@ -317,7 +317,7 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	// Check if the selected player is not on our ignore list
 	if(!(selection in prefs.ignoring))
 		// Express that the selected player is not on our ignore list in chat
-		to_chat(src, span_infoplain("You are not ignoring [selection]!"))
+		to_chat(src, span_infoplain("Вы не игнорируете [selection]!"))
 
 		// Stop running
 		return
@@ -329,26 +329,26 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	prefs.save_preferences()
 
 	// Express that we've unignored the selected player in chat
-	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))
+	to_chat(src, span_infoplain("Вы больше не игнорируете  [selection] в канале OOC."))
 
 /client/proc/show_previous_roundend_report()
-	set name = "Your Last Round"
+	set name = "Итог вашего последнего раунда"
 	set category = "OOC"
-	set desc = "View the last round end report you've seen"
+	set desc = "Просмотрите отчет о завершении последнего раунда, который вы видели"
 
 	SSticker.show_roundend_report(src, report_type = PERSONAL_LAST_ROUND)
 
 /client/proc/show_servers_last_roundend_report()
-	set name = "Server's Last Round"
+	set name = "Итог прошлого раунда"
 	set category = "OOC"
-	set desc = "View the last round end report from this server"
+	set desc = "Просмотрите отчет о завершении последнего раунда с этого сервера"
 
 	SSticker.show_roundend_report(src, report_type = SERVER_LAST_ROUND)
 
 /client/verb/fit_viewport()
-	set name = "Fit Viewport"
+	set name = "Подогнать разрешение экрана"
 	set category = "OOC"
-	set desc = "Fit the width of the map window to match the viewport"
+	set desc = "Установите ширину окна карты в соответствии с видовым экраном"
 
 	// Fetch aspect ratio
 	var/view_size = getviewsize(view)
@@ -430,8 +430,8 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
 
 /client/verb/policy()
-	set name = "Show Policy"
-	set desc = "Show special server rules related to your current character."
+	set name = "ПРАВИЛА СЕРВЕРА"
+	set desc = "Покажите специальные правила сервера, относящиеся к вашему текущему персонажу."
 	set category = "OOC"
 
 	//Collect keywords
@@ -446,24 +446,24 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 			policytext += "<hr>"
 			anything = TRUE
 	if(!anything)
-		policytext += "No related rules found."
+		policytext += "Правил не найдено."
 
-	var/datum/browser/browser = new(usr, "policy", "Server Policy", 600, 500)
+	var/datum/browser/browser = new(usr, "policy", "ПРАВИЛА СЕРВЕРА", 600, 500)
 	browser.set_content(policytext.Join(""))
 	browser.open()
 
 /client/verb/fix_stat_panel()
-	set name = "Fix Stat Panel"
+	set name = "Исправить панель статистики"
 	set hidden = TRUE
 
 	init_verbs()
 
 /client/proc/export_preferences()
-	set name = "Export Preferences"
-	set desc = "Export your current preferences to a file."
+	set name = "Экспорт настроек"
+	set desc = "Экспортируйте ваши текущие настройки в файл."
 	set category = "OOC"
 
-	ASSERT(prefs, "User attempted to export preferences while preferences were null!") // what the fuck
+	ASSERT(prefs, "Пользователь попытался экспортировать настройки, но настройки были нулевыми!") // what the fuck
 
 	prefs.savefile.export_json_to_client(usr, ckey)
 
@@ -476,33 +476,33 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 
 /client/verb/linkforumaccount()
 	set category = "OOC"
-	set name = "Link Forum Account"
-	set desc = "Validates your byond account to your forum account. Required to post on the forums."
+	set name = "Ссылка на аккаунт форума"
+	set desc = "Подтверждает вашу учетную запись byond на вашем форуме. Требуется для публикации сообщений на форумах."
 
 	var/uri = CONFIG_GET(string/forum_link_uri)
 	if(!uri)
-		to_chat(src, span_warning("This feature is disabled."))
+		to_chat(src, span_warning("Эта функция отключена."))
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(src, span_danger("No connection to the database."))
+		to_chat(src, span_danger("Нет подключения к базе данных."))
 		return
 
 	if  (is_guest_key(ckey))
-		to_chat(src, span_danger("Guests can not link accounts."))
+		to_chat(src, span_danger("Гости не могут связывать учетные записи."))
 		return
 
 	var/token = generate_account_link_token()
 
-	var/datum/db_query/query_set_token = SSdbcore.NewQuery("INSERT INTO phpbb.tg_byond_oauth_tokens (`token`, `key`) VALUES (:token, :key)", list("token" = token, "key" = key))
+	var/datum/db_query/query_set_token = SSdbcore.NewQuery("ВСТАВИТЬ В  phpbb.tg_byond_oauth_tokens (`token`, `key`) ЗНАЧЕНИЕ (:token, :key)", list("token" = token, "key" = key))
 	if(!query_set_token.Execute())
-		to_chat(src, span_danger("Failed to insert account link token into database, please try again later."))
+		to_chat(src, span_danger("Не удалось вставить токен ссылки на учетную запись в базу данных, пожалуйста, повторите попытку позже."))
 		qdel(query_set_token)
 		return
 
 	qdel(query_set_token)
 
-	to_chat(src, "Now opening a window to login to your forum account, your account will automatically be linked the moment you log in. If this window doesn't load, Please go to <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> - This link will expire in 30 minutes.")
+	to_chat(src, "Теперь, когда откроется окно для входа в вашу учетную запись на форуме, ваша учетная запись будет автоматически привязана в момент входа в систему. Если это окно не загружается, пожалуйста, перейдите по ссылке <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> - Срок действия этой ссылки истечет через 30 минут.")
 	src << link("[uri]?token=[token]")
 
 /client/proc/generate_account_link_token()

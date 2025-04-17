@@ -1182,15 +1182,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	observer.ManualFollow(target)
 
 /client/verb/stop_client_sounds()
-	set name = "Stop Sounds"
+	set name = "Остановить звуки"
 	set category = "OOC"
-	set desc = "Stop Current Sounds"
+	set desc = "Остановить текущие звуки"
 	SEND_SOUND(usr, sound(null))
 	tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))
 
 /client/verb/toggle_fullscreen()
-	set name = "Toggle Fullscreen"
+	set name = "Переключить полноэкранный режим"
 	set category = "OOC"
 
 	fullscreen = !fullscreen
@@ -1199,7 +1199,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	attempt_auto_fit_viewport()
 
 /client/verb/toggle_status_bar()
-	set name = "Toggle Status Bar"
+	set name = "Переключить строку состояния"
 	set category = "OOC"
 
 	show_status_bar = !show_status_bar
@@ -1230,22 +1230,22 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if (isnull(cheesy_messages))
 		cheesy_messages = list(
-			"Forever alone :(",
-			"I have no admins online!",
-			"I need a hug :(",
-			"I need someone on me :(",
-			"I want a man :(",
-			"I'm all alone :(",
-			"I'm feeling lonely :(",
-			"I'm so lonely :(",
-			"Someone come hold me :(",
-			"What happened? Where has everyone gone?",
-			"Where has everyone gone?",
-			"Why does nobody love me? :(",
+			"Навсегда один :(",
+			"У меня нет админов онлайн!",
+			"Мне нужны объятия :(",
+			"Мне нужен кто-то на мне :(",
+			"Мне нужен мужчина :(",
+			"Я совсем одна :(",
+			"Я чувствую себя одинокой :(",
+			"Мне так одиноко :(",
+			"Кто-нибудь, обнимите меня :(",
+			"Что случилось? Куда все подевались?",
+			"Куда все подевались?",
+			"Почему меня никто не любит? :(",
 		)
 
 	message_to_send += pick(cheesy_messages)
-	message_to_send += "(No admins online)"
+	message_to_send += "(Нет администраторов в Сети)"
 
 	send2adminchat("Server", jointext(message_to_send, " "))
 

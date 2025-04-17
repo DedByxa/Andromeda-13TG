@@ -1,6 +1,6 @@
 
 /datum/award/achievement/jobs
-	category = "Jobs"
+	category = "Профессия"
 
 //engineering
 

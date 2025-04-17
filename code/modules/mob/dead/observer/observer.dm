@@ -308,7 +308,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 /mob/living/verb/ghost()
 	set category = "OOC"
-	set name = "ПРИЗРАК"
+	set name = "Призрак"
 	set desc = "Откажись от своей жизни и войди в царство мертвых."
 
 	if(stat != CONSCIOUS && stat != DEAD)
@@ -318,18 +318,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ghostize(TRUE)
 			return TRUE
 	var/response = tgui_alert(usr, "Вы уверены, что хотите стать призраком? Если вы станете призраком при жизни, вы не сможете вернуться в свое тело!", "Покинуть тело и стать Призраком", list("Призрак", "Остаться в теле"))
-	if(response != "Ghost")
+	if(response != "Призрак")
 		return FALSE//didn't want to ghost after-all
 	ghostize(FALSE) // FALSE parameter is so we can never re-enter our body. U ded.
 	return TRUE
 
 /mob/eye/verb/ghost()
 	set category = "OOC"
-	set name = "ПРИЗРАК"
+	set name = "Призрак"
 	set desc = "Откажись от своей жизни и войди в царство мертвых."
 
 	var/response = tgui_alert(usr, "Вы уверены, что хотите стать призраком? Если вы станете призраком при жизни, вы не сможете вернуться в свое тело!", "Покинуть тело и стать Призраком", list("Призрак", "Остаться в теле"))
-	if(response != "Ghost")
+	if(response != "Призрак")
 		return
 	ghostize(FALSE)
 
