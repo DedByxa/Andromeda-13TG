@@ -431,7 +431,7 @@
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
 
 /obj/item/verb/move_to_top()
-	set name = "Move To Top"
+	set name = "Переложить"
 	set category = "Объект"
 	set src in oview(1)
 
@@ -813,7 +813,7 @@
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Объект"
-	set name = "Pick up"
+	set name = "Взять"
 
 	if(usr.incapacitated || !Adjacent(usr))
 		return

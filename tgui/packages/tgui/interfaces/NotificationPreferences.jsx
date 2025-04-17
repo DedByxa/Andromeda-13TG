@@ -18,9 +18,9 @@ export const NotificationPreferences = (props) => {
     return 0;
   });
   return (
-    <Window title="Notification Preferences" width={270} height={360}>
+    <Window title="Настройки уведомлений" width={270} height={360}>
       <Window.Content scrollable>
-        <Section title="Ghost Role Notifications">
+        <Section title="Уведомления о призрачных ролях">
           {ignores.map((ignore) => (
             <Button
               fluid

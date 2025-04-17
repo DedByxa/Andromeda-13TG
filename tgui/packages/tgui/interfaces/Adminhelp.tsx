@@ -33,7 +33,12 @@ export const Adminhelp = (props) => {
 
   const confirmationText = 'alert admins';
   return (
-    <Window title="Create Adminhelp" theme="admin" height={300} width={500}>
+    <Window
+      title="Напишите администратору"
+      theme="admin"
+      height={300}
+      width={500}
+    >
       <Window.Content
         style={{
           backgroundImage: 'none',
@@ -45,7 +50,7 @@ export const Adminhelp = (props) => {
               autoFocus
               height="100%"
               value={ahelpMessage}
-              placeholder="Admin help"
+              placeholder="Помощь администратора"
               onChange={(e, value) => setAhelpMessage(value)}
             />
           </Stack.Item>
@@ -91,7 +96,7 @@ export const Adminhelp = (props) => {
                     disabled={bannedFromUrgentAhelp}
                     tooltip={
                       bannedFromUrgentAhelp
-                        ? 'You are banned from using urgent ahelps.'
+                        ? 'Вам запрещено пользоваться ахелпом.'
                         : undefined
                     }
                     fluid
@@ -107,7 +112,7 @@ export const Adminhelp = (props) => {
             <Button
               color="good"
               fluid
-              content="Submit"
+              content="Отправить"
               textAlign="center"
               onClick={() =>
                 act('ahelp', {

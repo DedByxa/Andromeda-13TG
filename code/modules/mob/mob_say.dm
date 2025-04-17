@@ -2,7 +2,7 @@
 
 ///what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.
 /mob/verb/say_verb(message as text)
-	set name = "Say"
+	set name = "Сказать"
 	set category = "IC"
 	set instant = TRUE
 
@@ -17,7 +17,7 @@
 
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
-	set name = "Whisper"
+	set name = "Шептать"
 	set category = "IC"
 	set instant = TRUE
 
@@ -40,9 +40,9 @@
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)
-	set name = "Me"
+	set name = "Эмоция"
 	set category = "IC"
-	set desc = "Perform a custom emote. Leave blank to pick between an audible or a visible emote (Defaults to visible)."
+	set desc = "Выполните пользовательскую эмоцию. Оставьте поле пустым, чтобы выбрать между слышимой или видимой эмоцией (по умолчанию - видимая)."
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Общение было заблокировано администрацией."))

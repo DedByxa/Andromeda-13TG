@@ -1,5 +1,5 @@
 #define DEFAULT_WHO_CELLS_PER_ROW 4
-#define NO_ADMINS_ONLINE_MESSAGE "Adminhelps are also sent through TGS to services like IRC and Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to."
+#define NO_ADMINS_ONLINE_MESSAGE "Если вам требуется помощь администратора, но на данный момент их нет онлайн, напишите нам в нашем Дискорде."
 
 /client/verb/who()
 	set name = "Игроки"
@@ -71,11 +71,11 @@
 
 /client/verb/adminwho()
 	set category = "Админ"
-	set name = "Adminwho"
+	set name = "Онлайн администрации"
 
 	var/list/lines = list()
 	var/payload_string = generate_adminwho_string()
-	var/header = (payload_string == NO_ADMINS_ONLINE_MESSAGE) ? "No Admins Currently Online" : "Current Admins"
+	var/header = (payload_string == NO_ADMINS_ONLINE_MESSAGE) ? "Сейчас администраторов нет в онлайн" : "Онлайн администраторы"
 
 	lines += span_bold(header)
 	lines += payload_string
@@ -124,7 +124,7 @@
 		if(admin.is_afk() || !isnull(admin.holder.fakekey))
 			continue //Don't show afk or fakekeyed admins to adminwho
 
-		returnable_list += "• [get_linked_admin_name(admin)] is a [admin.holder.rank_names()]"
+		returnable_list += "• [get_linked_admin_name(admin)] на должности [admin.holder.rank_names()]"
 
 	return returnable_list
 
@@ -136,24 +136,24 @@
 	for(var/client/admin in checkable_admins)
 		var/list/admin_strings = list()
 
-		admin_strings += "• [get_linked_admin_name(admin)] is a [admin.holder.rank_names()]"
+		admin_strings += "• [get_linked_admin_name(admin)] на должности [admin.holder.rank_names()]"
 
 		if(admin.holder.fakekey)
 			admin_strings += "<i>(as [admin.holder.fakekey])</i>"
 
 		if(isobserver(admin.mob))
-			admin_strings += "- Observing"
+			admin_strings += "- Наблюдает"
 		else if(isnewplayer(admin.mob))
 			if(SSticker.current_state <= GAME_STATE_PREGAME)
 				var/mob/dead/new_player/lobbied_admin = admin.mob
 				if(lobbied_admin.ready == PLAYER_READY_TO_PLAY)
-					admin_strings += "- Lobby (Readied)"
+					admin_strings += "- Лобби (Готов)"
 				else
-					admin_strings += "- Lobby (Not Readied)"
+					admin_strings += "- Лобби (Не готов)"
 			else
-				admin_strings += "- Lobby"
+				admin_strings += "- Лобби"
 		else
-			admin_strings += "- Playing"
+			admin_strings += "- Играет"
 
 		if(admin.is_afk())
 			admin_strings += "(AFK)"

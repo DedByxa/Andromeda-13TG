@@ -1,6 +1,6 @@
 /mob/verb/pray(msg as text)
 	set category = "IC"
-	set name = "Pray"
+	set name = "Молиться богу"
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Общение было заблокировано администрацией."), confidential = TRUE)
@@ -12,7 +12,7 @@
 	log_prayer("[src.key]/([src.name]): [msg]")
 	if(usr.client)
 		if(usr.client.prefs.muted & MUTE_PRAY)
-			to_chat(usr, span_danger("You cannot pray (muted)."), confidential = TRUE)
+			to_chat(usr, span_danger("Вы не можете молиться (мут)."), confidential = TRUE)
 			return
 		if(src.client.handle_spam_prevention(msg,MUTE_PRAY))
 			return
@@ -45,9 +45,9 @@
 	for(var/client/C in GLOB.admins)
 		if(get_chat_toggles(C) & CHAT_PRAYER)
 			to_chat(C, msg, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
-	to_chat(usr, span_info("You pray to the gods: \"[msg_tmp]\""), confidential = TRUE)
+	to_chat(usr, span_info("Ты молишься богам: \"[msg_tmp]\""), confidential = TRUE)
 
-	BLACKBOX_LOG_ADMIN_VERB("Prayer")
+	BLACKBOX_LOG_ADMIN_VERB("Мольба богам")
 
 
 /// Used by communications consoles to message CentCom

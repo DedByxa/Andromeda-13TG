@@ -68,9 +68,9 @@
 		if(known_skills[i][SKILL_LVL] > SKILL_LEVEL_NONE) //Do we actually have a level in this?
 			shown_skills += i
 	if(!length(shown_skills))
-		to_chat(user, span_notice("You don't seem to have any particularly outstanding skills."))
+		to_chat(user, span_notice("Похоже, вы не обладаете какими-то особенно выдающимися способностями."))
 		return
-	var/msg = "[span_info("<EM>Your skills</EM>")]\n<span class='notice'>"
+	var/msg = "[span_info("<EM>Ваши навыки</EM>")]\n<span class='notice'>"
 	for(var/i in shown_skills)
 		var/datum/skill/the_skill = i
 		msg += "[initial(the_skill.name)] - [get_skill_level_name(the_skill)]\n"

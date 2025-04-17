@@ -52,15 +52,15 @@ SUBSYSTEM_DEF(map_vote)
 /datum/controller/subsystem/map_vote/proc/send_map_vote_notice(...)
 	var/static/last_message_at
 	if(last_message_at == world.time)
-		message_admins("Call to send_map_vote_notice twice in one game tick. Yell at someone to condense messages.")
+		message_admins("Вызов send_map_vote_notice дважды за один игровой тик.")
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, span_purple(boxed_message("Map Vote<br><hr>[jointext(messages, "<br>")]")))
+	to_chat(world, span_purple(boxed_message("Голосование за Карту<br><hr>[jointext(messages, "<br>")]")))
 
 /datum/controller/subsystem/map_vote/proc/finalize_map_vote(datum/vote/map_vote/map_vote)
 	if(already_voted)
-		message_admins("Attempted to finalize a map vote after a map vote has already been finalized.")
+		message_admins("Попытка завершить голосование по карте после того, как голосование по карте уже было завершено.")
 		return
 	already_voted = TRUE
 
@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(map_vote)
 	update_tally_printout()
 
 	if(admin_override)
-		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
+		send_map_vote_notice("Действует запрет администратора. Карта не будет изменена.", "Подсчеты записаны и сохранены.")
 		return
 
 	var/winner
@@ -89,10 +89,10 @@ SUBSYSTEM_DEF(map_vote)
 		winner = map
 		winner_amount = map_vote_cache[map]
 
-	ASSERT(winner, "No winner found in map vote.")
+	ASSERT(winner, "В голосовании по картам победитель не выявлен.")
 	set_next_map(config.maplist[winner])
-	var/list/messages = list("Map Selected - [span_bold(next_map_config.map_name)]")
-	messages += "Tallies at the time of selection:"
+	var/list/messages = list("Карта выбрана - [span_bold(next_map_config.map_name)]")
+	messages += "Табло на момент выбора:"
 	messages += tally_printout
 
 	// do not reset tallies if only one map is even possible
@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(map_vote)
 		write_cache()
 		update_tally_printout()
 	else
-		messages += "Only one map was possible, tallies were not reset."
+		messages += "Можно было использовать только одну карту, подсчеты не сбрасывались."
 
 	send_map_vote_notice(arglist(messages))
 
@@ -148,7 +148,7 @@ SUBSYSTEM_DEF(map_vote)
 
 /datum/controller/subsystem/map_vote/proc/set_next_map(datum/map_config/change_to)
 	if(!change_to.MakeNextMap())
-		message_admins("Failed to set new map with next_map.json for [change_to.map_name]!")
+		message_admins("Не удалось установить новую карту с помощью next_map.json для [change_to.map_name]!")
 		return FALSE
 
 	next_map_config = change_to
@@ -166,9 +166,9 @@ SUBSYSTEM_DEF(map_vote)
 	next_map_config = null
 
 	if(!isnull(user))
-		message_admins("[key_name_admin(user)] has reverted the next map selection. Voting re-enabled.")
-		log_admin("[key_name_admin(user)] reverted the next map selection.")
-	send_map_vote_notice("Next map reverted. Voting re-enabled.")
+		message_admins("[key_name_admin(user)] отменил выбор следующей карты. Голосование снова включено.")
+		log_admin("[key_name_admin(user)] отменил выбор следующей карты.")
+	send_map_vote_notice("Следующая карта отменена. Голосование снова включено.")
 
 #undef MAP_VOTE_CACHE_LOCATION
 
@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(map_vote)
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
 		data += "[map.map_name] - [map_vote_cache[map_id]]"
-	var/tally_msg = span_tooltip("A map's tallies are reset after it wins a vote. \
-		Otherwise, they are carried over and added onto from the next vote on the next round, \
-		until it eventually wins and is reset.", "Current Tallies")
+	var/tally_msg = span_tooltip("Результаты голосования на карте обнуляются после победы в голосовании. \
+		В противном случае, они переносятся и добавляются к следующему голосованию в следующем раунде, \
+		пока она не победит и не будет сброшена.", "Текущие подсчеты")
 	tally_printout = boxed_message("[tally_msg]<br><hr>[jointext(data, "<br>")]")

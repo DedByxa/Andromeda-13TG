@@ -1,7 +1,7 @@
 /mob/dead/observer/verb/show_notificationprefs()
-	set category = "Ghost"
-	set name = "Notification preferences"
-	set desc = "Notification preferences"
+	set category = "Призрак"
+	set name = "Настройки уведомлений"
+	set desc = "Настройки уведомлений"
 
 	var/datum/notificationpanel/panel = new(usr)
 
@@ -14,7 +14,7 @@
 	if (ismob(user))
 		var/mob/M = user
 		if (!M.client)
-			CRASH("Ghost role notification panel attempted to open to a mob without a client")
+			CRASH("Попытка открыть панель уведомлений о роли призрака для моба без клиента")
 		src.user = M.client
 	else
 		src.user = user

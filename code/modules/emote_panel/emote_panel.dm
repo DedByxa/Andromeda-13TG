@@ -55,7 +55,7 @@
 	return GLOB.always_state
 
 /mob/living/verb/emote_panel()
-	set name = "Emote Panel"
+	set name = "Панель эмоций"
 	set category = "IC"
 
 	var/static/datum/emote_panel/emote_panel

@@ -7,7 +7,7 @@
 	flick(icon_state + "_anim", src)
 
 /atom/movable/screen/ghost/spawners_menu
-	name = "Spawners menu"
+	name = "Призрак роли"
 	icon_state = "spawners"
 
 /atom/movable/screen/ghost/spawners_menu/Click()
@@ -15,7 +15,7 @@
 	observer.open_spawners_menu()
 
 /atom/movable/screen/ghost/orbit
-	name = "Orbit"
+	name = "Следить"
 	icon_state = "orbit"
 
 /atom/movable/screen/ghost/orbit/Click()
@@ -23,7 +23,7 @@
 	G.follow()
 
 /atom/movable/screen/ghost/reenter_corpse
-	name = "Reenter corpse"
+	name = "Вернуться в тело"
 	icon_state = "reenter_corpse"
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
@@ -31,7 +31,7 @@
 	G.reenter_corpse()
 
 /atom/movable/screen/ghost/teleport
-	name = "Teleport"
+	name = "Телепорт"
 	icon_state = "teleport"
 
 /atom/movable/screen/ghost/teleport/Click()
@@ -39,7 +39,7 @@
 	G.dead_tele()
 
 /atom/movable/screen/ghost/pai
-	name = "pAI Candidate"
+	name = "Стать пИИ"
 	icon_state = "pai"
 
 /atom/movable/screen/ghost/pai/Click()
@@ -47,7 +47,7 @@
 	G.register_pai()
 
 /atom/movable/screen/ghost/minigames_menu
-	name ="Minigames"
+	name ="Мини-игры"
 	icon_state = "minigames"
 
 /atom/movable/screen/ghost/minigames_menu/Click()

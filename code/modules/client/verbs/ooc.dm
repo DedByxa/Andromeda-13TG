@@ -169,14 +169,14 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 
 //Checks admin notice
 /client/verb/admin_notice()
-	set name = "Adminnotice"
+	set name = "Уведомления от администратора"
 	set category = "Админ"
-	set desc ="Check the admin notice if it has been set"
+	set desc ="Проверьте уведомление от администратора"
 
 	if(GLOB.admin_notice)
-		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
+		to_chat(src, "[span_boldnotice("Админ уведомление:")]\n \t [GLOB.admin_notice]")
 	else
-		to_chat(src, span_notice("There are no admin notices at the moment."))
+		to_chat(src, span_notice("На данный момент никаких уведомлений от администратора нет."))
 
 /client/verb/motd()
 	set name = "MOTD"
@@ -468,8 +468,8 @@ ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC
 	prefs.savefile.export_json_to_client(usr, ckey)
 
 /client/verb/map_vote_tally_count()
-	set name = "Show Map Vote Tallies"
-	set desc = "View the current map vote tally counts."
+	set name = "База очков у Карт"
+	set desc = "Просмотрите текущий подсчет голосов на карте."
 	set category = "Сервер"
 	to_chat(mob, SSmap_vote.tally_printout)
 

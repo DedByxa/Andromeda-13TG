@@ -515,7 +515,7 @@
  * for why this isn't atom/verb/examine()
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
-	set name = "Examine"
+	set name = "Исследовать"
 	set category = "IC"
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
@@ -719,7 +719,7 @@
  * Calls attack self on the item and updates the inventory hud for hands
  */
 /mob/verb/mode()
-	set name = "Activate Held Object"
+	set name = "Активировать удерживаемый объект"
 	set category = "Объект"
 	set src = usr
 
@@ -1437,7 +1437,7 @@
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu_verb()
-	set name = "Open Language Menu"
+	set name = "Меню языков"
 	set category = "IC"
 
 	get_language_holder().open_language_menu(usr)
@@ -1569,9 +1569,9 @@
 
 ///Shows a tgui window with memories
 /mob/verb/memory()
-	set name = "Memories"
+	set name = "Воспоминания"
 	set category = "IC"
-	set desc = "View your character's memories."
+	set desc = "Просмотрите воспоминания вашего персонажа."
 	if(!mind)
 		var/fail_message = "У вас нет разума!"
 		if(isobserver(src))
@@ -1624,7 +1624,7 @@
 
 /mob/verb/view_skills()
 	set category = "IC"
-	set name = "View Skills"
+	set name = "Просмотр навыков"
 
 	mind?.print_levels(src)
 

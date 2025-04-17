@@ -7,9 +7,9 @@ export const MinigamesMenu = (props) => {
   const { act } = useBackend();
 
   return (
-    <Window title="Minigames Menu" width={530} height={320}>
+    <Window title="Меню мини-игр" width={530} height={320}>
       <Window.Content>
-        <Section title="Select Minigame" textAlign="center" fill>
+        <Section title="Выберите мини-игру" textAlign="center" fill>
           <Stack>
             <Stack.Item grow>
               <Button
@@ -23,7 +23,7 @@ export const MinigamesMenu = (props) => {
             </Stack.Item>
             <Stack.Item grow>
               <Button
-                content="Mafia"
+                content="Мафия"
                 fluid
                 fontSize={3}
                 textAlign="center"
@@ -36,7 +36,7 @@ export const MinigamesMenu = (props) => {
           <Stack>
             <Stack.Item grow>
               <Button
-                content="Basketball"
+                content="Баскетбол"
                 fluid
                 fontSize={3}
                 textAlign="center"
@@ -46,7 +46,7 @@ export const MinigamesMenu = (props) => {
             </Stack.Item>
             <Stack.Item grow>
               <Button
-                content="Deathmatch"
+                content="Бой насмерть"
                 fluid
                 fontSize={3}
                 textAlign="center"

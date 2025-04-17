@@ -82,7 +82,7 @@ export function OrbitSearchBar(props) {
             color="transparent"
             icon={viewMode}
             onClick={swapViewMode}
-            tooltip={`Color scheme: ${viewModeTitle}`}
+            tooltip={`Цветовая сортировка: ${viewModeTitle}`}
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -91,8 +91,8 @@ export function OrbitSearchBar(props) {
             color={autoObserve ? 'good' : 'transparent'}
             icon={autoObserve ? 'toggle-on' : 'toggle-off'}
             onClick={() => setAutoObserve(!autoObserve)}
-            tooltip={`Toggle Auto-Observe. When active, you'll
-            see the UI / full inventory of whoever you're orbiting. Neat!`}
+            tooltip={`Включите автонаблюдение. При включении вы будете
+            видеть пользовательский интерфейс / инвентарь того, за кем вы наблюдаете.`}
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -101,7 +101,7 @@ export function OrbitSearchBar(props) {
             color="transparent"
             icon="sync-alt"
             onClick={() => act('refresh')}
-            tooltip="Refresh"
+            tooltip="Обновить"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -111,8 +111,7 @@ export function OrbitSearchBar(props) {
             icon="passport"
             onClick={() => setRealNameDisplay(!realNameDisplay)}
             selected={realNameDisplay}
-            tooltip="Toggle real name display. When active, you'll see real
-            names instead of disguises in orbit menu."
+            tooltip="Переключить отображение реального имени."
             tooltipPosition="bottom-start"
           />
         </Stack.Item>

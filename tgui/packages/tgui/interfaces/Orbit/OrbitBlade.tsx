@@ -36,10 +36,10 @@ export function OrbitBlade(props) {
             />
           }
           color="label"
-          title="Orbit Settings"
+          title="Настройки слежки"
         >
-          Keep in mind: Orbit does not update automatically. You will need to
-          click the &quot;Refresh&quot; button to see the latest data.
+          Имейте в виду: слежка не обновляется автоматически. Вам необходимо
+          нажать кнопку &quot;Обновить&quot; чтобы увидеть последние данные.
         </Section>
       </Stack.Item>
       <Stack.Item>
@@ -56,11 +56,10 @@ export function OrbitBlade(props) {
             />
           }
           color="label"
-          title="Real Name Display"
+          title="Отображение реального имени"
         >
-          Real Name mode will display actual character names and their
-          roundstart jobs insteas of being based on their worn ID. If the person
-          lacks a roundstart job, it will still display their ID job icon.
+          В режиме «Реальные имена» будут отображаться реальные имена
+          персонажей. Чтобы не основываться на информации их ID карты.
         </Section>
       </Stack.Item>
       {!!orbiting && (
@@ -76,10 +75,10 @@ function ViewModeSelector(props) {
   const { viewMode, setViewMode } = useContext(OrbitContext);
 
   return (
-    <Section title="View Mode">
+    <Section title="Режим просмотра">
       <Stack fill vertical>
         <Stack.Item color="label">
-          Change the color and sorting scheme of observable items.
+          Измените цвет и схему сортировки наблюдаемых мобов или предметов.
         </Stack.Item>
 
         {Object.entries(VIEWMODE).map(([key, value]) => (
@@ -119,7 +118,7 @@ function OrbitInfo(props) {
   }
 
   return (
-    <Section title="Orbiting">
+    <Section title="Слежка">
       <Stack fill vertical>
         <Stack.Item>
           {toTitleCase(getDisplayName(full_name, name))}

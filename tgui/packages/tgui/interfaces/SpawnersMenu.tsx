@@ -24,7 +24,7 @@ export const SpawnersMenu = (props) => {
   const { spawners = [] } = data;
 
   return (
-    <Window title="Spawners Menu" width={700} height={525}>
+    <Window title="Призрак роли" width={700} height={525}>
       <Window.Content scrollable>
         <Stack vertical>
           {spawners.map((spawner) => (
@@ -46,7 +46,7 @@ export const SpawnersMenu = (props) => {
                     )}
                     <Stack.Item>
                       <Button
-                        content="Jump"
+                        content="Глянуть"
                         onClick={() =>
                           act('jump', {
                             name: spawner.name,
@@ -54,7 +54,7 @@ export const SpawnersMenu = (props) => {
                         }
                       />
                       <Button
-                        content="Spawn"
+                        content="Играть"
                         onClick={() =>
                           act('spawn', {
                             name: spawner.name,

@@ -11,9 +11,9 @@
 	BLACKBOX_LOG_ADMIN_VERB("Show Adminverbs")
 
 /client/proc/readmin()
-	set name = "Readmin"
+	set name = "ВКЛ. АДМИН"
 	set category = "Админ"
-	set desc = "Regain your admin powers."
+	set desc = "Восстановите свои административные полномочия. Если они у вас есть.."
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
 
@@ -30,10 +30,10 @@
 	if (!holder)
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-	to_chat(src, span_interface("You are now an admin."), confidential = TRUE)
-	message_admins("[src] re-adminned themselves.")
-	log_admin("[src] re-adminned themselves.")
-	BLACKBOX_LOG_ADMIN_VERB("Readmin")
+	to_chat(src, span_interface("Теперь вы являетесь администратором."), confidential = TRUE)
+	message_admins("[src] вернул себе права администратора.")
+	log_admin("[src] вернул себе права администратора.")
+	BLACKBOX_LOG_ADMIN_VERB("ВКЛ АДМИН ПРАВА")
 
 /client/proc/admin_2fa_verify()
 	set name = "Verify Admin"

@@ -103,7 +103,7 @@
  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
  */
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
+	set name = "Указать на"
 	set category = "Объект"
 
 	if(istype(A, /obj/effect/temp_visual/point))
@@ -134,7 +134,7 @@
 				//cooldown handled in the emote.
 				our_carbon.emote("point [pointing_at]")
 			else
-				to_chat(src, span_warning("You need to wait before pointing again!"))
+				to_chat(src, span_warning("Вам нужно подождать, прежде чем снова указывать пальцем!"))
 				return FALSE
 	point_at(pointing_at, TRUE)
 

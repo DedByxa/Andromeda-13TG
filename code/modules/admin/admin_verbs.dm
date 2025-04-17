@@ -471,12 +471,12 @@ ADMIN_VERB(manage_sect, R_ADMIN, "Manage Religious Sect", "Manages the chaplain'
 		return
 	set_new_religious_sect(choices[choice], reset_existing = TRUE)
 
-ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(deadmin, R_NONE, "ВЫКЛ. АДМИН", "Отключите свои административные полномочия.", ADMIN_CATEGORY_MAIN)
 	user.holder.deactivate()
-	to_chat(user, span_interface("You are now a normal player."))
-	log_admin("[key_name(user)] deadminned themselves.")
-	message_admins("[key_name_admin(user)] deadminned themselves.")
-	BLACKBOX_LOG_ADMIN_VERB("Deadmin")
+	to_chat(user, span_interface("Теперь вы обычный игрок."))
+	log_admin("[key_name(user)] убрал себе права администратора.")
+	message_admins("[key_name_admin(user)] убрал себе права администратора.")
+	BLACKBOX_LOG_ADMIN_VERB("ОТКЛ АДМИН ПРАВА")
 
 ADMIN_VERB(populate_world, R_DEBUG, "Populate World", "Populate the world with test mobs.", ADMIN_CATEGORY_DEBUG, amount = 50 as num)
 	for (var/i in 1 to amount)
