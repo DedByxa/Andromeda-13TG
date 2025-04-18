@@ -2,13 +2,13 @@
 	category = "Skills"
 
 /datum/award/achievement/skill/legendary_miner
-	name = "Legendary miner"
-	desc = "No mere rock can stop me!"
+	name = "Легендарный Шахтер"
+	desc = "Скала и Камень!"
 	database_id = MEDAL_LEGENDARY_MINER
 	icon_state = "mining"
 
 /datum/award/achievement/skill/legendary_fisher
-	name = "Legendary fisher"
-	desc = "Give a spaceman a fish and you feed him for a while; teach a spaceman to fish and you feed him until the shuttle arrives."
+	name = "Легендарный Рыбак"
+	desc = "Дай космонавтику рыбу, и ты накормишь его на некоторое время; научите космонавтика ловить рыбу, и ты будешь кормить его, пока не прилетит шаттл."
 	database_id = MEDAL_LEGENDARY_FISHER
 	icon_state = "fishing_hat"
