@@ -1,5 +1,5 @@
 /datum/award/achievement/boss
-	category = "Bosses"
+	category = "Боссы"
 
 /datum/award/achievement/boss/tendril_exterminator
 	name = "Уничтожитель Тенрдилов"

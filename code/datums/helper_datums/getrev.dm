@@ -53,40 +53,40 @@
 
 /client/verb/showrevinfo()
 	set category = "OOC"
-	set name = "Show Server Revision"
-	set desc = "Check the current server code revision"
+	set name = "Показать версию сервера"
+	set desc = "Проверьте текущую версию кода сервера"
 
 	var/list/msg = list()
 	// Round ID
 	if(GLOB.round_id)
-		msg += "<b>Round ID:</b> [GLOB.round_id]"
+		msg += "<b>ID Раунда:</b> [GLOB.round_id]"
 
-	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	msg += "<b>Версия BYOND:</b> [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
-		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
+		msg += "<b>Скомпилировано версий BYOND:</b> [DM_VERSION].[DM_BUILD]"
 
 	// Revision information
 	var/datum/getrev/revdata = GLOB.revdata
-	msg += "<b>Server revision compiled on:</b> [revdata.date]"
+	msg += "<b>Версия сервера, скомпилированная на:</b> [revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "<b>Master commit:</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += "<b>Последний коммит GitHub (Master):</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
 	if(length(revdata.testmerge))
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "<b>Local commit:</b> [revdata.commit]"
+		msg += "<b>Локальный коммит:</b> [revdata.commit]"
 	else if(!pc)
-		msg += "No commit information"
+		msg += "Нет информации о коммите"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "<b>TGS version</b>: [version.raw_parameter]"
+		msg += "<b>Версия TGS</b>: [version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += "<b>DMAPI version</b>: [api_version.raw_parameter]"
+		msg += "<b>Версия DMAPI</b>: [api_version.raw_parameter]"
 
 	// Game mode odds
-	msg += "<br><b>Current Informational Settings:</b>"
-	msg += "<b>Protect Authority Roles From Traitor:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Yes" : "No"]"
-	msg += "<b>Protect Assistant Role From Traitor:</b> [CONFIG_GET(flag/protect_assistant_from_antagonist) ? "Yes" : "No"]"
-	msg += "<b>Enforce Human Authority:</b> [CONFIG_GET(string/human_authority) ? "Yes" : "No"]"
-	msg += "<b>Allow Latejoin Antagonists:</b> [CONFIG_GET(flag/allow_latejoin_antagonists) ? "Yes" : "No"]"
-	to_chat(src, fieldset_block("Server Revision Info", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)
+	msg += "<br><b>Текущие информационные настройки:</b>"
+	msg += "<b>Защищайта авторитетных Ролей от Предателя:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Да" : "Нет"]"
+	msg += "<b>Защищайта роли ассистента от Предателя:</b> [CONFIG_GET(flag/protect_assistant_from_antagonist) ? "Да" : "Нет"]"
+	msg += "<b>Укреплять человеческую власть:</b> [CONFIG_GET(string/human_authority) ? "Да" : "Нет"]"
+	msg += "<b>Позволяют поздно присоединяться к антагонистам:</b> [CONFIG_GET(flag/allow_latejoin_antagonists) ? "Да" : "Нет"]"
+	to_chat(src, fieldset_block("Информация о версии сервера", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)

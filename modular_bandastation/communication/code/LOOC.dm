@@ -35,8 +35,8 @@ GLOBAL_VAR_INIT(looc_allowed, TRUE)
 	looc_message(msg)
 
 /client/verb/looc_wallpierce(msg as text)
-	set name = "LOOC (Wallpierce)"
-	set desc = "Local OOC, seen by anyone within 7 tiles of you."
+	set name = "LOOC (На 7 тайтлов)"
+	set desc = "Локальный OOC, его видят все, кто находится в радиусе 7 плиток от вас."
 	set category = "OOC"
 
 	looc_message(msg, TRUE)
@@ -55,19 +55,19 @@ GLOBAL_VAR_INIT(looc_allowed, TRUE)
 
 	if(!holder)
 		if(!GLOB.looc_allowed)
-			to_chat(src, span_danger("LOOC is globally muted."))
+			to_chat(src, span_danger("LOOC отключен."))
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, span_boldannounce("<B>Advertising other servers is not allowed.</B>"))
-			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
+			to_chat(src, span_boldannounce("<B>Реклама других серверов запрещена.</B>"))
+			log_admin("[key_name(src)]  попытался разместить рекламу в LOOC: [msg]")
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, span_danger("You cannot use LOOC (muted)."))
+			to_chat(src, span_danger("Вы не можете использовать LOOC (мут)."))
 			return
 		if(is_banned_from(ckey, BAN_LOOC))
-			to_chat(src, span_warning("You are LOOC banned!"))
+			to_chat(src, span_warning("Вы забанены в LOOC!"))
 			return
 
 	msg = emoji_parse(msg)

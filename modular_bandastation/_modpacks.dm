@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(modpacks)
 	return SS_INIT_SUCCESS
 
 /client/verb/modpacks_list()
-	set name = "Modpacks List"
+	set name = "Список Модификаций"
 	set category = "OOC"
 
 	if(!mob || !SSmodpacks.initialized)

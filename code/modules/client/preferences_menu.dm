@@ -13,8 +13,8 @@
 
 /datum/verbs/menu/Preferences/verb/open_game_preferences()
 	set category = "OOC"
-	set name = "Open Game Preferences"
-	set desc = "Open Game Preferences"
+	set name = "Откройте настройки игры"
+	set desc = "Откройте настройки игры"
 
 	var/datum/preferences/preferences = usr?.client?.prefs
 	if (!preferences)

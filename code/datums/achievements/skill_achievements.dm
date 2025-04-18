@@ -1,5 +1,5 @@
 /datum/award/achievement/skill
-	category = "Skills"
+	category = "Навыки"
 
 /datum/award/achievement/skill/legendary_miner
 	name = "Легендарный Шахтер"

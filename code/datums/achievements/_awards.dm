@@ -86,7 +86,7 @@
 
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
-	desc = "Achievement for epic people"
+	desc = "Достижение для эпических людей"
 	icon_state = "" // This should warn contributors that do not declare an icon when contributing new achievements.
 	///How many players have earned this achievement
 	var/times_achieved = 0
@@ -103,22 +103,22 @@
 
 /datum/award/achievement/get_ui_data(list/award_data, datum/achievement_data/holder)
 	. = ..()
-	.["achieve_info"] = "Unlocked by [times_achieved] players so far"
+	.["achieve_info"] = "Разблокировано у [times_achieved] игроков на данный момент"
 	if(!SSachievements.most_unlocked_achievement)
-		.["achieve_tooltip"] = "No achievement has been unlocked yet. Be the first today!"
+		.["achieve_tooltip"] = "Ни одно достижение еще не было разблокировано. Станьте первым сегодня!"
 		return
 	if(SSachievements.most_unlocked_achievement == src)
-		.["achieve_tooltip"] = "This is the most unlocked achievement"
+		.["achieve_tooltip"] = "Это самое большое достижение."
 		return
 	var/percent = FLOOR(times_achieved / SSachievements.most_unlocked_achievement.times_achieved * 100, 0.01)
-	.["achieve_tooltip"] = "[(times_achieved && !percent) ? "Less than 0.01" : percent]% compared to the achievement unlocked by the most players: \"[SSachievements.most_unlocked_achievement.name])\""
+	.["achieve_tooltip"] = "[(times_achieved && !percent) ? "Менее 0,01" : percent]% по сравнению с достижением, разблокированным наибольшим количеством игроков: \"[SSachievements.most_unlocked_achievement.name])\""
 
 /datum/award/achievement/parse_value(raw_value)
 	return raw_value > 0
 
 /datum/award/achievement/on_unlock(mob/user)
 	. = ..()
-	to_chat(user, span_greenannounce("<B>Achievement unlocked: [name]!</B>"))
+	to_chat(user, span_greenannounce("<B>Достижение разблокировано: [name]!</B>"))
 	var/sound/sound_to_send = LAZYACCESS(GLOB.achievement_sounds, user.client.prefs.read_preference(/datum/preference/choiced/sound_achievement))
 	if(sound_to_send)
 		SEND_SOUND(user, sound_to_send)
@@ -134,7 +134,7 @@
 	if(user.ckey)
 		new_report.winner_key = user.ckey
 	else
-		stack_trace("[name] achievement earned by [user], who did not have a ckey.")
+		stack_trace("Достижение [name], полученное игроком [user], у которого не было логина.")
 
 	new_report.award_location = "[get_area_name(user)]"
 
@@ -142,8 +142,8 @@
 
 ///Scores are for leaderboarded things, such as killcount of a specific boss
 /datum/award/score
-	desc = "you did it sooo many times."
-	category = "Scores"
+	desc = "Ты делал это столько раз."
+	category = "Рейтинг"
 
 	var/track_high_scores = TRUE
 	var/list/high_scores = list()
@@ -187,8 +187,8 @@
 
 ///Defining this here 'cause it's the first score a player should see in the Scores category.
 /datum/award/score/achievements_score
-	name = "Achievements Unlocked"
-	desc = "Don't worry, metagaming is all that matters."
+	name = "Разблокированные достижения"
+	desc = "Не волнуйтесь, метагейминг - это все, что имеет значение в этом мире."
 	icon_state = "elephant" //Obey the reference
 	database_id = ACHIEVEMENTS_SCORE
 

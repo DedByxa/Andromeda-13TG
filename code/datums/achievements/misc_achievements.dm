@@ -1,5 +1,5 @@
 /datum/award/achievement/misc
-	category = "Misc"
+	category = "Разное"
 	icon_state = "basemisc" //for those achievements that still need an actual icon, later.
 
 /datum/award/achievement/misc/meteor_examine
