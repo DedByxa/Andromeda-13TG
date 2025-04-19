@@ -6614,6 +6614,8 @@
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "modular_andromeda\code\datums\announcers\classic_announcer.dm"
 #include "modular_andromeda\code\datums\components\jump.dm"
+#include "modular_andromeda\code\game\machinery\barsigns.dm"
+#include "modular_andromeda\code\game\objects\structures\bedsheet_bin.dm"
 // END_INCLUDE
 
 // BANDASTATION
