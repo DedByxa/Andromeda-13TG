@@ -35,8 +35,8 @@ GLOBAL_VAR_INIT(looc_allowed, TRUE)
 	looc_message(msg)
 
 /client/verb/looc_wallpierce(msg as text)
-	set name = "LOOC (На 7 тайтлов)"
-	set desc = "Локальный OOC, его видят все, кто находится в радиусе 7 плиток от вас."
+	set name = "LOOC (На 7 тайлов)"
+	set desc = "Локальный OOC, его видят все, кто находится в радиусе 7 тайлов от вас."
 	set category = "OOC"
 
 	looc_message(msg, TRUE)

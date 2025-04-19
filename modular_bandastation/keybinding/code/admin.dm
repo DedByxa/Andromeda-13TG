@@ -9,17 +9,17 @@
 	description = "Уйти в призраки"
 
 /datum/keybinding/admin/player_panel_new
-	full_name = "Player Panel"
+	full_name = "Панель Игрока"
 	hotkey_keys = list("F7")
 	description = "Открывает новую панель игрока"
 
 /datum/keybinding/admin/toggle_buildmode_self
-	full_name = "Toggle Buildmode"
+	full_name = "Переключить Билдмод"
 	hotkey_keys = list("F11")
-	description = "Включаем режим строительства"
+	description = "Включает режим строительства"
 
 /datum/keybinding/admin/stealthmode
-	full_name = "Stealth mode"
+	full_name = "Режим Stealth"
 	hotkey_keys = list("CtrlF9")
 	description = "Включает скрытный режим"
 

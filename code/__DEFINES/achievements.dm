@@ -7,10 +7,10 @@
 #define ACHIEVEMENT_SCORE "score"
 
 /// preferences for the sound played when unlocking an achievement
-#define CHEEVO_SOUND_TADA "Tada Fanfare"
-#define CHEEVO_SOUND_JINGLE "Beeps Jingle"
-#define CHEEVO_SOUND_PING "Success Ping"
-#define CHEEVO_SOUND_OFF "Disabled"
+#define CHEEVO_SOUND_TADA "Тада Фанфары"
+#define CHEEVO_SOUND_JINGLE "Джингл Бипы"
+#define CHEEVO_SOUND_PING "Пинг Успех"
+#define CHEEVO_SOUND_OFF "Выключенно"
 
 //Misc Medal hub IDs
 #define MEDAL_METEOR "Your Life Before Your Eyes"
