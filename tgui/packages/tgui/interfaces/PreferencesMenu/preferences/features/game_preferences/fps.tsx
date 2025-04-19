@@ -9,7 +9,7 @@ type FpsServerData = FeatureNumericData & {
 function FpsInput(props: FeatureValueProps<number, number, FpsServerData>) {
   const { handleSetValue, serverData } = props;
 
-  let recommened = `Recommended`;
+  let recommened = `Рекомендованно`;
   if (serverData) {
     recommened += ` (${serverData.recommended_fps})`;
   }
@@ -18,7 +18,7 @@ function FpsInput(props: FeatureValueProps<number, number, FpsServerData>) {
     <Stack fill>
       <Stack.Item basis="70%">
         <Dropdown
-          selected={props.value === -1 ? recommened : 'Custom'}
+          selected={props.value === -1 ? recommened : 'Пользовательский'}
           onSelected={(value) => {
             if (value === recommened) {
               handleSetValue(-1);
@@ -27,7 +27,7 @@ function FpsInput(props: FeatureValueProps<number, number, FpsServerData>) {
             }
           }}
           width="100%"
-          options={[recommened, 'Custom']}
+          options={[recommened, 'Пользовательский']}
         />
       </Stack.Item>
 

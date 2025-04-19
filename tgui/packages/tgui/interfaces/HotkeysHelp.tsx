@@ -93,16 +93,16 @@ export const HotkeysHelp = (props) => {
   const { data } = useBackend<HotkeysHelpData>();
 
   return (
-    <Window title="Hotkeys Help" width={500} height={800}>
+    <Window title="Помощь по Горячим Клавишам" width={500} height={800}>
       <Window.Content scrollable>
-        <Section title="Sorted by Key">
+        <Section title="Сортированно по Клавише">
           <Table>
             <Table.Row header>
               <Table.Cell textAlign="center" m={1}>
-                Key
+                Клавиша
               </Table.Cell>
               <Table.Cell textAlign="center" m={1}>
-                Binding
+                Назначение
               </Table.Cell>
             </Table.Row>
             {data.hotkeys.map((hotkey) => (

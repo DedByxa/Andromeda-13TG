@@ -57,9 +57,9 @@ export const sound_instruments: Feature<number> = {
 };
 
 export const sound_jukebox: Feature<number> = {
-  name: 'Jukebox volume',
-  category: 'SOUND',
-  description: 'Volume of jukebox tracks.',
+  name: 'Громкость жужубокса',
+  category: 'ЗВУК',
+  description: 'Громкость треков из музыкального аппарата.',
   component: FeatureSliderInput,
 };
 

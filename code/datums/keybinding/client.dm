@@ -35,8 +35,8 @@
 /datum/keybinding/client/toggle_fullscreen
 	hotkey_keys = list("F11")
 	name = "toggle_fullscreen"
-	full_name = "Toggle Fullscreen"
-	description = "Makes the game window fullscreen."
+	full_name = "Переключить Полноэкранность"
+	description = "Делает окно игры полноэкранным."
 	keybind_signal = COMSIG_KB_CLIENT_FULLSCREEN_DOWN
 
 /datum/keybinding/client/toggle_fullscreen/down(client/user)

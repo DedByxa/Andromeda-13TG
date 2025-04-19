@@ -16,8 +16,8 @@
 /datum/keybinding/living/jump
 	hotkey_keys = list("Space")
 	name = "Прыжок"
-	full_name = "Jump"
-	description = "Monki FLIP!"
+	full_name = "Прыжок"
+	description = "Бхопчик! (ABH нет :pensive:)"
 	keybind_signal = COMSIG_KB_MOB_JUMP
 
 /datum/component/jump
