@@ -86,16 +86,18 @@ export function OrbitSearchBar(props) {
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
-        <Stack.Item>
-          <Button
-            color={autoObserve ? 'good' : 'transparent'}
-            icon={autoObserve ? 'toggle-on' : 'toggle-off'}
-            onClick={() => setAutoObserve(!autoObserve)}
-            tooltip={`Включите автонаблюдение. При включении вы будете
+        {!!data.can_observe && (
+          <Stack.Item>
+            <Button
+              color={autoObserve ? 'good' : 'transparent'}
+              icon={autoObserve ? 'toggle-on' : 'toggle-off'}
+              onClick={() => setAutoObserve(!autoObserve)}
+              tooltip={`Включите автонаблюдение. При включении вы будете
             видеть пользовательский интерфейс / инвентарь того, за кем вы наблюдаете.`}
-            tooltipPosition="bottom-start"
-          />
-        </Stack.Item>
+              tooltipPosition="bottom-start"
+            />
+          </Stack.Item>
+        )}
         <Stack.Item>
           <Button
             color="transparent"
