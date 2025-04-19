@@ -11,7 +11,7 @@
 
 /datum/award/achievement/mafia/detective
 	name = "Победа за Детектива"
-	desc = "Если тыы сделал это с медиком в игре, то я не очень впечатлен."
+	desc = "Если ты сделал это с медиком в игре, то я не очень впечатлен."
 	database_id = MAFIA_MEDAL_DETECTIVE
 	icon_state = "town"
 
