@@ -1036,7 +1036,6 @@
 #include "code\datums\ai_laws\laws_station_sided.dm"
 #include "code\datums\announcers\_announcer.dm"
 #include "code\datums\announcers\default_announcer.dm"
-#include "code\datums\announcers\intern_announcer.dm"
 #include "code\datums\announcers\medbot_announcer.dm"
 #include "code\datums\armor\_armor.dm"
 #include "code\datums\armor\_atom_armor.dm"
