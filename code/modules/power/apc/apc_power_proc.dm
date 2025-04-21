@@ -17,10 +17,10 @@
 
 /obj/machinery/power/apc/proc/toggle_nightshift_lights(mob/user)
 	if(low_power_nightshift_lights)
-		balloon_alert(user, "power is too low!")
+		balloon_alert(user, "мощность слишком низкая!")
 		return
 	if(last_nightshift_switch > world.time - 10 SECONDS) //~10 seconds between each toggle to prevent spamming
-		balloon_alert(user, "night breaker is cycling!")
+		balloon_alert(user, "частые переключения могут вызвать сбой!")
 		return
 	last_nightshift_switch = world.time
 	set_nightshift(!nightshift_lights)

@@ -16,7 +16,7 @@
 
 /obj/machinery/power/apc
 	name = "area power controller"
-	desc = "A control terminal for the area's electrical systems."
+	desc = "Локальный контроллер питания системами этого помещения."
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
@@ -182,17 +182,18 @@
 	)
 
 	//Assign it to its area. If mappers already assigned an area string fast load the area from it else get the current area
+	//Присвойте ей область. Если картографу уже назначена строка области, быстро загрузите область из нее, иначе получите текущую область
 	var/area/our_area = get_area(loc)
 	if(areastring)
 		area = get_area_instance_from_text(areastring)
 		if(!area)
 			area = our_area
-			stack_trace("Bad areastring path for [src], [areastring]")
+			stack_trace("Плохой путь к области для [src], [areastring]")
 	else if(isarea(our_area) && areastring == null)
 		area = our_area
 	if(area)
 		if(area.apc)
-			log_mapping("Duplicate APC created at [AREACOORD(src)] [area.type]. Original at [AREACOORD(area.apc)] [area.type].")
+			log_mapping("Дубликат ЛКП создан по адресу [AREACOORD(src)] [area.type]. Оригинал по адресу [AREACOORD(area.apc)] [area.type].")
 		area.apc = src
 
 	//Initialize name & access of the apc. Name requires area to be assigned first
@@ -321,24 +322,24 @@
 	. = ..()
 	if(machine_stat & BROKEN)
 		if(opened != APC_COVER_REMOVED)
-			. += "The cover is broken and can probably be <i>pried</i> off with enough force."
+			. += "Крышка сломана, ее можно <i>снять</i> приложив достаточное усилие."
 			return
 		if(terminal && has_electronics)
-			. += "The cover is missing but can be replaced using a new frame."
+			. += "Крышка отсутствует, но ее можно заменить, используя новый каркас."
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			. += "The cover is [opened == APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
+			. += "Крышка [opened == APC_COVER_REMOVED?"снята":"открыта"] и силовая ячейка [ cell ? "установлена" : "отсутствует"]."
 		else
-			. += {"It's [ !terminal ? "not" : "" ] wired up.\n
-			The electronics are[!has_electronics?"n't":""] installed."}
+			. += {"Он [ !terminal ? "не" : "" ] подключён.\n
+			Электроника[!has_electronics?"не":""] установлена."}
 	else
 		if(machine_stat & MAINT)
-			. += "The cover is closed. Something is wrong with it. It doesn't work."
+			. += "Крышка закрыта. С ней что-то не так. Она не работает."
 		else if(malfhack)
-			. += "The cover is broken. It may be hard to force it open."
+			. += "Крышка сломана. Возможно, открыть ее с усилием будет непросто."
 		else
-			. += "The cover is closed."
+			. += "Крышка закрыта."
 
 /obj/machinery/power/apc/atom_break(damage_flag)
 	. = ..()
@@ -353,7 +354,7 @@
 	if(opened != APC_COVER_REMOVED)
 		opened = APC_COVER_REMOVED
 		coverlocked = FALSE
-		visible_message(span_warning("The APC cover is knocked down!"))
+		visible_message(span_warning("Крышка ЛКП сбита!"))
 		update_appearance()
 
 /obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
@@ -383,7 +384,7 @@
 
 		"powerChannels" = list(
 			list(
-				"title" = "Equipment",
+				"title" = "Оборудование",
 				"powerLoad" = display_power(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
@@ -393,7 +394,7 @@
 				)
 			),
 			list(
-				"title" = "Lighting",
+				"title" = "Освещение",
 				"powerLoad" = display_power(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
@@ -403,7 +404,7 @@
 				)
 			),
 			list(
-				"title" = "Environment",
+				"title" = "Базовое оборудование",
 				"powerLoad" = display_power(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
@@ -421,9 +422,9 @@
 		return
 	remote_control_user = remote_user
 	ui_interact(remote_user)
-	remote_user.log_message("remotely accessed [src].", LOG_GAME)
-	say("Remote access detected.[locked ? " Interface unlocked." : ""]")
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Connected to [src]."))
+	remote_user.log_message("удаленный доступ [src].", LOG_GAME)
+	say("Обнаружен удаленный доступ.[locked ? " Интерфейс разблокирован." : ""]")
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Подключен к [src]."))
 	if(locked)
 		playsound(src, 'sound/machines/terminal/terminal_on.ogg', 25, FALSE)
 		locked = FALSE
@@ -440,9 +441,9 @@
 	if(isnull(remote_control_user))
 		return
 	locked = TRUE
-	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Disconnected from [src]."))
+	to_chat(remote_control_user, span_danger("[icon2html(src, remote_control_user)] Отключен от [src]."))
 	if(!mute)
-		say("Remote access canceled. Interface locked.")
+		say("Удаленный доступ отменен. Интерфейс заблокирован.")
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
 		playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 50, FALSE)
 	update_appearance()
@@ -463,7 +464,7 @@
 		if("lock")
 			if(HAS_SILICON_ACCESS(user))
 				if((obj_flags & EMAGGED) || (machine_stat & (BROKEN|MAINT)) || remote_control_user)
-					to_chat(user, span_warning("The APC does not respond to the command!"))
+					to_chat(user, span_warning("ЛКП не отвечает на команду!"))
 				else
 					locked = !locked
 					update_appearance()
