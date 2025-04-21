@@ -103,14 +103,14 @@ PICTURE_LOGGING_CAMERA
 
 
 ###---АФК и ИНАКТИВ---
-## period of time in seconds for players to be considered inactive
-INACTIVITY_PERIOD 1200
+## Период времени в секундах, в течение которого игроки считаются неактивными
+INACTIVITY_PERIOD 600
 
-## period of time in seconds for players to be considered afk and kickable
+## Период времени в секундах, в течение которого игроки считаются активными и могут быть кикнутыми
 # AFK_PERIOD 900
 
-## disconnect players who are considered afk
-KICK_INACTIVE
+## Кикать неактивных игроков
+# KICK_INACTIVE
 
 
 ###---ДЛЯ АДМИНОВ---
