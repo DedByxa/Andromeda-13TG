@@ -559,11 +559,11 @@
 
 		occupant_data["name"] = mob_occupant.name
 		if(mob_occupant.stat == DEAD)
-			occupant_data["stat"] = "Dead"
+			occupant_data["stat"] = "Труп"
 		else if (HAS_TRAIT(mob_occupant, TRAIT_KNOCKEDOUT))
-			occupant_data["stat"] = "Unconscious"
+			occupant_data["stat"] = "Без сознания"
 		else
-			occupant_data["stat"] = "Conscious"
+			occupant_data["stat"] = "В сознании"
 
 		occupant_data["bodyTemperature"] = round(mob_occupant.bodytemperature, 1)
 

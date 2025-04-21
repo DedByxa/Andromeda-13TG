@@ -1,8 +1,8 @@
 
 // The shattered remnants of your broken limbs fill you with determination!
 /atom/movable/screen/alert/status_effect/determined
-	name = "Determined"
-	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	name = "Решительность"
+	desc = "Серьезные раны, которые вы получили, привели ваше тело в состояние 'сражайся или убегай'! Пришло время искать выход!"
 	icon_state = "wounded"
 
 /datum/status_effect/determined
@@ -12,14 +12,14 @@
 
 /datum/status_effect/determined/on_apply()
 	. = ..()
-	owner.visible_message(span_danger("[owner]'s body tenses up noticeably, gritting against [owner.p_their()] pain!"), span_notice("<b>Your senses sharpen as your body tenses up from the wounds you've sustained!</b>"), \
+	owner.visible_message(span_danger("Тело [owner] заметно напрягается, сопротивляясь боли [owner.p_their()] pain!"), span_notice("<b>Сердце колотит, мысли о боли ушли на задний план!</b>"), \
 		vision_distance=COMBAT_MESSAGE_RANGE)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod *= WOUND_DETERMINATION_BLEED_MOD
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger("[owner]'s body slackens noticeably!"), span_warning("<b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger("Тело [owner] заметно расслабляется!"), span_warning("<b>Твой прилив адреналина спадает, и боль от ран возвращается...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod /= WOUND_DETERMINATION_BLEED_MOD
@@ -65,8 +65,8 @@
 	right = null
 
 /atom/movable/screen/alert/status_effect/limp
-	name = "Limping"
-	desc = "One or more of your legs has been wounded, slowing down steps with that leg! Get it fixed, or at least in a sling of gauze!"
+	name = "Хромота"
+	desc = "У вас повреждена одна или обе ноги, из-за чего вы замедляете шаги! Зафиксируйте ногу или наложите марлевую повязку!"
 
 /datum/status_effect/limp/proc/check_step(mob/whocares, OldLoc, Dir, forced)
 	SIGNAL_HANDLER

@@ -204,16 +204,16 @@
 		data["occupant"]["name"] = mob_occupant.name
 		switch(mob_occupant.stat)
 			if(CONSCIOUS)
-				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["stat"] = "В сознании"
 				data["occupant"]["statstate"] = "good"
 			if(SOFT_CRIT)
-				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["stat"] = "В сознании"
 				data["occupant"]["statstate"] = "average"
 			if(UNCONSCIOUS, HARD_CRIT)
-				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["stat"] = "Без сознания"
 				data["occupant"]["statstate"] = "average"
 			if(DEAD)
-				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["stat"] = "Труп"
 				data["occupant"]["statstate"] = "bad"
 		data["occupant"]["health"] = mob_occupant.health
 		data["occupant"]["maxHealth"] = mob_occupant.maxHealth

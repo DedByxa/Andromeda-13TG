@@ -377,11 +377,11 @@
 		var/stat = "error"
 		switch(body.stat)
 			if(CONSCIOUS)
-				stat = "Conscious"
+				stat = "В сознании"
 			if(SOFT_CRIT to HARD_CRIT) // Also includes UNCONSCIOUS
-				stat = "Unconscious"
+				stat = "Без сознания"
 			if(DEAD)
-				stat = "Dead"
+				stat = "Труп"
 		var/occupied
 		if(body == H)
 			occupied = "owner"

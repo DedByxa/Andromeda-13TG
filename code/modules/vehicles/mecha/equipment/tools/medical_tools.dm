@@ -98,15 +98,15 @@
 	var/patient_state
 	switch(patient.stat)
 		if(CONSCIOUS)
-			patient_state = "Conscious"
+			patient_state = "В сознании"
 		if(UNCONSCIOUS)
-			patient_state = "Unconscious"
+			patient_state = "Без сознания"
 		if(DEAD)
-			patient_state = "*Dead*"
+			patient_state = "*Труп*"
 		if(SOFT_CRIT, HARD_CRIT)
-			patient_state = "Critical"
+			patient_state = "Критическое"
 		else
-			patient_state = "Unknown"
+			patient_state = "Неизвестно"
 	var/core_temp = ""
 	if(ishuman(patient))
 		var/mob/living/carbon/human/humi = patient

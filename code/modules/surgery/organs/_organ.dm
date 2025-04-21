@@ -387,23 +387,23 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 /// Called by medical scanners to get a simple summary of how healthy the organ is. Returns an empty string if things are fine.
 /obj/item/organ/proc/get_status_text(advanced, add_tooltips)
 	if(advanced && (organ_flags & ORGAN_HAZARDOUS))
-		return conditional_tooltip("<font color='#cc3333'>Harmful Foreign Body</font>", "Remove surgically.", add_tooltips)
+		return conditional_tooltip("<font color='#cc3333'>Вредное инородное тело</font>", "Удаляют хирургическим путем.", add_tooltips)
 
 	if(organ_flags & ORGAN_EMP)
-		return conditional_tooltip("<font color='#cc3333'>EMP-Derived Failure</font>", "Repair or replace surgically.", add_tooltips)
+		return conditional_tooltip("<font color='#cc3333'>Сбой, вызванный ЭМИ</font>", "Отремонтируйте или замените хирургическим путем.", add_tooltips)
 
 	var/tech_text = ""
 	if(owner.has_reagent(/datum/reagent/inverse/technetium))
-		tech_text = "[round((damage / maxHealth) * 100, 1)]% damaged"
+		tech_text = "[round((damage / maxHealth) * 100, 1)]% повреждений"
 
 	if(organ_flags & ORGAN_FAILING)
-		return conditional_tooltip("<font color='#cc3333'>[tech_text || "Non-Functional"]</font>", "Repair or replace surgically.", add_tooltips)
+		return conditional_tooltip("<font color='#cc3333'>[tech_text || "Нефункциональный"]</font>", "Восстановите или замените хирургическим путем.", add_tooltips)
 
 	if(damage > high_threshold)
-		return conditional_tooltip("<font color='#ff9933'>[tech_text || "Severely Damaged"]</font>", "[healing_factor ? "Treat with rest or use specialty medication." : "Repair surgically or use specialty medication."]", add_tooltips && owner.stat != DEAD)
+		return conditional_tooltip("<font color='#ff9933'>[tech_text || "Сильно поврежденный"]</font>", "[healing_factor ? "Лечите с помощью отдыха или специальных лекарств." : "Восстановите его хирургическим путем или используйте специальные лекарства."]", add_tooltips && owner.stat != DEAD)
 
 	if(damage > low_threshold)
-		return conditional_tooltip("<font color='#ffcc33'>[tech_text || "Mildly Damaged"] </font>", "[healing_factor ? "Treat with rest." : "Use specialty medication."]", add_tooltips && owner.stat != DEAD)
+		return conditional_tooltip("<font color='#ffcc33'>[tech_text || "Слегка поврежденный"] </font>", "[healing_factor ? "Лечите с помощью отдыха." : "Используйте специальные лекарства."]", add_tooltips && owner.stat != DEAD)
 
 	if(tech_text)
 		return "<font color='#33cc33'>[tech_text]</font>"
