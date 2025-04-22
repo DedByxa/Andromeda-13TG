@@ -1,6 +1,6 @@
 /obj/item/screwdriver
 	name = "screwdriver"
-	desc = "You can be totally screwy with this."
+	desc = "С этим можно поступить абсолютно по-разному."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
 	inhand_icon_state = "screwdriver"
@@ -63,7 +63,7 @@
 
 /obj/item/screwdriver/abductor
 	name = "alien screwdriver"
-	desc = "An ultrasonic screwdriver."
+	desc = "Ультразвуковая отвертка."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "screwdriver_a"
 	inhand_icon_state = "screwdriver_nuke"
@@ -79,7 +79,7 @@
 
 /obj/item/screwdriver/power
 	name = "hand drill"
-	desc = "A simple powered hand drill."
+	desc = "Простая ручная дрель с электроприводом."
 	icon_state = "drill"
 	inside_belt_icon_state = null
 	inhand_icon_state = "drill"
@@ -129,13 +129,13 @@
 
 	tool_behaviour = (active ? TOOL_WRENCH : TOOL_SCREWDRIVER)
 	if(user)
-		balloon_alert(user, "attached [active ? "bolt bit" : "screw bit"]")
+		balloon_alert(user, "головка для [active ? "болта" : "винта"]")
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"] bit."
+	. += " Он оснащен насадкой [tool_behaviour == TOOL_SCREWDRIVER ? "винт" : "болт"] bit."
 
 /obj/item/screwdriver/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
@@ -147,7 +147,7 @@
 
 /obj/item/screwdriver/cyborg
 	name = "automated screwdriver"
-	desc = "A powerful automated screwdriver, designed to be both precise and quick."
+	desc = "Мощный автоматический шуруповерт, созданный для точной и быстрой работы."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_screwdriver"
 	hitsound = 'sound/items/tools/drill_hit.ogg'

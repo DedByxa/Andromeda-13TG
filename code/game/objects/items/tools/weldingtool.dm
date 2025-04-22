@@ -1,6 +1,6 @@
 /obj/item/weldingtool
 	name = "welding tool"
-	desc = "A standard edition welder provided by Nanotrasen."
+	desc = "Стандартный сварочный аппарат, предоставленный компанией Nanotrasen."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	inhand_icon_state = "welder"
@@ -326,7 +326,7 @@
 
 /obj/item/weldingtool/largetank
 	name = "industrial welding tool"
-	desc = "A slightly larger welder with a larger tank."
+	desc = "Немного больший сварочный аппарат с большим баком."
 	icon_state = "indwelder"
 	max_fuel = 40
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.6)
@@ -339,7 +339,7 @@
 
 /obj/item/weldingtool/largetank/cyborg
 	name = "integrated welding tool"
-	desc = "An advanced welder designed to be used in robotic systems. Custom framework doubles the speed of welding."
+	desc = "Усовершенствованный сварочный аппарат, предназначенный для использования в роботизированных системах. Специальный каркас удваивает скорость сварки."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "indwelder_cyborg"
 	toolspeed = 0.5
@@ -352,7 +352,7 @@
 
 /obj/item/weldingtool/mini
 	name = "emergency welding tool"
-	desc = "A miniature welder used during emergencies."
+	desc = "Миниатюрный сварочный аппарат, используемый в чрезвычайных ситуациях."
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = WEIGHT_CLASS_TINY
@@ -367,7 +367,7 @@
 
 /obj/item/weldingtool/abductor
 	name = "alien welding tool"
-	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
+	desc = "Инопланетный сварочный инструмент. Какое бы топливо он ни использовал, оно никогда не кончается."
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "welder"
 	toolspeed = 0.1
@@ -383,7 +383,7 @@
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded industrial welding tool"
-	desc = "An upgraded welder based of the industrial welder."
+	desc = "Модернизированный сварочный аппарат на базе промышленного сварочного аппарата."
 	icon_state = "upindwelder"
 	inhand_icon_state = "upindwelder"
 	max_fuel = 80
@@ -391,7 +391,7 @@
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
-	desc = "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+	desc = "Экспериментальный сварочный аппарат, способный самостоятельно вырабатывать топливо и менее вредный для глаз."
 	icon_state = "exwelder"
 	inhand_icon_state = "exwelder"
 	max_fuel = 40

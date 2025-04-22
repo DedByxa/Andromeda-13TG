@@ -1,6 +1,6 @@
 /obj/item/wrench
 	name = "wrench"
-	desc = "A wrench with common uses. Can be found in your hand."
+	desc = "Гаечный ключ общего применения. Можно найти в руке.."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
 	inhand_icon_state = "wrench"
@@ -41,7 +41,7 @@
 
 /obj/item/wrench/abductor
 	name = "alien wrench"
-	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
+	desc = "Поляризованный гаечный ключ. Он заставляет вращаться все, что находится между губками."
 	icon = 'icons/obj/antags/abductor.dmi'
 	inside_belt_icon_state = "wrench_alien"
 	icon_angle = -135
@@ -52,7 +52,7 @@
 
 /obj/item/wrench/medical
 	name = "medical wrench"
-	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
+	desc = "Медицинский ключ с обычным (медицинским?) применением. Можно найти в руке.."
 	icon_state = "wrench_medical"
 	inhand_icon_state = "wrench_medical"
 	force = 2 //MEDICAL
@@ -88,7 +88,7 @@
 
 /obj/item/wrench/cyborg
 	name = "hydraulic wrench"
-	desc = "An advanced robotic wrench, powered by internal hydraulics. Twice as fast as the handheld version."
+	desc = "Усовершенствованный роботизированный гайковерт, работающий на внутренней гидравлике. В два раза быстрее, чем ручная версия."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_wrench"
 	icon_angle = 0
@@ -96,7 +96,7 @@
 
 /obj/item/wrench/combat
 	name = "combat wrench"
-	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
+	desc = "Это как обычный гаечный ключ, только более крутой. Можно найти на поле боя."
 	icon_state = "wrench_combat"
 	inhand_icon_state = "wrench_combat"
 	inside_belt_icon_state = "wrench_combat"
@@ -133,7 +133,7 @@
 
 /obj/item/wrench/bolter
 	name = "bolter wrench"
-	desc = "A wrench designed to grab into airlock's bolting system and raise it regardless of the airlock's power status."
+	desc = "Гаечный ключ, предназначенный для захвата болтовой системы шлюза и ее поднятия независимо от состояния питания шлюза."
 	icon_state = "bolter_wrench"
 	inhand_icon_state = "bolter_wrench"
 	icon_angle = -90

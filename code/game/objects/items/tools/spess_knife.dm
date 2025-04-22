@@ -2,7 +2,7 @@
 
 /obj/item/spess_knife
 	name = "spess knife"
-	desc = "Unleash the cosmic ingenuity at your fingertips. It seamlessly shifts forms, revealing hidden talents that might just save the day. Who knows what secrets lie within this celestial tool?"
+	desc = "Раскройте космическую изобретательность на кончиках пальцев. Он плавно меняет форму, открывая скрытые таланты, которые могут спасти положение. Кто знает, какие секреты таит в себе этот небесный инструмент?"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "spess_knife"
 	worn_icon_state = "spess_knife"

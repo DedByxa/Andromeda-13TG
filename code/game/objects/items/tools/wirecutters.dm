@@ -1,6 +1,6 @@
 /obj/item/wirecutters
 	name = "wirecutters"
-	desc = "This cuts wires."
+	desc = "Это позволяет обрезать провода."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_map"
 	worn_icon_state = "cutters"
@@ -66,7 +66,7 @@
 
 /obj/item/wirecutters/abductor
 	name = "alien wirecutters"
-	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
+	desc = "Чрезвычайно острые кусачки, изготовленные из серебристо-зеленого металла."
 	icon = 'icons/obj/antags/abductor.dmi'
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
 	icon_state = "cutters"
@@ -76,7 +76,7 @@
 
 /obj/item/wirecutters/cyborg
 	name = "powered wirecutters"
-	desc = "Cuts wires with the power of ELECTRICITY. Faster than normal wirecutters."
+	desc = "Режет провода с помощью силы ЭЛЕКТРИЧЕСТВА. Быстрее, чем обычные кусачки."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_cutters"
 	worn_icon_state = "cutters"

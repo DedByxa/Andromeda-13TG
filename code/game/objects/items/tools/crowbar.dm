@@ -1,6 +1,6 @@
 /obj/item/crowbar
 	name = "pocket crowbar"
-	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles or opening unpowered doors."
+	desc = "Небольшой ломик. Этот удобный инструмент пригодится для многих вещей, например, для откола напольной плитки или открытия неработающих дверей."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	inhand_icon_state = "crowbar"
@@ -46,7 +46,7 @@
 
 /obj/item/crowbar/abductor
 	name = "alien crowbar"
-	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
+	desc = "Лом со странным покрытием. Кажется, что он вырывается сам собой, не требуя никаких усилий."
 	icon = 'icons/obj/antags/abductor.dmi'
 	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
@@ -56,7 +56,7 @@
 
 /obj/item/crowbar/large
 	name = "large crowbar"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big."
+	desc = "Это большой ломик. Он не помещается в карманы, потому что он большой."
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -68,12 +68,12 @@
 
 /obj/item/crowbar/large/emergency
 	name = "emergency crowbar"
-	desc = "It's a bulky crowbar. It almost seems deliberately designed to not be able to fit inside of a backpack."
+	desc = "Это громоздкий лом. Кажется, что он специально сделан так, чтобы не поместиться в рюкзак."
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/crowbar/hammer
 	name = "claw hammer"
-	desc = "It's a heavy hammer with a pry bar on the back of its head. Nails aren't common in space, but this tool can still be used as a weapon or a crowbar."
+	desc = "Это тяжелый молоток с выколоткой на затылке. Гвозди в космосе встречаются нечасто, но этот инструмент все равно можно использовать как оружие или ломик."
 	force = 11
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/obj/weapons/hammer.dmi'
@@ -92,14 +92,14 @@
 
 /obj/item/crowbar/large/twenty_force //from space ruin
 	name = "heavy crowbar"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big. It feels oddly heavy.."
+	desc = "Это большой ломик. Он не помещается в карманы, потому что большой. Он кажется странно тяжелым."
 	force = 20
 	icon_state = "crowbar_powergame"
 	inhand_icon_state = "crowbar_red"
 
 /obj/item/crowbar/large/old
 	name = "old crowbar"
-	desc = "It's an old crowbar. Much larger than the pocket sized ones, carrying a lot more heft. They don't make 'em like they used to."
+	desc = "Это старый ломик. Гораздо больше, чем карманные, и гораздо тяжелее. Их уже не делают, как раньше."
 	throwforce = 10
 	throw_speed = 2
 
@@ -110,7 +110,7 @@
 
 /obj/item/crowbar/power
 	name = "jaws of life"
-	desc = "A set of jaws of life, compressed through the magic of science."
+	desc = "Разработка корпорации NT"
 	icon_state = "jaws"
 	inhand_icon_state = "jawsoflife"
 	worn_icon_state = "jawsoflife"
@@ -154,7 +154,7 @@
 
 	tool_behaviour = (active ? TOOL_WIRECUTTER : TOOL_CROWBAR)
 	if(user)
-		balloon_alert(user, "attached [active ? "cutting" : "prying"]")
+		balloon_alert(user, "режим [active ? "кусачек" : "лома"]")
 	playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_CROWBAR)
 		RemoveElement(/datum/element/cuffsnapping, snap_time_weak_handcuffs, snap_time_strong_handcuffs)
@@ -164,7 +164,7 @@
 
 /obj/item/crowbar/power/syndicate
 	name = "jaws of death"
-	desc = "An improved, faster, and smaller copy of Nanotrasen's standard jaws of life. Can be used to force open airlocks in its crowbar configuration."
+	desc = "Улучшенная, более быстрая и уменьшенная копия стандартных челюстей жизни Нанотрасена. В конфигурации лома может использоваться для открытия шлюзов."
 	icon_state = "jaws_syndie"
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
@@ -172,7 +172,7 @@
 
 /obj/item/crowbar/power/examine()
 	. = ..()
-	. += " It's fitted with a [tool_behaviour == TOOL_CROWBAR ? "prying" : "cutting"] head."
+	. += " Он оснащен [tool_behaviour == TOOL_CROWBAR ? "лома" : "кусачек"]."
 
 /obj/item/crowbar/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_CROWBAR)
@@ -191,7 +191,7 @@
 
 /obj/item/crowbar/cyborg
 	name = "hydraulic crowbar"
-	desc = "A hydraulic prying tool, simple but powerful."
+	desc = "Гидравлический выжимной инструмент, простой, но мощный."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_crowbar"
 	worn_icon_state = "toolkit_engiborg_crowbar" //error sprite - this shouldn't have been dropped
@@ -202,7 +202,7 @@
 
 /obj/item/crowbar/mechremoval
 	name = "mech removal tool"
-	desc = "A... really big crowbar. You're pretty sure it could pry open a mech, but it seems unwieldy otherwise."
+	desc = "Очень большой лом. Вы уверены, что им можно вскрыть мехи, но в остальном он кажется громоздким."
 	icon_state = "mechremoval0"
 	base_icon_state = "mechremoval"
 	inhand_icon_state = null

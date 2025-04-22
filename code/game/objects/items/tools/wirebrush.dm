@@ -4,7 +4,7 @@
  */
 /obj/item/wirebrush
 	name = "wirebrush"
-	desc = "A tool that is used to scrub the rust thoroughly off walls. Not for hair!"
+	desc = "Инструмент, который используется для тщательной очистки стен от ржавчины. Не для волос!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wirebrush"
 	tool_behaviour = TOOL_RUSTSCRAPER
