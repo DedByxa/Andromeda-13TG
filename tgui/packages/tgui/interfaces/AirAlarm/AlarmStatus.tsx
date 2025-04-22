@@ -6,30 +6,30 @@ import { AirAlarmData } from './types';
 const dangerMap = {
   0: {
     color: 'good',
-    localStatusText: 'Optimal',
+    localStatusText: 'В штатном режиме',
   },
   1: {
     color: 'average',
-    localStatusText: 'Caution',
+    localStatusText: 'Осторожно',
   },
   2: {
     color: 'bad',
-    localStatusText: 'Danger (Internals Required)',
+    localStatusText: 'Опасно',
   },
 } as const;
 
 const faultMap = {
   0: {
     color: 'good',
-    areaFaultText: 'None',
+    areaFaultText: 'Нету',
   },
   1: {
     color: 'purple',
-    areaFaultText: 'Manual Trigger',
+    areaFaultText: 'Ручное срабатывание',
   },
   2: {
     color: 'average',
-    areaFaultText: 'Automatic Detection',
+    areaFaultText: 'Автоматическое срабатывание',
   },
 } as const;
 
@@ -41,11 +41,11 @@ export function AirAlarmStatus(props) {
   const areaFault = faultMap[data.faultStatus] || faultMap[0];
 
   return (
-    <Section title="Air Status">
+    <Section title="Состояние воздуха">
       <LabeledList>
         {envData.length <= 0 ? (
-          <LabeledList.Item label="Warning" color="bad">
-            Cannot obtain air sample for analysis.
+          <LabeledList.Item label="Предупреждение" color="bad">
+            Не удается получить пробу воздуха для анализа.
           </LabeledList.Item>
         ) : (
           <>
@@ -61,31 +61,38 @@ export function AirAlarmStatus(props) {
                 </LabeledList.Item>
               );
             })}
-            <LabeledList.Item label="Local Status" color={localStatus.color}>
+            <LabeledList.Item
+              label="Локальный статус"
+              color={localStatus.color}
+            >
               {localStatus.localStatusText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Area Status"
+              label="Статус области"
               color={data.atmosAlarm || data.fireAlarm ? 'bad' : 'good'}
             >
-              {(data.atmosAlarm && 'Atmosphere Alarm') ||
-                (data.fireAlarm && 'Fire Alarm') ||
-                'Nominal'}
+              {(data.atmosAlarm && 'Атмосферная сигнализация') ||
+                (data.fireAlarm && 'Пожарная сигнализация') ||
+                'В штатном режиме'}
             </LabeledList.Item>
-            <LabeledList.Item label="Fault Status" color={areaFault.color}>
+            <LabeledList.Item
+              label="Состояние неисправности"
+              color={areaFault.color}
+            >
               {areaFault.areaFaultText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Fault Location"
+              label="Местоположение неисправности"
               color={data.faultLocation ? 'blue' : 'good'}
             >
-              {data.faultLocation || 'None'}
+              {data.faultLocation || 'Нету'}
             </LabeledList.Item>
           </>
         )}
         {!!data.emagged && (
-          <LabeledList.Item label="Warning" color="bad">
-            Safety measures offline. Device may exhibit abnormal behavior.
+          <LabeledList.Item label="Предупреждение" color="bad">
+            Меры безопасности в автономном режиме. Устройство может вести себя
+            ненормально.
           </LabeledList.Item>
         )}
       </LabeledList>
