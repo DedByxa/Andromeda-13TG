@@ -1,5 +1,5 @@
-ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
-	var/input = input(user, "Please specify your tip that you want to send to the players.", "Tip", "") as message|null
+ADMIN_VERB(show_tip, R_ADMIN, "Показать совет", "Отправляет совет всем игрокам.", ADMIN_CATEGORY_MAIN)
+	var/input = input(user, "Пожалуйста, напишите ваш совет, который вы хотите отправить игрокам", "Совет", "") as message|null
 	if(!input)
 		return
 
@@ -12,20 +12,20 @@ ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_C
 	else
 		SSticker.selected_tip = input
 
-	message_admins("[key_name_admin(user)] sent a tip of the round.")
-	log_admin("[key_name(user)] sent \"[input]\" as the Tip of the Round.")
-	BLACKBOX_LOG_ADMIN_VERB("Show Tip")
+	message_admins("[key_name_admin(user)] послал совет раунда.")
+	log_admin("[key_name(user)] отправлено \"[input]\" как совет раунда.")
+	BLACKBOX_LOG_ADMIN_VERB("Показать совет")
 
-ADMIN_VERB(announce, R_ADMIN, "Announce", "Announce your desires to the world.", ADMIN_CATEGORY_MAIN)
-	var/message = input(user, "Global message to send:", "Admin Announce")  as message|null
+ADMIN_VERB(announce, R_ADMIN, "Анонсировать", "Анонсируйте свои желания миру.", ADMIN_CATEGORY_MAIN)
+	var/message = input(user, "Глобальное сообщение для отправки:", "Администратор")  as message|null
 	if(!message)
 		return
 
 	if(!user.holder.check_for_rights(R_SERVER))
 		message = adminscrub(message,500)
-	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : user.key]")
-	log_admin("Announce: [key_name(user)] : [message]")
-	BLACKBOX_LOG_ADMIN_VERB("Announce")
+	send_ooc_announcement(message, "От [user.holder.fakekey ? "Администратора" : user.key]")
+	log_admin("Анонсировать: [key_name(user)] : [message]")
+	BLACKBOX_LOG_ADMIN_VERB("Анонсировать")
 
 ADMIN_VERB(unprison, R_ADMIN, "UnPrison", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/prisoner in GLOB.mob_list)
 	if(!is_centcom_level(prisoner.z))
@@ -37,13 +37,13 @@ ADMIN_VERB(unprison, R_ADMIN, "UnPrison", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEG
 	log_admin("[key_name(user)] has unprisoned [key_name(prisoner)]")
 	BLACKBOX_LOG_ADMIN_VERB("Unprison")
 
-ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player playtime.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Игровое время игрока", "Посмотреть игровое время игрока.", ADMIN_CATEGORY_MAIN)
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(user, span_warning("Tracking is disabled in the server configuration file."), confidential = TRUE)
+		to_chat(user, span_warning("Отслеживание отключено в файле конфигурации сервера."), confidential = TRUE)
 		return
 
 	var/list/msg = list()
-	msg += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
+	msg += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Отчет о времени игры</title></head><body>Время игры:<BR><UL>"
 	for(var/client/client in sort_list(GLOB.clients, GLOBAL_PROC_REF(cmp_playtime_asc)))
 		msg += "<LI> [ADMIN_PP(client.mob)] [key_name_admin(client)]: <A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(client.mob)]'>" + client.get_exp_living() + "</a></LI>"
 	msg += "</UL></BODY></HTML>"
