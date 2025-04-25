@@ -19368,6 +19368,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/wood/large,
 /area/station/service/bar/atrium/ghetto)
 "eHP" = (
@@ -41106,6 +41107,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/jukebox/no_access,
 /turf/open/floor/wood/large,
 /area/station/service/bar/atrium/ghetto)
 "jWy" = (
@@ -69099,6 +69101,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"qHf" = (
+/obj/machinery/jukebox/disco/indestructible,
+/turf/open/floor/carpet/black,
+/area/station/commons/lounge)
 "qHg" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -87414,6 +87420,10 @@
 /obj/structure/stairs/west,
 /turf/open/floor/carpet,
 /area/station/service/chapel)
+"vja" = (
+/obj/machinery/jukebox/no_access,
+/turf/open/floor/carpet/black,
+/area/station/commons/lounge)
 "vjb" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/carpet/black,
@@ -200873,7 +200883,7 @@ uAx
 acF
 fnW
 hfy
-ygq
+qHf
 hfy
 hfy
 aQk
@@ -201130,7 +201140,7 @@ uAx
 vjb
 hfy
 hfy
-ygq
+vja
 hfy
 hfy
 qDi

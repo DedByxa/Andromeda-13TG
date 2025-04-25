@@ -13042,7 +13042,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
-/obj/item/kirbyplants/random,
+/obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/wood/tile,
 /area/station/service/bar)
 "eHa" = (
@@ -61957,6 +61957,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/starboard)
+"uFO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/jukebox/no_access,
+/turf/open/floor/wood/tile,
+/area/station/service/bar)
 "uFQ" = (
 /obj/structure/closet/crate/coffin,
 /obj/structure/window/spawner/directional/south,
@@ -102652,7 +102659,7 @@ jVM
 vkh
 kWF
 wtw
-dJv
+uFO
 lTy
 wAa
 uUB

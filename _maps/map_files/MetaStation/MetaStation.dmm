@@ -11091,6 +11091,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
+/obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "dYT" = (
@@ -61056,7 +61057,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "vwn" = (
-/obj/item/kirbyplants/organic/plant10,
+/obj/machinery/jukebox/no_access,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "vwp" = (

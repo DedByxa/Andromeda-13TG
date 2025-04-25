@@ -69749,6 +69749,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
+"rwr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/jukebox/disco/indestructible,
+/turf/open/floor/iron/cafeteria,
+/area/station/service/cafeteria)
 "rwu" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -70167,6 +70175,13 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/qm)
+"rBx" = (
+/obj/effect/turf_decal/tile/red/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/jukebox/no_access,
+/turf/open/floor/iron/cafeteria,
+/area/station/service/cafeteria)
 "rBB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -129792,10 +129807,10 @@ umN
 ifj
 euk
 sbW
-uGl
+rwr
 eSq
 lKy
-tXu
+rBx
 vmn
 cxR
 mou
