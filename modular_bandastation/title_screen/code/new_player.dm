@@ -66,7 +66,7 @@
 	else if(href_list["discord"])
 		if(tgui_alert(usr, "Хотите перейти в наш дискорд сервер?", "Дискорд", list("Да", "Нет")) != "Да")
 			return
-		client << link("https://discord.gg/ss220")
+		client << link("https://discord.gg/7An9evC6Ys")
 
 	else if(href_list["trait_signup"])
 		var/datum/station_trait/clicked_trait
