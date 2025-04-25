@@ -79,8 +79,8 @@
 		msg += "Нет информации о коммите"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "<b>Версия TGS</b>: [version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
+		msg += "<b>Версия TGS</b>: [version.raw_parameter]"
 		msg += "<b>Версия DMAPI</b>: [api_version.raw_parameter]"
 
 	// Game mode odds

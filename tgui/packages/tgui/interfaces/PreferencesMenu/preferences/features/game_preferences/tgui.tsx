@@ -36,10 +36,9 @@ export const tgui_lock: FeatureToggle = {
 };
 
 export const ui_scale: FeatureToggle = {
-  name: 'Переключить масштабирование UI',
-  category: 'UI',
-  description:
-    'Должны ли UIs масштабироваться в соответствии с масштабированием вашего монитора.',
+  name: 'Масштабирование интерфейсов',
+  category: 'ИНТЕРФЕЙС',
+  description: 'Должны ли интерфейсы масштабироваться под масштаб в системе?',
   component: CheckboxInput,
 };
 
