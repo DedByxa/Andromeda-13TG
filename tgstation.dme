@@ -6620,10 +6620,17 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
+#include "modular_andromeda\code\_DEFINES\computers.dm"
 #include "modular_andromeda\code\datums\announcers\classic_announcer.dm"
 #include "modular_andromeda\code\datums\components\jump.dm"
 #include "modular_andromeda\code\game\machinery\barsigns.dm"
 #include "modular_andromeda\code\game\objects\structures\bedsheet_bin.dm"
+#include "modular_andromeda\modules\mining_crushers\code\miningweapons.dm"
+#include "modular_andromeda\modules\mining_pka\code\firing_pin.dm"
+#include "modular_andromeda\modules\mining_pka\code\kinetic_accelerator.dm"
+#include "modular_andromeda\modules\mining_pka\code\modkit.dm"
+#include "modular_andromeda\modules\mining_pka\code\projectiles.dm"
+#include "modular_andromeda\modules\mining_vendor_additions\code\order_mining.dm"
 // END_INCLUDE
 
 // BANDASTATION
