@@ -67,17 +67,17 @@ type SiteData = {
 };
 
 enum DroneStatusEnum {
-  Idle = 'idle',
-  Travel = 'travel',
-  Exploration = 'exploration',
-  Adventure = 'adventure',
-  Busy = 'busy',
+  Idle = 'бездействует',
+  Travel = 'путешествует',
+  Exploration = 'исследовать',
+  Adventure = 'приключение',
+  Busy = 'занятый',
 }
 
 enum CargoType {
-  Tool = 'tool',
-  Cargo = 'cargo',
-  Empty = 'empty',
+  Tool = 'инструмент',
+  Cargo = 'карго',
+  Empty = 'пусто',
 }
 
 type CargoData = {
@@ -234,7 +234,7 @@ const DroneSelectionSection = (props: {
   const { all_drones } = props;
 
   return (
-    <Section fill scrollable title="Exploration Drone Listing">
+    <Section fill scrollable title="Список дронов-разведчиков">
       <Stack vertical>
         {all_drones.map((drone) => (
           <Fragment key={drone.ref}>
@@ -250,7 +250,7 @@ const DroneSelectionSection = (props: {
                 <Stack.Item grow />
                 <Stack.Divider mr={1} />
                 <Stack.Item ml={0}>
-                  {(drone.controlled && 'Controlled by another console.') || (
+                  {(drone.controlled && 'Управляется с другой консоли.') || (
                     <Button
                       icon="plug"
                       onClick={() =>
@@ -350,7 +350,7 @@ const EquipmentBox = (props: { cargo: CargoData; drone: DroneData }) => {
                   color="danger"
                   icon="minus"
                   tooltipPosition="right"
-                  tooltip="Remove Tool"
+                  tooltip="Удалить инструмент"
                 />
               </Stack.Item>
             )}
@@ -407,7 +407,7 @@ const EquipmentGrid = (props: { drone: ActiveDrone & DroneData }) => {
   return (
     <Stack vertical fill>
       <Stack.Item grow>
-        <Section fill title="Controls">
+        <Section fill title="Управление">
           <Stack vertical textAlign="center">
             <Stack.Item>
               <Button fluid icon="plug" onClick={() => act('end_control')}>
@@ -429,7 +429,7 @@ const EquipmentGrid = (props: { drone: ActiveDrone & DroneData }) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Cargo">
+        <Section title="Карго">
           <Stack fill vertical>
             <Stack.Item>
               {!!configurable && (
@@ -550,7 +550,7 @@ const TravelTargetSelectionScreen = (props: {
       <TravelDimmer drone={drone} />
     )) || (
       <Section
-        title="Travel Destinations"
+        title="Дистанция Исследования"
         fill
         scrollable
         buttons={
@@ -573,7 +573,7 @@ const TravelTargetSelectionScreen = (props: {
         {site && (
           <Section
             mt={1}
-            title="Home"
+            title="Дом"
             buttons={
               <Box>
                 ETA:{' '}
@@ -583,7 +583,7 @@ const TravelTargetSelectionScreen = (props: {
                   onClick={() => travel_to(null)}
                   disabled={!can_travel}
                 >
-                  {can_travel ? 'Launch!' : travel_error}
+                  {can_travel ? 'Запуск!' : travel_error}
                 </Button>
               </Box>
             }
@@ -601,16 +601,16 @@ const TravelTargetSelectionScreen = (props: {
                   onClick={() => travel_to(destination.ref)}
                   disabled={!can_travel}
                 >
-                  {can_travel ? 'Launch!' : travel_error}
+                  {can_travel ? 'Запуск!' : travel_error}
                 </Button>
               </>
             }
           >
             <LabeledList>
-              <LabeledList.Item label="Location">
+              <LabeledList.Item label="Локация">
                 {destination.coordinates}
               </LabeledList.Item>
-              <LabeledList.Item label="Description">
+              <LabeledList.Item label="Описание">
                 {destination.description}
               </LabeledList.Item>
               <LabeledList.Divider />
@@ -683,7 +683,7 @@ const ExplorationScreen = (props: { drone: DroneExploration & DroneData }) => {
   return (
     <Section
       fill
-      title="Exploration"
+      title="Исследование"
       buttons={
         <DroneStatus
           drone_integrity={drone.drone_integrity}
@@ -694,11 +694,11 @@ const ExplorationScreen = (props: { drone: DroneExploration & DroneData }) => {
       <Stack vertical fill>
         <Stack.Item grow>
           <LabeledList>
-            <LabeledList.Item label="Site">{site.name}</LabeledList.Item>
-            <LabeledList.Item label="Location">
+            <LabeledList.Item label="Место">{site.name}</LabeledList.Item>
+            <LabeledList.Item label="Локация">
               {site.coordinates}
             </LabeledList.Item>
-            <LabeledList.Item label="Description">
+            <LabeledList.Item label="Описание">
               {site.description}
             </LabeledList.Item>
           </LabeledList>
@@ -730,7 +730,7 @@ const EventScreen = (props: { drone: DroneData; event: FullEventData }) => {
   return (
     <Section
       fill
-      title="Exploration"
+      title="Исследование"
       buttons={
         <DroneStatus
           drone_integrity={drone.drone_integrity}
@@ -793,7 +793,7 @@ export const AdventureScreen = (props: {
   return (
     <Section
       fill
-      title="Exploration"
+      title="Исследование"
       buttons={
         !props.hide_status && (
           <DroneStatus
@@ -887,7 +887,7 @@ const ExodroneConsoleContent = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item height={10}>
-        <Section title="Drone Log" fill scrollable>
+        <Section title="Журнал разведки" fill scrollable>
           <LabeledList>
             {drone_log.map((log_line, ix) => (
               <LabeledList.Item key={`log-${ix}`} label={`Entry ${ix + 1}`}>

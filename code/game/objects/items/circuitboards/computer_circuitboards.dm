@@ -648,7 +648,7 @@
 	build_path = /obj/machinery/computer/exoscanner_control
 
 /obj/item/circuitboard/computer/exodrone_console
-	name = "Exploration Drone Control Console"
+	name = "Консоль управления дроном-разведчиком"
 	build_path = /obj/machinery/computer/exodrone_control_console
 
 /obj/item/circuitboard/computer/shuttle
