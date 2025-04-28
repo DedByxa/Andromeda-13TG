@@ -1,6 +1,6 @@
 
 /datum/reagent/thermite
-	name = "Thermite"
+	name = "Термит"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	color = "#550000"
@@ -17,7 +17,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitroglycerin
-	name = "Nitroglycerin"
+	name = "Нитроглицерин"
 	description = "Nitroglycerin is a heavy, colorless, oily liquid obtained by nitrating glycerol. \
 		It is commonly used to treat heart conditions, but also in the creation of explosives."
 	color = COLOR_GRAY
@@ -30,7 +30,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/stabilizing_agent
-	name = "Stabilizing Agent"
+	name = "Стабилизирующий агент"
 	description = "Keeps unstable chemicals stable. This does not work on everything."
 	color = COLOR_YELLOW
 	taste_description = "metal"
@@ -41,7 +41,7 @@
 	mytray.myseed?.adjust_instability(-round(volume))
 
 /datum/reagent/clf3
-	name = "Chlorine Trifluoride"
+	name = "Трёхфтористый хлор"
 	description = "Makes a temporary 3x3 fireball when it comes into existence, so be careful when mixing. ClF3 applied to a surface burns things that wouldn't otherwise burn, sometimes through the very floors of the station and exposing it to the vacuum of space."
 	color = "#FFC8C8"
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -79,21 +79,21 @@
 		new /obj/effect/hotspot(exposed_mob.loc)
 
 /datum/reagent/sorium
-	name = "Sorium"
+	name = "Сорий"
 	description = "Sends everything flying from the detonation point."
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/liquid_dark_matter
-	name = "Liquid Dark Matter"
+	name = "Жидкая тёмная материя"
 	description = "Sucks everything into the detonation point."
 	color = "#210021"
 	taste_description = "compressed bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/gunpowder
-	name = "Gunpowder"
+	name = "Порох"
 	description = "Explodes. Violently."
 	color = COLOR_BLACK
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
@@ -121,42 +121,42 @@
 	holder.clear_reagents()
 
 /datum/reagent/rdx
-	name = "RDX"
+	name = "Гексоген"
 	description = "Military grade explosive"
 	color = COLOR_WHITE
 	taste_description = "salt"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/tatp
-	name = "TaTP"
+	name = "Пероксид ацетона"
 	description = "Suicide grade explosive"
 	color = COLOR_WHITE
 	taste_description = "death"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/flash_powder
-	name = "Flash Powder"
+	name = "Порох-вспышка"
 	description = "Makes a very bright flash."
 	color = "#C8C8C8"
 	taste_description = "salt"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/smoke_powder
-	name = "Smoke Powder"
+	name = "Дымный порошок"
 	description = "Makes a large cloud of smoke that can carry reagents."
 	color = "#C8C8C8"
 	taste_description = "smoke"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/sonic_powder
-	name = "Sonic Powder"
+	name = "Звуковой порошок"
 	description = "Makes a deafening noise."
 	color = "#C8C8C8"
 	taste_description = "loud noises"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/phlogiston
-	name = "Phlogiston"
+	name = "Флогистон"
 	description = "Catches you on fire and makes you ignite."
 	color = "#FA00AF"
 	taste_description = "burning"
@@ -178,7 +178,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/napalm
-	name = "Napalm"
+	name = "Напалм"
 	description = "Very flammable."
 	color = "#FA00AF"
 	taste_description = "burning"
@@ -207,7 +207,7 @@
 #define CRYO_SPEED_CONSTANT 0.1
 
 /datum/reagent/cryostylane
-	name = "Cryostylane"
+	name = "Криостилан"
 	description = "Induces a cryostasis like state in a patient's organs, preventing them from decaying while dead. Slows down surgery while in a patient however. When reacted with oxygen, it will slowly consume it and reduce a container's temperature to 0K. Also damages slime simplemobs when 5u is sprayed."
 	color = "#0000DC"
 	ph = 8.6
@@ -262,7 +262,7 @@
 #undef CRYO_SPEED_CONSTANT
 
 /datum/reagent/pyrosium
-	name = "Pyrosium"
+	name = "Пирозий"
 	description = "Comes into existence at 20K. As long as there is sufficient oxygen for it to react with, Pyrosium slowly heats all other reagents in the container."
 	color = "#64FAC8"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -288,7 +288,7 @@
 	burning_temperature = null
 
 /datum/reagent/teslium //Teslium. Causes periodic shocks, and makes shocks against the target much more effective.
-	name = "Teslium"
+	name = "Теслий"
 	description = "An unstable, electrically-charged metallic slurry. Periodically electrocutes its victim, and makes electrocutions against them more deadly. Excessively heating teslium results in dangerous destabilization. Do not allow it to come into contact with water."
 	color = "#20324D" //RGB: 32, 50, 77
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -326,7 +326,7 @@
 	affected_mob.physiology.siemens_coeff *= 0.5
 
 /datum/reagent/teslium/energized_jelly
-	name = "Energized Jelly"
+	name = "Энергичное желе"
 	description = "Electrically-charged jelly. Boosts jellypeople's nervous system, but only shocks other lifeforms."
 	color = "#CAFF43"
 	taste_description = "jelly"
@@ -344,7 +344,7 @@
 		slime_species.extract_cooldown = max(slime_species.extract_cooldown - (2 SECONDS * REM * seconds_per_tick), 0)
 
 /datum/reagent/firefighting_foam
-	name = "Firefighting Foam"
+	name = "Пожарная пена"
 	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on NT vessels."
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"

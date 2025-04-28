@@ -1,7 +1,7 @@
 /datum/reagent/drug
-	name = "Drug"
+	name = "Наркотик"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "bitterness"
+	taste_description = "горький"
 	var/trippy = TRUE //Does this drug make you trip?
 
 /datum/reagent/drug/on_mob_end_metabolize(mob/living/affected_mob)
@@ -10,7 +10,7 @@
 		affected_mob.clear_mood_event("[type]_high")
 
 /datum/reagent/drug/space_drugs
-	name = "Space Drugs"
+	name = "Космодурь"
 	description = "An illegal chemical compound used as drug."
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 30
@@ -38,7 +38,7 @@
 		affected_mob.adjust_hallucinations(10 SECONDS)
 
 /datum/reagent/drug/cannabis
-	name = "Cannabis"
+	name = "Каннабис"
 	description = "A psychoactive drug from the Cannabis plant used for recreational purposes."
 	color = "#059033"
 	overdose_threshold = INFINITY
@@ -63,7 +63,7 @@
 		affected_mob.Paralyze(10 SECONDS)
 
 /datum/reagent/drug/nicotine
-	name = "Nicotine"
+	name = "Никотин"
 	description = "Slightly reduces stun times. If overdosed it will deal toxin and oxygen damage."
 	color = "#60A584" // rgb: 96, 165, 132
 	taste_description = "smoke"
@@ -99,7 +99,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/krokodil
-	name = "Krokodil"
+	name = "Крокодил"
 	description = "Cools and calms you down. If overdosed it will deal significant Brain and Toxin damage."
 	color = "#0064B4"
 	overdose_threshold = 20
@@ -132,7 +132,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/methamphetamine
-	name = "Methamphetamine"
+	name = "Метамфетамин"
 	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	color = "#78C8FA" //best case scenario is the "default", gets muddled depending on purity
 	overdose_threshold = 20
@@ -198,7 +198,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/bath_salts
-	name = "Bath Salts"
+	name = "Соль для ванн"
 	description = "Makes you impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
 	color = "#FAFAFA"
 	overdose_threshold = 20
@@ -249,7 +249,7 @@
 		affected_mob.drop_all_held_items()
 
 /datum/reagent/drug/aranesp
-	name = "Aranesp"
+	name = "Аранесп"
 	description = "Amps you up, gets you going, and rapidly restores stamina damage. Side effects include breathlessness and toxicity."
 	color = "#78FFF0"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -271,7 +271,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/happiness
-	name = "Happiness"
+	name = "Экстази"
 	description = "Fills you with ecstatic numbness and causes minor brain damage. Highly addictive. If overdosed causes sudden mood swings."
 	color = "#EE35FF"
 	overdose_threshold = 20
@@ -314,7 +314,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/pumpup
-	name = "Pump-Up"
+	name = "Насос"
 	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
 	color = "#e38e44"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -363,7 +363,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint
-	name = "Maintenance Drugs"
+	name = "Поддерживающие препараты"
 	chemical_flags = NONE
 
 /datum/reagent/drug/maint/on_mob_metabolize(mob/living/affected_mob)
@@ -378,7 +378,7 @@
 		metabolization_rate *= 0.8
 
 /datum/reagent/drug/maint/powder
-	name = "Maintenance Powder"
+	name = "Порошок из техов"
 	description = "An unknown powder that you most likely gotten from an assistant, a bored chemist... or cooked yourself. It is a refined form of tar that enhances your mental ability, making you learn stuff a lot faster."
 	color = "#ffffff"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -405,7 +405,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint/sludge
-	name = "Maintenance Sludge"
+	name = "Шлам из техов"
 	description = "An unknown sludge that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Half refined, it fills your body with itself, making it more resistant to wounds, but causes toxins to accumulate."
 	color = "#203d2c"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -434,7 +434,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/maint/tar
-	name = "Maintenance Tar"
+	name = "Смола из техов"
 	description = "An unknown tar that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Raw tar, straight from the floor. It can help you with escaping bad situations at the cost of liver damage."
 	color = COLOR_BLACK
 	overdose_threshold = 30
@@ -456,7 +456,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/mushroomhallucinogen
-	name = "Mushroom Hallucinogen"
+	name = "Грибной галлюциноген"
 	description = "A strong hallucinogenic drug derived from certain species of mushroom."
 	color = "#E700E7" // rgb: 231, 0, 231
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
@@ -539,7 +539,7 @@
 		psychonaut.apply_status_effect(/datum/status_effect/tower_of_babel)
 
 /datum/reagent/drug/blastoff
-	name = "bLaStOoF"
+	name = "бЛаСТоФФ" // Оригинальное название "bLaSToFF", я сам нихера не понял, но ладно p.s. Rewokin
 	description = "A drug for the hardcore party crowd said to enhance one's abilities on the dance floor.\nMost old heads refuse to touch this stuff, perhaps because memories of the luna discotheque incident are seared into their brains."
 	color = "#9015a9"
 	taste_description = "holodisk cleaner"
@@ -664,7 +664,7 @@
 		dance_partner.throw_at(target = throwtarget, range = 4, speed = 1) //superspeed
 
 /datum/reagent/drug/saturnx
-	name = "Saturn-X"
+	name = "Сатурн-Х"
 	description = "This compound was first discovered during the infancy of cloaking technology and at the time thought to be a promising candidate agent. It was withdrawn for consideration after the researchers discovered a slew of associated safety issues including thought disorders and hepatoxicity."
 	taste_description = "metallic bitterness"
 	color = "#638b9b"
@@ -756,7 +756,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/saturnx/stable
-	name = "Stabilized Saturn-X"
+	name = "Стабилизированный Сатурн-Х"
 	description = "A chemical extract originating from the Saturn-X compound, stabilized and safer for tactical use. After the recipe was discovered, it was planned to be put into mass production, but the program fell apart after its lead disappeared and was never seen again."
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 	overdose_threshold = 50
@@ -772,7 +772,7 @@ The instant and gradual restoration effects as well as the heart damage are dose
 
 If you have at over 25u in your body you restore more than 20 stamina per cycle, enough to revive you from stamina crit, beware that this is a potentially fatal overdose!*/
 /datum/reagent/drug/kronkaine
-	name = "Kronkaine"
+	name = "Кронкейн"
 	description = "A highly illegal stimulant from the edge of the galaxy.\nIt is said the average kronkaine addict causes as much criminal damage as five stick up men, two rascals and one proferssional cambringo hustler combined."
 	color = "#FAFAFA"
 	taste_description = "numbing bitterness"
@@ -871,7 +871,7 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 
 ///dirty kronkaine, aka gore. far worse overdose effects.
 /datum/reagent/drug/kronkaine/gore
-	name = "Gore"
+	name = "Грязный Кронкейн"
 	description = "Dirty Kronkaine. You have to be pretty dumb to take this. Don't. Overdose."
 	color = "#ffbebe" // kronkaine but with some red
 	ph = 4
@@ -887,7 +887,7 @@ If you have at over 25u in your body you restore more than 20 stamina per cycle,
 	gored.gib()
 
 /datum/reagent/drug/syndol
-	name = "Syndol"
+	name = "Синдол"
 	description = "A potent and addictive hallucinogen used by syndicate agents disorient certain targets. \
 		It is said that the hallucinations it causes are tailored to the user's fears, but tests have been inconclusive, \
 		with subjects in security and assistants reporting wildly different experiences."

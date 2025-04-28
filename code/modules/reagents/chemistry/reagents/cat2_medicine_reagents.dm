@@ -12,7 +12,7 @@
 /*Suffix: -bital*/
 
 /datum/reagent/medicine/c2/helbital //kinda a C2 only if you're not in hardcrit.
-	name = "Helbital"
+	name = "Хелбитал"
 	description = "Named after the Norse goddess Hel, this medicine heals the patient's bruises the closer they are to death. Patients will find the medicine 'aids' their healing if not near death by causing asphyxiation."
 	color = "#9400D3"
 	taste_description = "cold and lifeless"
@@ -98,7 +98,7 @@
 		to_chat(affected_mob, span_hierophant_warning("You feel a sense of heavy dread and grave misfortune settle in as the substance leaves your body."))
 
 /datum/reagent/medicine/c2/libital //messes with your liber
-	name = "Libital"
+	name = "Либитал"
 	description = "A bruise reliever. Does minor liver damage."
 	color = "#ECEC8D" // rgb: 236 236 141
 	ph = 8.2
@@ -116,7 +116,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/probital
-	name = "Probital"
+	name = "Пробитал"
 	description = "Originally developed as a prototype gym supplement for those looking for quick workout turnover, this oral medication quickly repairs broken muscle tissue but causes lactic acid buildup, tiring the patient. Overdosing can cause extreme drowsiness. An influx of nutrients promotes the muscle repair even further."
 	color = "#FFFF6B"
 	ph = 5.5
@@ -166,7 +166,7 @@
 /******BURN******/
 /*Suffix: -uri*/
 /datum/reagent/medicine/c2/lenturi
-	name = "Lenturi"
+	name = "Лентури"
 	description = "Used to treat burns. Applies stomach damage when it leaves your system."
 	color = "#6171FF"
 	ph = 4.7
@@ -185,7 +185,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/aiuri
-	name = "Aiuri"
+	name = "Аиури"
 	description = "Used to treat burns. Does minor eye damage."
 	color = "#8C93FF"
 	ph = 4
@@ -204,7 +204,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/hercuri
-	name = "Hercuri"
+	name = "Херкури"
 	description = "Not to be confused with element Mercury, this medicine excels in reverting effects of dangerous high-temperature environments. Prolonged exposure can cause hypothermia."
 	color = "#F7FFA5"
 	overdose_threshold = 25
@@ -253,7 +253,7 @@
 #define CONVERMOL_RATIO 5 //# Oxygen damage to result in 1 tox
 
 /datum/reagent/medicine/c2/convermol
-	name = "Convermol"
+	name = "Конвермол"
 	description = "Restores oxygen deprivation while producing a lesser amount of toxic byproducts. Both scale with exposure to the drug and current amount of oxygen deprivation. Overdose causes toxic byproducts regardless of oxygen deprivation."
 	color = "#FF6464"
 	overdose_threshold = 35 // at least 2 full syringes +some, this stuff is nasty if left in for long
@@ -283,7 +283,7 @@
 #undef CONVERMOL_RATIO
 
 /datum/reagent/medicine/c2/tirimol
-	name = "Tirimol"
+	name = "Тиримол"
 	description = "An oxygen deprivation medication that causes fatigue. Prolonged exposure causes the patient to fall asleep once the medicine metabolizes."
 	color = "#FF6464"
 	ph = 5.6
@@ -316,8 +316,8 @@
 /*Suffix: -iver*/
 
 /datum/reagent/medicine/c2/seiver //a bit of a gray joke
-	name = "Seiver"
-	description = "A medicine that shifts functionality based on temperature. Hotter temperatures will heal more toxicity, while colder temperatures will heal larger amounts of toxicity but only while the patient is irradiated. Damages the heart." //CHEM HOLDER TEMPS, NOT AIR TEMPS
+	name = "Сейвер"
+	description = "Лекарство, которое меняет свою функциональность в зависимости от температуры. Более высокая температура исцеляет больше токсинов, а более низкая температура исцеляет большее количество токсинов, но только пока пациент облучается. Повреждает сердце." //CHEM HOLDER TEMPS, NOT AIR TEMPS
 	inverse_chem_val = 0.3
 	ph = 3.7
 	inverse_chem = /datum/reagent/inverse/technetium
@@ -361,7 +361,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/multiver //enhanced with MULTIple medicines
-	name = "Multiver"
+	name = "Мультивер"
 	description = "A chem-purger that becomes more effective the more unique medicines present. Slightly heals toxicity but causes lung damage (mitigatable by unique medicines)."
 	inverse_chem = /datum/reagent/inverse/healing/monover
 	inverse_chem_val = 0.35
@@ -397,7 +397,7 @@
 #define issyrinormusc(A) (istype(A,/datum/reagent/medicine/c2/syriniver) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of syrin so let's make sure we're not purging either
 
 /datum/reagent/medicine/c2/syriniver //Inject >> SYRINge
-	name = "Syriniver"
+	name = "Сиринивер"
 	description = "A potent antidote for intravenous use with a narrow therapeutic index, it is considered an active prodrug of musiver."
 	color = "#8CDF24" // heavy saturation to make the color blend better
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
@@ -441,7 +441,7 @@
 	affected_mob.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, 0.225 * REM * seconds_per_tick)
 
 /datum/reagent/medicine/c2/musiver //MUScles
-	name = "Musiver"
+	name = "Мусивер"
 	description = "The active metabolite of syriniver. Causes muscle weakness on overdose"
 	color = "#DFD54E"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -482,7 +482,7 @@
 /******COMBOS******/
 /*Suffix: Combo of healing, prob gonna get wack REAL fast*/
 /datum/reagent/medicine/c2/synthflesh
-	name = "Synthflesh"
+	name = "Синтплоть"
 	description = "Heals brute and burn damage at the cost of toxicity (66% of damage healed). Patch, splash, and spray application only. 60u of pure synthflesh or 100u at lower purities can restore corpses husked by burns."
 	color = "#FFEBEB"
 	ph = 7.2
@@ -559,7 +559,7 @@
 *Overdosing on penthrite also causes a heart failure.
 */
 /datum/reagent/medicine/c2/penthrite
-	name = "Penthrite"
+	name = "Пентрит"
 	description = "An expensive medicine that aids with pumping blood around the body even without a heart, and prevents the heart from slowing down. Mixing it with epinephrine or atropine will cause an explosion."
 	color = "#F5F5F5"
 	overdose_threshold = 50
@@ -576,8 +576,8 @@
 	)
 
 /atom/movable/screen/alert/penthrite
-	name = "Strong Heartbeat"
-	desc = "Your heart beats with great force!"
+	name = "Сильное сердцебиение"
+	desc = "Твое сердце бьется с огромной силой!"
 	icon_state = "penthrite"
 
 /datum/reagent/medicine/c2/penthrite/on_mob_metabolize(mob/living/user)

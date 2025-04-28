@@ -1,5 +1,5 @@
 /datum/reagent/freon
-	name = "Freon"
+	name = "Фреон"
 	description = "A powerful heat absorbent."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
@@ -15,7 +15,7 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/freon)
 
 /datum/reagent/halon
-	name = "Halon"
+	name = "Галон"
 	description = "A fire suppression gas that removes oxygen and cools down the area"
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
@@ -32,7 +32,7 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/halon)
 
 /datum/reagent/healium
-	name = "Healium"
+	name = "Хеалиум"
 	description = "A powerful sleeping agent with healing properties"
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
@@ -54,7 +54,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/hypernoblium
-	name = "Hyper-Noblium"
+	name = "Гипер-Ноблий"
 	description = "A suppressive gas that stops gas reactions on those who inhale it."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
@@ -67,7 +67,7 @@
 		breather.set_timed_status_effect(10 SECONDS * REM * seconds_per_tick, /datum/status_effect/hypernob_protection)
 
 /datum/reagent/nitrium_high_metabolization
-	name = "Nitrosyl plasmide"
+	name = "Нитрозилплазмид"
 	description = "A highly reactive byproduct that stops you from sleeping, while dealing increasing toxin damage over time."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
@@ -86,7 +86,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitrium_low_metabolization
-	name = "Nitrium"
+	name = "Нитрий"
 	description = "A highly reactive gas that makes you feel faster."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
@@ -103,7 +103,7 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/nitrium)
 
 /datum/reagent/pluoxium
-	name = "Pluoxium"
+	name = "Плюоксий"
 	description = "A gas that is eight times more efficient than O2 at lung diffusion with organ healing properties on sleeping patients."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = COLOR_GRAY
@@ -123,7 +123,7 @@
 			. = UPDATE_MOB_HEALTH
 
 /datum/reagent/zauker
-	name = "Zauker"
+	name = "Заукер"
 	description = "An unstable gas that is toxic to all living beings."
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
