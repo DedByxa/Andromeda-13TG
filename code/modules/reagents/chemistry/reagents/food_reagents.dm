@@ -289,15 +289,15 @@
 	return 0
 
 /datum/reagent/consumable/sugar
-	name = "Sugar"
-	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
+	name = "Сахар"
+	description = "Органическое соединение, широко известное как столовый сахар, а иногда называемое сахарозой. Этот белый кристаллический порошок без запаха обладает приятным сладким вкусом."
 	color = COLOR_WHITE // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2
 	metabolization_rate = 5 * REAGENTS_METABOLISM
 	creation_purity = 1 // impure base reagents are a big no-no
 	overdose_threshold = 120 // Hyperglycaemic shock
-	taste_description = "sweetness"
+	taste_description = "сладкое"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	default_container = /obj/item/reagent_containers/condiment/sugar
 

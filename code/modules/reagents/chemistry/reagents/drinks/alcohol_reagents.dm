@@ -2,11 +2,11 @@
 #define ALCOHOL_EXPONENT 1.6 //The exponent applied to boozepwr to make higher volume alcohol at least a little bit damaging to the liver
 
 /datum/reagent/consumable/ethanol
-	name = "Ethanol"
-	description = "A well-known alcohol with a variety of applications."
+	name = "Этанол"
+	description = "Хорошо известный алкоголь, имеющий множество применений."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
-	taste_description = "alcohol"
+	taste_description = "алкоголь"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	creation_purity = 1 // impure base reagents are a big no-no
 	ph = 7.33
@@ -86,14 +86,14 @@
 	if(istype(exposed_obj, /obj/item/paper))
 		var/obj/item/paper/paperaffected = exposed_obj
 		paperaffected.clear_paper()
-		to_chat(usr, span_notice("[paperaffected]'s ink washes away."))
+		to_chat(usr, span_notice("[paperaffected] чернила смываются."))
 	if(istype(exposed_obj, /obj/item/book))
 		if(reac_volume >= 5)
 			var/obj/item/book/affectedbook = exposed_obj
 			affectedbook.book_data.set_content("")
-			exposed_obj.visible_message(span_notice("[exposed_obj]'s writing is washed away by [name]!"))
+			exposed_obj.visible_message(span_notice("надпись [exposed_obj] стирается  [name]!"))
 		else
-			exposed_obj.visible_message(span_warning("[exposed_obj]'s ink is smeared by [name], but doesn't wash away!"))
+			exposed_obj.visible_message(span_warning("чернила  [exposed_obj] размазаны [name], но не смываются!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.

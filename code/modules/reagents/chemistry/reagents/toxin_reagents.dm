@@ -1074,11 +1074,11 @@
 //ACID
 
 /datum/reagent/toxin/acid
-	name = "Sulfuric Acid"
-	description = "A strong mineral acid with the molecular formula H2SO4."
+	name = "Серная кислота"
+	description = "Сильная минеральная кислота с молекулярной формулой H2SO4."
 	color = "#00FF32"
 	toxpwr = 1
-	taste_description = "acid"
+	taste_description = "кислота"
 	self_consuming = TRUE
 	ph = 2.75
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
