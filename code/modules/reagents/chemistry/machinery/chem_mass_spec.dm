@@ -299,7 +299,7 @@
 		beaker1Data["maxVolume"] = beaker_1_reagents.maximum_volume
 		var/list/beakerContents = list()
 		for(var/datum/reagent/reagent as anything in beaker_1_reagents.reagent_list)
-			var/log = "Ready"
+			var/log = "Готов"
 			var/datum/reagent/target = reagent
 			var/purity = target.purity
 			var/is_inverse = FALSE
@@ -311,7 +311,7 @@
 			else
 				var/initial_purity = initial(reagent.purity)
 				if((initial_purity - reagent.purity) <= 0) //already at max purity
-					log = "Cannot purify above [round(initial_purity * 100)]%"
+					log = "Не может очистить выше [round(initial_purity * 100)]%"
 
 			beakerContents += list(list(
 				"name" = target.name,
@@ -466,7 +466,7 @@
 					continue
 				input_reagents.remove_reagent(reagent.type, product_vol)
 				output_reagents.add_reagent(reagent.inverse_chem, product_vol, reagtemp = input_reagents.chem_temp, added_purity = reagent.get_inverse_purity(), added_ph = reagent.ph)
-				log[reagent.type] = "Purified to [reagent.get_inverse_purity() * 100]%"
+				log[reagent.type] = "Очищенный до [reagent.get_inverse_purity() * 100]%"
 				continue
 
 			//out of our selected range
@@ -481,7 +481,7 @@
 			//add the purified reagent. More impure reagents will yield smaller amounts
 			beaker1.reagents.remove_reagent(reagent.type, product_vol)
 			beaker2.reagents.add_reagent(reagent.type, product_vol * (1 - delta_purity), reagtemp = beaker1.reagents.chem_temp, added_purity = initial(reagent.purity), added_ph = reagent.ph)
-			log[reagent.type] = "Purified to [initial(reagent.purity) * 100]%"
+			log[reagent.type] = "Очищенный до [initial(reagent.purity) * 100]%"
 
 		//recompute everything
 		lower_mass_range = calculate_mass(smallest = TRUE)

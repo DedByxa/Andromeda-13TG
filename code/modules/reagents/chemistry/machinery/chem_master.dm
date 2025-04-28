@@ -429,7 +429,7 @@
 
 			if(amount == -1) // Set custom amount
 				var/mob/user = ui.user //Hold a reference of the user if the UI is closed
-				amount = round(tgui_input_number(user, "Enter amount to transfer", "Transfer amount", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
+				amount = round(tgui_input_number(user, "Введите сумму для перевода", "Сумма перевода", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
 				if(!amount || !user.can_perform_action(src))
 					return FALSE
 
@@ -511,8 +511,8 @@
 				item_name_default = "[master_reagent.name] [item_name_default] ([volume_in_each]u)"
 			var/item_name = tgui_input_text(
 				usr,
-				"Container name",
-				"Name",
+				"Название контейнера",
+				"Название",
 				item_name_default,
 				max_length = MAX_NAME_LEN,
 			)

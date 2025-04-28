@@ -365,14 +365,14 @@
 
 	//no beaker
 	if(QDELETED(beaker))
-		say("No beaker found!")
+		say("Мензурка не найдена!")
 		return FALSE
 
 	//trying to absorb buffer from currently inserted beaker
 	if(volume < 0)
 		if(!beaker.reagents.has_reagent(buffer_type))
 			var/name = initial(buffer_type.name)
-			say("Unable to find [name] in beaker to draw from! Please insert a beaker containing [name].")
+			say("Не удается найти [name] в мензурке для взятия пробы! Пожалуйста, вставьте мензурку, содержащую [name].")
 			return FALSE
 		beaker.reagents.trans_to(src, (reagents.maximum_volume / 2) - reagents.get_reagent_amount(buffer_type), target_id = buffer_type)
 		return TRUE
