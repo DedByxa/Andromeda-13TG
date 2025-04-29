@@ -68,24 +68,24 @@ const ScanSelectionSection = (props) => {
       <Stack.Item grow>
         <Section
           fill
-          title="Site Data"
+          title="Данные места"
           buttons={
             <Button
-              content="Back"
+              content="Назад"
               onClick={() => act('select_site', { site_ref: null })}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Name">{site.name}</LabeledList.Item>
-            <LabeledList.Item label="Description">
-              {site.revealed ? site.description : 'No Data'}
+            <LabeledList.Item label="Название">{site.name}</LabeledList.Item>
+            <LabeledList.Item label="Описание">
+              {site.revealed ? site.description : 'Нет данных'}
             </LabeledList.Item>
-            <LabeledList.Item label="Distance">
+            <LabeledList.Item label="Дистанция">
               {site.distance}
             </LabeledList.Item>
             <LabeledList.Divider />
-            <LabeledList.Item label="Spectrography Data" />
+            <LabeledList.Item label="Данные спектрографии" />
             <LabeledList.Divider />
             {Object.keys(site.band_info).map((band) => (
               <LabeledList.Item key={band} label={band}>
@@ -97,16 +97,16 @@ const ScanSelectionSection = (props) => {
       </Stack.Item>
       {scan_available && (
         <Stack.Item>
-          <Section fill title="Scans">
+          <Section fill title="Сканирование">
             {!point_scan_complete && (
-              <Section title="Point Scan">
+              <Section title="Точечное сканирование">
                 <BlockQuote>
                   Point scan performs rudimentary scan of the site, revealing
                   its general characteristics.
                 </BlockQuote>
                 <Box>
                   <Button
-                    content="Scan"
+                    content="Сканировать"
                     disabled={scan_power <= 0}
                     onClick={() => act('start_point_scan')}
                   />
@@ -117,14 +117,14 @@ const ScanSelectionSection = (props) => {
               </Section>
             )}
             {!deep_scan_complete && (
-              <Section title="Deep Scan">
+              <Section title="Глубокое сканирование">
                 <BlockQuote>
                   Deep scan performs full scan of the site, revealing all
                   details.
                 </BlockQuote>
                 <Box>
                   <Button
-                    content="Scan"
+                    content="Сканировать"
                     disabled={scan_power <= 0}
                     onClick={() => act('start_deep_scan')}
                   />
@@ -156,18 +156,18 @@ const ScanInProgressModal = (props) => {
       <NoticeBox>Scan in Progress!</NoticeBox>
       <Box color="danger" />
       <LabeledList>
-        <LabeledList.Item label="Scan summary">
+        <LabeledList.Item label="Краткое описание сканирования">
           {scan_description}
         </LabeledList.Item>
-        <LabeledList.Item label="Time left">
+        <LabeledList.Item label="Времени осталось">
           {formatTime(scan_time)}
         </LabeledList.Item>
-        <LabeledList.Item label="Scanning array power">
+        <LabeledList.Item label="Мощность сканирующей матрицы">
           {scan_power}
         </LabeledList.Item>
-        <LabeledList.Item label="Emergency Stop">
+        <LabeledList.Item label="Аварийная остановка">
           <Button.Confirm
-            content="STOP SCAN"
+            content="ОСТАНОВИТЬ СКАНИРОВАНИЕ"
             color="red"
             icon="times"
             onClick={() => act('stop_scan')}
@@ -209,7 +209,7 @@ export const ExoscannerConsole = (props) => {
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section fill title="Available array power">
+            <Section fill title="Доступная мощность массива">
               <Stack>
                 <Stack.Item grow>
                   {(scan_power > 0 && (
@@ -220,10 +220,10 @@ export const ExoscannerConsole = (props) => {
                       <Icon name="satellite-dish" size={3} />
                     </>
                   )) ||
-                    'No properly configured scanner arrays detected.'}
+                    'Не обнаружено правильно настроенных массивов сканеров.'}
                 </Stack.Item>
               </Stack>
-              <Section title="Special Scan Condtions">
+              <Section title="Специальные условия сканирования">
                 {scan_conditions &&
                   scan_conditions.map((condition) => (
                     <NoticeBox key={condition}>{condition}</NoticeBox>
@@ -250,7 +250,7 @@ export const ExoscannerConsole = (props) => {
                     </Button>
                   }
                   fill
-                  title="Configure Wide Scan"
+                  title="Настройка широкого сканирования"
                 >
                   <Stack>
                     <Stack.Item>
@@ -271,11 +271,11 @@ export const ExoscannerConsole = (props) => {
               <Stack.Item grow>
                 <Section
                   fill
-                  title="Configure Targeted Scans"
+                  title="Настройка целевого сканирования"
                   scrollable
                   buttons={
                     <Button
-                      content="View Experiments"
+                      content="Просмотр экспериментов"
                       onClick={() => act('open_experiments')}
                       icon="tasks"
                     />
