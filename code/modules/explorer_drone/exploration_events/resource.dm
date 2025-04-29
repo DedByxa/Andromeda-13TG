@@ -1,21 +1,21 @@
 /// Simple event type that checks if you have a tool and after a retrieval delay adds loot to drone.
 /datum/exploration_event/simple/resource
-	name = "retrievable resource"
+	name = "извлекаемый ресурс"
 	root_abstract_type = /datum/exploration_event/simple/resource
-	discovery_log = "Encountered recoverable resource."
-	action_text = "Extract"
+	discovery_log = "Обнаруженно восстанавливаемый ресурс."
+	action_text = "Извлекать"
 	/// Tool type required to recover this resource
 	var/required_tool
 	/// What you get out of it, either /obj path or adventure_loot_generator id
 	var/loot_type = /obj/item/trash/chips
 	/// Message logged on success
-	var/success_log = "Retrieved something"
+	var/success_log = "Извлек что-то"
 	/// Description shown when you don't have the tool
-	var/no_tool_description = "You can't retrieve it without a drill."
+	var/no_tool_description = "Вы не сможете извлечь его без дрели."
 	/// Description shown when you have the necessary tool
-	var/has_tool_description = "You can get it out with your drill!"
+	var/has_tool_description = "Ты можешь вытащить его с помощью своей дрели!"
 	var/delay = 30 SECONDS
-	var/delay_message = "Recovering resource..."
+	var/delay_message = "Восстанавливающий ресурс..."
 	/// How many times can this be extracted
 	var/amount = 1
 
@@ -71,179 +71,179 @@
 
 // All
 /datum/exploration_event/simple/resource/concealed_cache
-	name = "concealed cache"
+	name = "скрытый тайник"
 	band_values = list(EXOSCANNER_BAND_DENSITY=1)
 	required_tool = EXODRONE_TOOL_WELDER
-	discovery_log = "Discovered a concealed, locked cache."
-	description = "You spot a cleverly hidden metal container."
-	no_tool_description = "You see no way to open it without a welder."
-	has_tool_description = "You can try and open it with your welder."
-	action_text = "Weld open"
-	delay_message = "Welding open the cache..."
+	discovery_log = "Обнаружил скрытый, запертый тайник."
+	description = "Вы замечаете искусно спрятанный металлический контейнер."
+	no_tool_description = "Вы не видите способа открыть его без помощи сварщика."
+	has_tool_description = "Вы можете попробовать открыть его с помощью своего сварочного аппарата."
+	action_text = "Открытый сварной шов"
+	delay_message = "Сваркой открываем тайник..."
 	loot_type = /datum/adventure_loot_generator/maintenance
 
 // EXPLORATION_SITE_RUINS 2/2
 /datum/exploration_event/simple/resource/remnants
-	name = "desiccated corpse"
+	name = "высушенный труп"
 	required_site_traits = list(EXPLORATION_SITE_RUINS)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	discovery_log = "Discovered a corpse of a humanoid."
-	description = "You find a dessicated corpose of a humanoid, though it's too damaged to identify. A locked briefcase is lying nearby."
-	no_tool_description = "You can't open it without a multiool."
-	has_tool_description = "You can try to hack it open with your multitool!"
-	action_text = "Hack open"
-	delay_message = "Hacking..."
+	discovery_log = "Обнаружен труп гуманоида."
+	description = "Вы находите высохший труп гуманоида, хотя он слишком поврежден, чтобы его можно было опознать. Неподалеку лежит запертый портфель."
+	no_tool_description = "Вы не сможете открыть его без мультиинструмента."
+	has_tool_description = "Вы можете попробовать взломать его своим мультитулом!"
+	action_text = "Взломать дверь"
+	delay_message = "Взлом..."
 	loot_type = /datum/adventure_loot_generator/simple/cash
 
 /datum/exploration_event/simple/resource/gunfight
-	name = "gunfight leftovers"
+	name = "остатки перестрелки"
 	required_site_traits = list(EXPLORATION_SITE_RUINS)
 	required_tool = EXODRONE_TOOL_DRILL
-	discovery_log = "Discovered a site of a past gunfight."
-	description = "You find a site full of gun casings and scorched with laser marks. You notice something under some nearby rubble."
-	no_tool_description = "You can't get to it without a drill."
-	has_tool_description = "You can remove the rubble with your drill!"
-	action_text = "Remove rubble"
-	delay_message = "Drilling..."
+	discovery_log = "Обнаружил место прошлой перестрелки."
+	description = "Вы находите место, заваленное гильзами от оружия и испещренное лазерными следами. Вы замечаете что-то под ближайшими обломками."
+	no_tool_description = "Вы не сможете добраться до него без дрели."
+	has_tool_description = "Вы можете удалить обломки с помощью своей дрели!"
+	action_text = "Убирать щебень"
+	delay_message = "Бурение..."
 	loot_type = /datum/adventure_loot_generator/simple/weapons
 
 // EXPLORATION_SITE_TECHNOLOGY 2/2
 /datum/exploration_event/simple/resource/maint_room
-	name = "locked maintenance room"
+	name = "запертое помещение для технического обслуживания"
 	required_site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	discovery_log = "Discovered a locked maintenance room."
-	success_log = "Retrieved the contents of a locked maintenance room."
-	description = "You discover a locked maintenance room. You can see marks from frequent movement nearby."
-	no_tool_description = "You can't open it without a multitool."
-	has_tool_description = "You can try to open it with your multitool!"
-	action_text = "Hack"
-	delay_message = "Hacking..."
+	discovery_log = "Обнаружил запертое техническое помещение."
+	success_log = "Извлек содержимое запертого технического помещения."
+	description = "Вы обнаруживаете запертую комнату технического обслуживания. Поблизости вы можете увидеть следы частых перемещений."
+	no_tool_description = "Вы не сможете открыть его без мультитула."
+	has_tool_description = "Вы можете попробовать открыть его с помощью своего мультитула!"
+	action_text = "Взлом"
+	delay_message = "Взлом..."
 	loot_type = /datum/adventure_loot_generator/maintenance
 	amount = 3
 
 /datum/exploration_event/simple/resource/storage
-	name = "storage room"
+	name = "складское помещение"
 	required_site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	discovery_log = "Discovered a storage room full of crates."
-	success_log = "Used a translated manifest to find a crate of medication."
-	description = "You find a storage room full of unidentified crates. There's a manifest in an obscure language pinned near the entrance."
-	no_tool_description = "All the crates around are devoid of useful contents, and the manifest is unreadable without a translator."
-	has_tool_description = "You can translate the manifest with your translator!"
-	action_text = "Translate"
-	delay_message = "Translating manifest..."
+	discovery_log = "Обнаружил кладовку, забитую ящиками."
+	success_log = "Использовал переведенную декларацию, чтобы найти ящик с лекарствами."
+	description = "Вы обнаруживаете складское помещение, забитое неопознанными ящиками. У входа прикреплена декларация на непонятном языке."
+	no_tool_description = "Все ящики вокруг лишены полезного содержимого, а декларация нечитаема без переводчика."
+	has_tool_description = "Вы можете перевести манифест с помощью вашего переводчика!"
+	action_text = "Переводить"
+	delay_message = "Перевод декларации..."
 	loot_type = /datum/adventure_loot_generator/simple/drugs
 
 // EXPLORATION_SITE_ALIEN 2/2
 /datum/exploration_event/simple/resource/alien_tools
-	name = "alien sarcophagus"
+	name = "инопланетный саркофаг"
 	required_site_traits = list(EXPLORATION_SITE_ALIEN)
 	band_values = list(EXOSCANNER_BAND_TECH=1,EXOSCANNER_BAND_RADIATION=1)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	discovery_log = "Discovered an alien sarcophagus covered in unknown glyphs."
-	success_log = "Retrieved contents of an alien sarcophagus."
-	description = "You find a giant sarcophagus of alien origin, covered in unknown script."
-	no_tool_description = "You see no way to open the sarcophagus nor translate the glyphs without a multitool."
-	has_tool_description = "You translate the glyphs and find a description of a hidden mechanism for unlocking the tomb."
-	delay_message = "Opening..."
-	action_text = "Open"
+	discovery_log = "Обнаружили инопланетный саркофаг, покрытый неизвестными иероглифами."
+	success_log = "Извлеченное содержимое инопланетного саркофага."
+	description = "Вы находите гигантский саркофаг инопланетного происхождения, покрытый неизвестными письменами."
+	no_tool_description = "Вы не видите способа открыть саркофаг или перевести символы без мультитула."
+	has_tool_description = "Вы переводите символы и находите описание скрытого механизма для отпирания гробницы."
+	delay_message = "Открытие..."
+	action_text = "Открыть"
 	loot_type = /obj/item/scalpel/alien
 
 /datum/exploration_event/simple/resource/pod
-	name = "alien biopod"
+	name = "инопланетный биопод"
 	required_site_traits = list(EXPLORATION_SITE_ALIEN)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
 	required_tool = EXODRONE_TOOL_LASER
-	discovery_log = "Discovered an alien pod."
-	success_log = "Retrieved contents of the alien pod."
-	description = "You encounter an alien biopod full of strange sacks containing abducted lifeforms."
-	no_tool_description = "You can't breach the biopod without a precise laser."
-	has_tool_description = "You can try to cut one open with your laser!"
-	delay_message = "Opening..."
-	action_text = "Open"
+	discovery_log = "Обнаружил капсулу инопланетянина."
+	success_log = "Извлечено содержимое капсулы инопланетянина."
+	description = "Вы сталкиваетесь с инопланетным биоплодом, полным странных мешков с похищенными формами жизни."
+	no_tool_description = "Вы не сможете вскрыть биопод без высокоточного лазера."
+	has_tool_description = "Вы можете попробовать разрезать его своим лазером!"
+	delay_message = "Открытие..."
+	action_text = "Открыть"
 	loot_type = /datum/adventure_loot_generator/pet
 
 // EXPLORATION_SITE_SHIP 2/2
 /datum/exploration_event/simple/resource/fuel_storage
-	name = "fuel storage"
+	name = "хранилище топлива"
 	required_site_traits = list(EXPLORATION_SITE_SHIP)
 	band_values = list(EXOSCANNER_BAND_PLASMA=1)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	discovery_log = "Discovered ship fuel storage."
-	description = "You find the ship's fuel storage. Unfortunately, it has an electronic lock."
-	success_log = "Retrieved fuel from storage."
-	no_tool_description = "You can't breach the lock without a multitool."
-	has_tool_description = "You can try and short circuit the lock with your multitool!"
-	delay_message = "Opening..."
-	action_text = "Open"
+	discovery_log = "Обнаружен корабельный склад топлива."
+	description = "Вы нашли топливный склад корабля. К сожалению, он заперт на электронный замок."
+	success_log = "Извлекли топливо из хранилища."
+	no_tool_description = "Вы не сможете взломать замок без мультитула."
+	has_tool_description = "Вы можете попробовать закоротить замок с помощью своего мультитула!"
+	delay_message = "Открытие..."
+	action_text = "Открыть"
 	loot_type = /obj/item/fuel_pellet/exotic
 
 /datum/exploration_event/simple/resource/navigation
-	name = "navigation systems"
+	name = "навигационные системы"
 	required_site_traits = list(EXPLORATION_SITE_SHIP)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	discovery_log = "Discovered ship navigation systems."
-	description = "You find the ship's navigation systems encoded in a strange language. You'll be able to use the data with a translator."
-	success_log = "Retrieved shipping data from navigation systems."
-	no_tool_description = "You'll need a translator to decipher the data."
-	has_tool_description = "You can try and translate the navigation data with your multitool!"
-	delay_message = "Retrieving data..."
-	action_text = "Retrieve data"
+	discovery_log = "Обнаружил корабельные навигационные системы."
+	description = "Вы обнаружите, что навигационные системы корабля закодированы на незнакомом языке. Вы сможете использовать данные с помощью переводчика."
+	success_log = "Извлекли данные о доставке из навигационных систем."
+	no_tool_description = "Вам понадобится переводчик, чтобы расшифровать эти данные."
+	has_tool_description = "Вы можете попробовать перевести навигационные данные с помощью своего мультитула!"
+	delay_message = "Извлечение данных..."
+	action_text = "Извлечь данные"
 	loot_type = /datum/adventure_loot_generator/cargo
 
 // EXPLORATION_SITE_HABITABLE 2/2
 /datum/exploration_event/simple/resource/unknown_microbiome
-	name = "unknown microbiome"
+	name = "неизвестный микробиом"
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	discovery_log = "Discovered a isolated microbiome."
-	description = "You discover a giant fungus colony."
-	success_log = "Retrieved samples of the fungus for future study."
-	no_tool_description = "With a precise laser, you could slice off a sample for study."
-	has_tool_description = "You can carefully cut a sample from the colony with your laser!"
-	delay_message = "Taking samples..."
-	action_text = "Take sample"
+	discovery_log = "Обнаружен изолированный микробиом."
+	description = "Вы обнаруживаете гигантскую колонию грибов."
+	success_log = "Получены образцы гриба для дальнейшего изучения."
+	no_tool_description = "С помощью высокоточного лазера вы могли бы отрезать образец для исследования."
+	has_tool_description = "Вы можете аккуратно вырезать образец из колонии своим лазером!"
+	delay_message = "Взятие проб..."
+	action_text = "Возьмите образец"
 	loot_type = /obj/item/petri_dish/random
 
 /datum/exploration_event/simple/resource/tcg_nerd
-	name = "creepy stranger"
+	name = "жуткий незнакомец"
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	discovery_log = "Met a creepy stranger."
-	description = "You meet an inhabitant of this site, looking ragged and clearly agitated about something."
-	no_tool_description = "You can't tell what it's trying to convey without a translator."
-	has_tool_description = "Your best translation dictates that it would like to share its hobby with you!"
-	success_log = "Received a gift from a stranger."
-	delay_message = "Enduring..."
-	action_text = "Accept gift."
+	discovery_log = "Встретили жуткого незнакомца."
+	description = "Вы встречаете обитателя этого места, который выглядит оборванным и явно чем-то взволнованным."
+	no_tool_description = "Без переводчика вы не сможете понять, что он пытается донести."
+	has_tool_description = "Ваш переводчик говорит о том, что он хотел бы поделиться с вами своим хобби!"
+	success_log = "Получил подарок от незнакомца."
+	delay_message = "Ожидание..."
+	action_text = "Примите подарок."
 	loot_type = /obj/item/cardpack/series_one
 
 // EXPLORATION_SITE_SPACE 2/2
 /datum/exploration_event/simple/resource/comms_satellite
-	name = "derelict comms satellite"
+	name = "заброшенный спутник связи"
 	required_site_traits = list(EXPLORATION_SITE_SPACE)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	discovery_log = "Discovered a derelict communication satellite."
-	description = "You discover a derelict communication satellite. Its encryption key is intact, but has a complicated electronic lock."
-	no_tool_description = "You'll need a multiool to retrieve the encryption key."
-	has_tool_description = "You can disable the lock to retrieve the key with your multitool!"
-	success_log = "Retrieved an encryption key from a derelict satellite."
-	delay_message = "Hacking..."
-	action_text = "Hack lock"
+	discovery_log = "Обнаружен заброшенный спутник связи."
+	description = "Вы обнаруживаете заброшенный спутник связи. Его ключ шифрования цел, но имеет сложный электронный замок."
+	no_tool_description = "Для получения ключа шифрования вам понадобится мультитул."
+	has_tool_description = "Вы можете отключить блокировку, чтобы извлечь ключ с помощью вашего мультитула!"
+	success_log = "Извлек ключа шифрования с заброшенного спутника."
+	delay_message = "Взлом..."
+	action_text = "Замок открыт"
 	loot_type = /obj/item/encryptionkey/heads/captain
 
 /datum/exploration_event/simple/resource/welded_locker
-	name = "welded locker"
+	name = "сварной шкафчик"
 	required_site_traits = list(EXPLORATION_SITE_SPACE)
 	required_tool = EXODRONE_TOOL_WELDER
-	discovery_log = "Discovered a hastily welded locker."
-	description = "You discover a welded locker floating through space. What could be inside...?"
-	no_tool_description = "You'll need a welding tool to take the contents of the locker."
-	success_log = "Retrieved... a severed head."
-	delay_message = "Welding open..."
-	action_text = "Weld open"
+	discovery_log = "Обнаружил наспех сваренный шкафчик."
+	description = "Вы обнаруживаете сварной шкафчик, парящий в космосе. Что может быть внутри...?"
+	no_tool_description = "Чтобы извлечь содержимое шкафчика, вам понадобится сварочный инструмент."
+	success_log = "Извлекли... отрубленную голову."
+	delay_message = "Разваривание..."
+	action_text = "Открыть"
 	loot_type = /obj/item/bodypart/head
 
 /datum/exploration_event/simple/resource/welded_locker/dispense_loot(obj/item/exodrone/drone)
@@ -257,31 +257,31 @@
 
 // EXPLORATION_SITE_SURFACE 2/2
 /datum/exploration_event/simple/resource/plasma_deposit
-	name = "Raw Plasma Deposit"
+	name = "Необработанный плазменный осадок"
 	required_site_traits = list(EXPLORATION_SITE_SURFACE)
 	band_values = list(EXOSCANNER_BAND_PLASMA=3)
 	required_tool = EXODRONE_TOOL_DRILL
-	discovery_log = "Discovered a sizeable plasma deposit."
-	success_log = "Extracted the plasma from the deposit."
-	description = "You locate a rich surface deposit of plasma."
-	no_tool_description = "You'll need a drill to take anything from the deposit."
-	has_tool_description = "Your drill will allow you to extract the deposit!"
-	action_text = "Mine"
-	delay_message = "Mining..."
+	discovery_log = "Обнаружено значительное скопление плазмы."
+	success_log = "Извлек плазму из осадка."
+	description = "Вы обнаруживаете на поверхности обильное скопление плазмы."
+	no_tool_description = "Вам понадобится дрель, чтобы взять что-нибудь из месторождения."
+	has_tool_description = "Ваша дрель позволит вам извлечь месторождение!"
+	action_text = "Добывать"
+	delay_message = "Добыча..."
 	loot_type = /obj/item/stack/sheet/mineral/plasma/thirty
 
 /datum/exploration_event/simple/resource/mineral_deposit
-	name = "MATERIAL Deposit"
+	name = "МАТЕРИАЛЬНЫЙ депозит"
 	required_site_traits = list(EXPLORATION_SITE_SURFACE)
 	band_values = list(EXOSCANNER_BAND_DENSITY=3)
 	required_tool = EXODRONE_TOOL_DRILL
-	discovery_log = "Discovered a sizeable MATRIAL deposit."
-	success_log = "Extracted the MATERIAL from the deposit."
-	description = "You locate a rich surface deposit of MATERIAL."
-	no_tool_description = "You'll need a drill to take anything from the deposit."
-	has_tool_description = "Your drill will allow you to extract the deposit!"
-	action_text = "Mine"
-	delay_message = "Mining..."
+	discovery_log = "Обнаружил значительное месторождение матрикса."
+	success_log = "Извлекли МАТЕРИАЛ из месторождения."
+	description = "Вы обнаруживаете богатые поверхностные залежи МАТЕРИАЛА."
+	no_tool_description = "Вам понадобится дрель, чтобы взять что-нибудь из хранилища."
+	has_tool_description = "Ваша дрель позволит вам извлечь месторождение!"
+	action_text = "Добывать"
+	delay_message = "Добыча..."
 	var/static/list/possible_materials = list(/datum/material/silver,/datum/material/bananium,/datum/material/pizza) //only add materials with sheet type here
 	var/loot_amount = 30
 	var/chosen_material_type
@@ -290,10 +290,10 @@
 	. = ..()
 	chosen_material_type = pick(possible_materials)
 	var/datum/material/chosen_mat = GET_MATERIAL_REF(chosen_material_type)
-	name = "[chosen_mat.name] Deposit"
-	discovery_log = "Discovered a sizeable [chosen_mat.name] deposit"
-	success_log = "Extracted [chosen_mat.name]."
-	description = "You locate a rich surface deposit of [chosen_mat.name]."
+	name = "[chosen_mat.name] Депозит"
+	discovery_log = "Обнаружено крупное [chosen_mat.name] месторождение "
+	success_log = "Извлечение [chosen_mat.name]."
+	description = "Вы обнаруживаете богатое поверхностное месторождение [chosen_mat.name]."
 
 /datum/exploration_event/simple/resource/mineral_deposit/dispense_loot(obj/item/exodrone/drone)
 	var/datum/material/chosen_mat = GET_MATERIAL_REF(chosen_material_type)

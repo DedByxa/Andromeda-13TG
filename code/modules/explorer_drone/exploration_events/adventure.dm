@@ -1,6 +1,6 @@
 /// Adventure wrapper event
 /datum/exploration_event/adventure
-	discovery_log = "Encountered something unexpected"
+	discovery_log = "Столкнулся с чем-то неожиданным"
 	var/datum/adventure/adventure
 	root_abstract_type = /datum/exploration_event/adventure
 

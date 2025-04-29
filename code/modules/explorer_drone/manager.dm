@@ -7,7 +7,7 @@
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "AdventureBrowser")
+		ui = new(user, src, "AdventureBrowser - браузер приключений")
 		ui.open()
 
 /datum/adventure_browser/ui_state(mob/user)
@@ -16,7 +16,7 @@
 /// Handles finishing adventure
 /datum/adventure_browser/proc/resolve_adventure(datum/source,result)
 	SIGNAL_HANDLER
-	feedback_message = "Adventure ended with result : [result]"
+	feedback_message = "Исследование закончилось с результатом : [result]"
 	QDEL_NULL(temp_adventure)
 
 /datum/adventure_browser/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -33,11 +33,11 @@
 				QDEL_NULL(temp_adventure)
 			temp_adventure = target.create_adventure()
 			if(!temp_adventure)
-				feedback_message = "Instantiating adventure failed. Check runtime logs for details."
+				feedback_message = "Не удалось создать экземпляр adventure. Проверьте журналы выполнения для получения подробной информации."
 				return TRUE
 			RegisterSignal(temp_adventure,COMSIG_ADVENTURE_FINISHED, PROC_REF(resolve_adventure))
 			temp_adventure.start_adventure()
-			feedback_message = "Adventure started"
+			feedback_message = "Исследование началось"
 			return TRUE
 		if("adventure_choice")
 			temp_adventure?.select_choice(params["choice"])
@@ -45,7 +45,7 @@
 		if("end_play")
 			if(temp_adventure)
 				QDEL_NULL(temp_adventure)
-			feedback_message = "Adventure stopped"
+			feedback_message = "Исследование прекратилось"
 			return TRUE
 
 /datum/adventure_browser/ui_data(mob/user)
@@ -83,6 +83,6 @@
 	. = ..()
 	QDEL_NULL(temp_adventure)
 
-ADMIN_VERB(adventure_manager, R_DEBUG, "Adventure Manager", "View and edit adventures.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(adventure_manager, R_DEBUG, "Управление исследованием", "Просматривайте и редактируйте исследования", ADMIN_CATEGORY_DEBUG)
 	var/datum/adventure_browser/browser = new()
 	browser.ui_interact(user.mob)

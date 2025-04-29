@@ -1,13 +1,13 @@
 /// Danger event - unskippable, if you have appriopriate tool you can mitigate damage.
 /datum/exploration_event/simple/danger
 	root_abstract_type = /datum/exploration_event/simple/danger
-	description = "You encounter a giant error."
+	description = "Вы столкнулись с гигантской ошибкой."
 	var/required_tool = EXODRONE_TOOL_LASER
-	var/has_tool_action_text = "Fight"
-	var/no_tool_action_text = "Endure"
+	var/has_tool_action_text = "Бой"
+	var/no_tool_action_text = "Терпеть"
 	var/has_tool_description = ""
 	var/no_tool_description = ""
-	var/avoid_log = "Escaped unharmed from danger."
+	var/avoid_log = "Спасся невредимым от опасности."
 	var/damage = 30
 	skippable = FALSE
 
@@ -32,92 +32,92 @@
 
 /// Danger events
 /datum/exploration_event/simple/danger/carp
-	name = "space carp attack"
+	name = "атака космического карпа"
 	required_site_traits = list(EXPLORATION_SITE_SPACE)
 	blacklisted_site_traits = list(EXPLORATION_SITE_CIVILIZED)
-	deep_scan_description = "You detect damage patterns to the site indicating the presence of space carp."
-	description = "You are ambushed by a solitary space carp!"
-	has_tool_action_text = "Fight"
-	no_tool_action_text = "Escape!"
-	has_tool_description = "You charge your laser to fend it off."
-	no_tool_description = "Without any weaponry, you can only attempt a hasty escape!"
-	avoid_log = "Defeated a space carp."
+	deep_scan_description = "Вы обнаруживаете повреждения на участке, указывающие на присутствие космического карпа."
+	description = "Вы попали в засаду, устроенную одиноким космическим карпом!"
+	has_tool_action_text = "Бой"
+	no_tool_action_text = "Побег!"
+	has_tool_description = "Вы заряжаете свой лазер."
+	no_tool_description = "Без какого-либо оружия вы можете только попытаться поспешно сбежать!"
+	avoid_log = "Победил космического карпа."
 
 /// They get everywhere
 /datum/exploration_event/simple/danger/carp/surface_variety
 	required_site_traits = list(EXPLORATION_SITE_SURFACE)
 
 /datum/exploration_event/simple/danger/assistant
-	name = "assistant attack"
+	name = "ассистентская атака"
 	required_site_traits = list(EXPLORATION_SITE_STATION)
-	deep_scan_description = "Detected mask usage coefficent suggests a sizeable crowd of undersirables on the site."
-	description = "You encounter a shaggy creature dressed in gray! It's a deranged assistant!"
-	has_tool_action_text = "Fight"
-	no_tool_action_text = "Escape!"
-	has_tool_description = "You charge your laser to fend it off."
-	no_tool_description = "Without any weaponry, you can only attempt a hasty escape!"
-	avoid_log = "Defeated an assistant."
+	deep_scan_description = "Обнаруженный коэффициент использования маски указывает на наличие на сайте большого количества пользователей с низким уровнем дохода."
+	description = "Вы встречаете лохматое существо, одетое в серое! Это ненормальный ассистент!"
+	has_tool_action_text = "Бой"
+	no_tool_action_text = "Побег!"
+	has_tool_description = "Вы заряжаете свой лазер."
+	no_tool_description = "Без какого-либо оружия вы можете только попытаться поспешно сбежать!"
+	avoid_log = "Победил ассистента."
 
 /datum/exploration_event/simple/danger/collapse
-	name = "collapse"
+	name = "коллапс"
 	required_site_traits = list(EXPLORATION_SITE_RUINS)
 	required_tool = EXODRONE_TOOL_DRILL
-	deep_scan_description = "The scan indicates that the site's structure is decrepit; caution is advised."
-	description = "A damaged ceiling gives out as you search an unexplored passage! You're trapped by the debris."
-	has_tool_action_text = "Dig out"
-	no_tool_action_text = "Squeeze."
-	has_tool_description = "You can use your drill to get out."
-	no_tool_description = "You'll have to scrape a few parts to get out without any tools."
-	avoid_log = "Dug out of collapsed passage."
+	deep_scan_description = "Сканирование показывает, что структура устарела; рекомендуется соблюдать осторожность."
+	description = "Поврежденный потолок обрушивается, когда вы исследуете неизведанный проход! Вы оказались в ловушке из-за обломков."
+	has_tool_action_text = "Выкапывать"
+	no_tool_action_text = "Сжать."
+	has_tool_description = "Ты можешь воспользоваться своей дрелью, чтобы выбраться наружу."
+	no_tool_description = "Вам придется соскрести несколько деталей, чтобы вытащить их без каких-либо инструментов."
+	avoid_log = "Выкопанный из обрушившегося прохода."
 
 /datum/exploration_event/simple/danger/loose_wires
-	name = "loose wires"
+	name = "незакрепленные провода"
 	required_site_traits = list(EXPLORATION_SITE_TECHNOLOGY)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	deep_scan_description = "Scans indicate a huge quantity of damaged wiring detected on site."
-	description = "You hear a loud snap behind you! A stack of sparking high-voltage wires is blocking you way out."
-	has_tool_action_text = "Disable power"
-	no_tool_action_text = "Get fried."
-	has_tool_description = "You can try to use your multitool to shut down power to escape."
-	no_tool_description = "You'll have to risk frying your electronics getting out."
-	avoid_log = "Escaped loose wire."
+	deep_scan_description = "Сканирование показало, что на месте было обнаружено огромное количество поврежденных проводов."
+	description = "Вы слышите громкий щелчок позади себя! Куча искрящихся высоковольтных проводов преграждает вам путь к выходу."
+	has_tool_action_text = "Отключить питание"
+	no_tool_action_text = "Поджариться."
+	has_tool_description = "Вы можете попробовать использовать свой мультитул, чтобы отключить питание и сбежать."
+	no_tool_description = "Вам придется рискнуть поджарить свою электронику, чтобы выйти из строя."
+	avoid_log = "Уцелел незакрепленный провод."
 
 /datum/exploration_event/simple/danger/cosmic_rays
-	name = "cosmic ray burst"
+	name = "вспышка космического луча"
 	required_site_traits = list(EXPLORATION_SITE_SURFACE)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	deep_scan_description = "Site is exposed to space radiation. Using self-diagnostic multiool attachment advised."
-	description = "The drone feed suddenly goes haywire! It seems that the drone got hit by a burst of cosmic rays! You'll have to wait for the signal to be restored."
-	has_tool_description = "Your multitool should allow a significant amount of the damage to be repaired on its own." //wait, what? 
-	no_tool_description = "Nothing more to be done than to wait and assess the damage."
-	has_tool_action_text = "Wait"
-	no_tool_action_text = "Wait"
-	avoid_log = "Prevented cosmic ray damage with multitool."
+	deep_scan_description = "Объект подвержен воздействию космической радиации. Рекомендуется использовать мультиинструмент для самодиагностики."
+	description = "Связь с дроном внезапно прервалась! Похоже, что в беспилотник попала вспышка космических лучей! Вам придется подождать, пока сигнал восстановится."
+	has_tool_description = "Ваш мультитул должен позволять самостоятельно устранять значительную часть повреждений." //wait, what?
+	no_tool_description = "Ничего больше не оставалось, как ждать и оценивать ущерб."
+	has_tool_action_text = "Подождите"
+	no_tool_action_text = "Подождите"
+	avoid_log = "Предотвратил повреждение космическими лучами с помощью мультитула."
 
 /datum/exploration_event/simple/danger/alien_sentry
-	name = "alien security measure"
+	name = "меры безопасности для иностранцев"
 	required_site_traits = list(EXPLORATION_SITE_ALIEN)
 	required_tool = EXODRONE_TOOL_TRANSLATOR
-	deep_scan_description = "Automated security measures of unknown origin detected on site."
-	description = "A dangerous looking machine slides out the floor and start flashing strange glyphs while emitting a high-pitched sound!"
-	has_tool_description = "Your translator recognizes the glyphs as security hail and suggests identyfing yourself as a guest."
-	no_tool_description = "The machine start shooting soon after."
-	has_tool_action_text = "Identify yourself"
-	no_tool_action_text = "Escape"
-	avoid_log = "Avoided alien security."
+	deep_scan_description = "На объекте обнаружены автоматизированные средства безопасности неизвестного происхождения."
+	description = "Опасного вида машина выдвигается из-под пола и начинает высвечивать странные символы, издавая пронзительный звук!"
+	has_tool_description = "Ваш переводчик распознает символы как приветствие службы безопасности и предлагает идентифицировать себя как гостя."
+	no_tool_description = "Вскоре после этого машина начнет снимать."
+	has_tool_action_text = "Назовите себя"
+	no_tool_action_text = "Побег"
+	avoid_log = "Избегал инопланетной охраны."
 
 /datum/exploration_event/simple/danger/beast
-	name = "alien encounter"
+	name = "встреча с инопланетянином"
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE)
 	blacklisted_site_traits = list(EXPLORATION_SITE_CIVILIZED)
 	required_tool = EXODRONE_TOOL_LASER
-	deep_scan_description = "Dangerous fauna detected on site."
-	description = "You encounter an unusual beast! It prepares to strike."
-	has_tool_action_text = "Fight"
-	no_tool_action_text = "Escape"
-	has_tool_description = "You ready your laser."
-	no_tool_description = "Without any weaponry, you can only attempt a hasty escape!"
-	avoid_log = "Defeated a beast."
+	deep_scan_description = "На месте была обнаружена опасная фауна."
+	description = "Вы столкнулись с необычным зверем! Он готовится нанести удар."
+	has_tool_action_text = "Бой"
+	no_tool_action_text = "Побег"
+	has_tool_description = "Ты готовишь свой лазер."
+	no_tool_description = "Без какого-либо оружия вы можете только попытаться поспешно сбежать!"
+	avoid_log = "Победил зверя."
 
 /datum/exploration_event/simple/danger/beast/New()
 	. = ..()
@@ -126,13 +126,13 @@
 	avoid_log = replacetext(avoid_log,"BEAST",beast_name)
 
 /datum/exploration_event/simple/danger/rad
-	name = "irradiated section"
+	name = "облученный участок"
 	required_site_traits = list(EXPLORATION_SITE_SHIP)
 	required_tool = EXODRONE_TOOL_MULTITOOL
-	deep_scan_description = "Scans indicate dangerous radioactive presence."
-	description = "You enter a nondescript ship section."
-	has_tool_action_text = "Detour"
-	no_tool_action_text = "Escape and mitigate damage."
-	has_tool_description = "Your multitool suddenly flashes in warning! The section ahead is irradiated, you'll have to go around to avoid damage."
-	no_tool_description = "Suddenly the drone reports significant damage, it seems that this section was heavily irradiated."
-	avoid_log = "Avoided irradiated section."
+	deep_scan_description = "Сканирование указывает на опасное радиоактивное присутствие."
+	description = "Вы входите в ничем не примечательный раздел корабля."
+	has_tool_action_text = "Объезд"
+	no_tool_action_text = "Спастись и уменьшить ущерб."
+	has_tool_description = "Ваш мультитул внезапно начнет предупреждающе мигать! Участок впереди освещен, вам придется обойти его, чтобы избежать повреждений."
+	no_tool_description = "Внезапно беспилотник сообщает о значительных повреждениях, похоже, что этот участок был сильно облучен."
+	avoid_log = "Избегать облученного участка."

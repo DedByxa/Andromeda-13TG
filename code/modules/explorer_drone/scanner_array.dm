@@ -49,11 +49,11 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 /datum/exoscan/proc/ui_description()
 	switch(scan_type)
 		if(EXOSCAN_WIDE)
-			return "Wide: Scanning sphere starting 1 AU from the station."
+			return "Широкий: сфера сканирования, начинающаяся на расстоянии 1 а.е. от станции."
 		if(EXOSCAN_POINT)
-			return "Point scan of [target.display_name()]"
+			return "Точечное сканирование [target.display_name()]"
 		if(EXOSCAN_DEEP)
-			return "Deep scan of [target.display_name()]"
+			return "Глубокое сканирование [target.display_name()]"
 
 /datum/exoscan/proc/resolve_scan()
 	switch(scan_type)
@@ -76,8 +76,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	deltimer(scan_timer)
 
 /obj/machinery/computer/exoscanner_control
-	name = "scanner array control console"
-	desc = "Controls scanner arrays to initiate scans for exodrones."
+	name = "консоль управления массивом сканеров"
+	desc = "Управляет массивами сканеров для запуска сканирования на наличие экзодронов."
 	circuit = /obj/item/circuitboard/computer/exoscanner_console
 	/// If scan was interrupted show a popup until dismissed.
 	var/failed_popup = FALSE
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ExoscannerConsole", name)
+		ui = new(user, src, "Экзосканерная консоль", name)
 		ui.open()
 
 /obj/machinery/computer/exoscanner_control/ui_data(mob/user)
@@ -189,10 +189,10 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE)
 
 /obj/machinery/exoscanner
-	name = "Scanner array"
+	name = "Матрица сканеров"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "scanner_off"
-	desc = "A sophisticated scanning array. Easily influenced by its environment."
+	desc = "Сложная сканирующая матрица. Легко поддается влиянию окружающей среды."
 	circuit = /obj/item/circuitboard/machine/exoscanner
 	///the scan power of this array to supply to scanner_controller
 	var/scan_power = 1
@@ -340,8 +340,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/nebula
-	name = "Nebula"
-	description = "Site is within an unusually dense nebula. To reduce scanner noise, position dishes at least 15 tiles apart."
+	name = "Туманность"
+	description = "Объект находится в необычно плотной туманности. Чтобы уменьшить шум сканера, расположите пластины на расстоянии не менее 15 дюймов друг от друга."
 	var/distance = 15
 
 /datum/scan_condition/nebula/check_dish(obj/machinery/exoscanner/dish)
@@ -351,8 +351,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/pulsar
-	name = "Pulsar"
-	description = "A pulsar near the site requires dishes to be shielded from electomagnetic noise. Ensure no other machines are working near the dish."
+	name = "Пульсар"
+	description = "Если поблизости находится пульсар, необходимо защитить посуду от электромагнитных помех. Убедитесь, что рядом с посудой не работают другие машины."
 	var/distance = 2
 
 /datum/scan_condition/pulsar/check_dish(obj/machinery/exoscanner/dish)
@@ -362,16 +362,16 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/asteroid_belt
-	name = "Asteroid Belt"
-	description = "An asteroid belt is obscuring the direct line of sight from the station to the site. Ensure the dishes are placed outside of the station z level."
+	name = "Пояс астероидов"
+	description = "Пояс астероидов закрывает прямую видимость от станции до места проведения работ. Убедитесь, что тарелки расположены за пределами уровня z станции."
 
 /datum/scan_condition/asteroid_belt/check_dish(obj/machinery/exoscanner/dish)
 	var/turf/dish_turf = get_turf(dish)
 	return is_station_level(dish_turf.z) ? 0 : 1
 
 /datum/scan_condition/black_hole
-	name = "Black Hole"
-	description = "A background black hole requires you to focus the scan point precisely. Ensure the dishes are isolated from rest of the station with at least 6 walls around them."
+	name = "Черная дыра"
+	description = "Для обнаружения черной дыры на заднем плане необходимо точно сфокусировать точку сканирования. Убедитесь, что тарелки изолированы от остальной части станции как минимум шестью стенами."
 
 /datum/scan_condition/black_hole/check_dish(obj/machinery/exoscanner/dish)
 	var/wall_count = 0
@@ -381,8 +381,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return wall_count > 6 ? 1 : 0
 
 /datum/scan_condition/easy
-	name = "Easy Scan"
-	description = "This site is very easy to scan, all dish power is doubled."
+	name = "Простое сканирование"
+	description = "Это очень легко сканировать, а мощность всей тарелки увеличивается вдвое."
 
 /datum/scan_condition/easy/check_dish(obj/machinery/exoscanner/dish)
 	return 2

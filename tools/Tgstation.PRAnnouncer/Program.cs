@@ -59,7 +59,7 @@ namespace Tgstation.PRAnnouncer
 
 			servicesBuilder.AddSingleton<IMetricFactory>(_ => Metrics.DefaultFactory);
 
-			servicesBuilder.AddSingleton<WebhookEventProcessor, TgstationWebhookEventProcessor>();
+			servicesBuilder.AddSingleton<WebhookEventProcessor, TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78>();
 
 			await using var app = appBuilder.Build();
 			var services = app.Services;

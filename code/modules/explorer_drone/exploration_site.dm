@@ -140,15 +140,15 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 	var/was_known_before = revealed
 	reveal()
 	if(!was_known_before)
-		drone.drone_log("Discovered [name] at [coordinates].")
+		drone.drone_log("Обнаружен [name] по [coordinates].")
 	else
-		drone.drone_log("Arrived at [display_name()].")
+		drone.drone_log("Прибыл в [display_name()].")
 
 /datum/exploration_site/proc/reveal()
 	revealed = TRUE
 
 /datum/exploration_site/proc/display_name()
-	return revealed ? name : "Anomaly"
+	return revealed ? name : "Аномалия"
 
 /datum/exploration_site/proc/display_description()
 	if(!revealed)
@@ -189,14 +189,14 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 /// Sites
 
 /datum/exploration_site/abandoned_refueling_station
-	name = "abandoned refueling station"
-	description = "An old shuttle refueling station drifting through the void."
+	name = "заброшенная заправочная станция"
+	description = "Старая заправочная станция шаттла, дрейфующая в пустоте."
 	band_info = list(EXOSCANNER_BAND_TECH = 1)
 	site_traits = list(EXPLORATION_SITE_RUINS,EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION)
 
 /datum/exploration_site/trader_post
-	name = "unregistered trading station"
-	description = "A weak radio transmission advertises this place as RANDOMIZED_NAME"
+	name = "незарегистрированная торговая станция"
+	description = "Слабая радиопередача рекламирует это место как RANDOMIZED_NAME"
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_LIFE = 1)
 	site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_STATION,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	fluff_type = "fluff_trading"
@@ -204,62 +204,62 @@ GLOBAL_LIST_EMPTY(exploration_sites)
 /datum/exploration_site/trader_post/New(band)
 	. = ..()
 	var/chosen_name = pick_list(EXODRONE_FILE,"trading_station_names")
-	name = "\"[chosen_name]\" trading station"
+	name = "\"[chosen_name]\" торговая станция"
 	description = replacetext(description,"RANDOMIZED_NAME",chosen_name)
 
 /datum/exploration_site/cargo_wreck
-	name = "interstellar cargo ship wreckage"
-	description = "Wreckage of a long-range cargo shuttle."
+	name = "обломки межзвездного грузового корабля"
+	description = "Обломки грузового шаттла дальнего радиуса действия."
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_DENSITY = 1)
 	site_traits = list(EXPLORATION_SITE_SHIP,EXPLORATION_SITE_TECHNOLOGY)
 
 /datum/exploration_site/alien_spaceship
-	name = "ancient alien spaceship"
-	description = "A gigantic spaceship of unknown origin. It doesn't respond to your hails but does not prevent you boarding, either."
+	name = "древний инопланетный космический корабль"
+	description = "Гигантский космический корабль неизвестного происхождения. Он не отвечает на ваши приветствия, но и не мешает вам подняться на борт."
 	band_info = list(EXOSCANNER_BAND_TECH = 1, EXOSCANNER_BAND_RADIATION = 1)
 	site_traits = list(EXPLORATION_SITE_SHIP,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_ALIEN)
 
 /datum/exploration_site/uncharted_planet
-	name = "uncharted planet"
-	description = "A planet missing from Nanotrasen starcharts."
+	name = "неизведанная планета"
+	description = "Планета, отсутствующая на звездных картах Нанотразена."
 	band_info = list(EXOSCANNER_BAND_LIFE = 3)
 	site_traits = list(EXPLORATION_SITE_SURFACE)
 
 /datum/exploration_site/uncharted_planet/New(band)
 	/// Planet Type, Atmosphere
 	var/list/planet_info = pick_list(EXODRONE_FILE,"planet_types")
-	name = planet_info["name"]
-	description = planet_info["description"]
-	if(planet_info["habitable"])
+	name = planet_info["имя"]
+	description = planet_info["описание"]
+	if(planet_info["пригодный для жилья"])
 		site_traits += EXPLORATION_SITE_HABITABLE
-	if(planet_info["civilized"])
+	if(planet_info["цивилизация"])
 		site_traits += EXPLORATION_SITE_CIVILIZED
-	if(planet_info["tech"])
+	if(planet_info["тех"])
 		site_traits += EXPLORATION_SITE_TECHNOLOGY
 	. = ..()
 
 /datum/exploration_site/alien_ruins
-	name = "alien ruins"
-	description = "Alien ruins on a small moon's surface."
+	name = "инопланетные руины"
+	description = "Инопланетные руины на поверхности маленькой Луны."
 	site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE,EXPLORATION_SITE_ALIEN,EXPLORATION_SITE_RUINS)
 	fluff_type = "fluff_ruins"
 
 /datum/exploration_site/asteroid_belt
-	name = "asteroid belt"
-	description = "A dense asteroid belt."
+	name = "пояс астероидов"
+	description = "Плотный пояс астероидов."
 	site_traits = list(EXPLORATION_SITE_SURFACE)
 	fluff_type = "fluff_space"
 
 /datum/exploration_site/spacemine
-	name = "mining facility"
-	description = "An abandoned mining facility attached to an ore-rich asteroid."
+	name = "горнодобывающий комплекс"
+	description = "Заброшенный горнорудный комплекс, пристроенный к богатому рудой астероиду."
 	band_info = list(EXOSCANNER_BAND_PLASMA = 3)
 	site_traits = list(EXPLORATION_SITE_RUINS,EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
 	fluff_type = "fluff_ruins"
 
 /datum/exploration_site/junkyard
-	name = "space junk field"
-	description = "A giant cluster of space junk."
+	name = "поле космического мусора"
+	description = "Гигантское скопление космического мусора."
 	band_info = list(EXOSCANNER_BAND_DENSITY = 3)
 	site_traits = list(EXPLORATION_SITE_TECHNOLOGY,EXPLORATION_SITE_SPACE)
 	fluff_type = "fluff_space"

@@ -19,17 +19,17 @@
 
 /datum/exploration_event/simple/trader/get_discovery_message(obj/item/exodrone/drone)
 	if(requires_translator && !drone.has_tool(EXODRONE_TOOL_TRANSLATOR))
-		return "You encountered [name] but could not understand what they want without a translator."
+		return "Вы столкнулись с [name], но не смогли понять, чего они хотят, без переводчика."
 	var/obj/want = required_path
 	var/obj/gives = traded_path
-	return "Encountered [name] willing to trade [initial(gives.name)] for [initial(want.name)]"
+	return "Столкнулись с [name] желающим обменять [initial(gives.name)] на [initial(want.name)]"
 
 /datum/exploration_event/simple/trader/get_description(obj/item/exodrone/drone)
 	if(requires_translator && !drone.has_tool(EXODRONE_TOOL_TRANSLATOR))
-		return "You encounter [name] but cannot understand what they want without a translator."
+		return "Вы сталкиваетесь с [name], но не можете понять, чего они хотят, без переводчика."
 	var/obj/want = required_path
 	var/obj/gives = traded_path
-	return "You encounter [name] willing to trade [initial(want.name)] for [initial(gives.name)] [amount > 1 ? "[amount] times":""]."
+	return "Вы сталкиваетесь с [name] желающим обменять [initial(want.name)] на  [initial(gives.name)] [amount > 1 ? "[amount] раз":""]."
 
 /datum/exploration_event/simple/trader/is_targetable()
 	return visited && (amount > 0)
@@ -49,7 +49,7 @@
 /datum/exploration_event/simple/trader/proc/trade(obj/item/exodrone/drone)
 	var/obj/trade_good = locate(required_path) in drone.contents
 	var/obj/loot = new traded_path()
-	drone.drone_log("Traded [trade_good] for [loot].")
+	drone.drone_log("Обменял [trade_good] на [loot].")
 	qdel(trade_good)
 	drone.try_transfer(loot)
 
@@ -57,7 +57,7 @@
 /// Trade events
 
 /datum/exploration_event/simple/trader/vendor_ai
-	name = "sentient drug vending machine"
+	name = "разумный автомат по продаже наркотиков"
 	required_site_traits = list(EXPLORATION_SITE_TECHNOLOGY)
 	band_values = list(EXOSCANNER_BAND_TECH=2)
 	requires_translator = FALSE
@@ -66,8 +66,8 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/farmer_market
-	name = "farmer's market"
-	deep_scan_description = "You detect an area with an unusually high concentration of edibles on site."
+	name = "фермерский рынок"
+	deep_scan_description = "Вы обнаруживаете на территории участок с необычно высокой концентрацией съестных припасов."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
 	band_values = list(EXOSCANNER_BAND_LIFE=2)
 	required_path = /obj/item/stock_parts/servo/nano
@@ -75,9 +75,9 @@
 	amount = 1
 
 /datum/exploration_event/simple/trader/fish
-	name = "interstellar fish trader"
+	name = "межзвездный торговец рыбой"
 	requires_translator = FALSE
-	deep_scan_description = "You spot a giant \"FRESH FISH\" sign on site."
+	deep_scan_description = "На территории отеля вы замечаете гигантскую вывеску "СВЕЖАЯ РЫБА"."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_SURFACE)
 	band_values = list(EXOSCANNER_BAND_LIFE=2)
 	required_path = /obj/item/stock_parts/power_store/cell/high
@@ -85,7 +85,7 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/shady_merchant
-	name = "shady merchant"
+	name = "сомнительный торговец"
 	requires_translator = FALSE
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
@@ -94,8 +94,8 @@
 	amount = 1
 
 /datum/exploration_event/simple/trader/surplus
-	name = "military surplus trader"
-	deep_scan_description = "You decrypt a transmission advertising military surplus for sale on site."
+	name = "торговец военными излишками"
+	deep_scan_description = "Вы расшифровываете сообщение, рекламирующее военное имущество, выставленное на продажу."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_LIFE=1)
 	required_path = list(/obj/item/clothing/suit/armor,/obj/item/clothing/shoes/jackboots)
@@ -103,8 +103,8 @@
 	amount = 3
 
 /datum/exploration_event/simple/trader/flame_card
-	name = "id card artisan"
-	deep_scan_description = "You spy an advertisment for an ID card customisation workshop."
+	name = "мастер по изготовлению удостоверений личности"
+	deep_scan_description = "Вы заметили рекламу семинара по настройке идентификационных карт."
 	required_site_traits = list(EXPLORATION_SITE_HABITABLE,EXPLORATION_SITE_CIVILIZED)
 	band_values = list(EXOSCANNER_BAND_TECH=1)
 	required_path = list(/obj/item/card/id) //If you trade a better card for worse that's on you
@@ -114,13 +114,13 @@
 	var/static/list/possible_card_states = list("card_flames","card_carp","card_rainbow")
 
 /datum/exploration_event/simple/trader/flame_card/get_discovery_message(obj/item/exodrone/drone)
-	return "Encountered [name] willing to customise any ID card you bring them."
+	return "Столкнулись с [name] желающими настроить любое удостоверение личности, которое вы им принесете."
 
 /datum/exploration_event/simple/trader/flame_card/get_description(obj/item/exodrone/drone)
-	return "You encounter a local craftsman willing to customise an ID card for you, free of charge."
+	return "Вы встретите местного мастера, который бесплатно изготовит для вас индивидуальное удостоверение личности."
 
 /datum/exploration_event/simple/trader/flame_card/trade(obj/item/exodrone/drone)
 	var/obj/item/card/id/card = locate(required_path) in drone.contents
 	card.icon_state = pick(possible_card_states)
 	card.update_icon() //Refresh cached helper image
-	drone.drone_log("Let artisan work on [card.name].")
+	drone.drone_log("Позвольте ремесленнику работать над [card.name].")

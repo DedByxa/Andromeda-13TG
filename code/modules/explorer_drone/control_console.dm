@@ -1,6 +1,6 @@
 /obj/machinery/computer/exodrone_control_console
-	name = "exploration drone control console"
-	desc = "Control exploration drones from interstellar distances. Communication lag not included."
+	name = "консоль управления дрон-разведчик"
+	desc = "Управляйте разведывательными дронами с межзвездных расстояний. Задержка связи не включена."
 	circuit = /obj/item/circuitboard/computer/exodrone_console
 	//Currently controlled drone
 	var/obj/item/exodrone/controlled_drone
@@ -11,7 +11,7 @@
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ExodroneConsole", name)
+		ui = new(user, src, "ЭкзодронЭконсол", name)
 		ui.open()
 
 /obj/machinery/computer/exodrone_control_console/proc/start_drone_control(obj/item/exodrone/drone)
@@ -132,7 +132,7 @@
 					if(!target_site)
 						return TRUE
 					if(!controlled_drone.check_blacklist())
-						say("Error - An unauthorized object was found inside the cargo!")
+						say("Ошибка - внутри груза был обнаружен посторонний предмет!")
 						return TRUE
 				controlled_drone.launch_for(target_site)
 			return TRUE
@@ -165,7 +165,7 @@
 			if(controlled_drone)
 				var/obj/thing_to_jettison = locate(params["target_ref"]) in controlled_drone.contents
 				if(thing_to_jettison)
-					controlled_drone.drone_log("Jettisoned [thing_to_jettison]")
+					controlled_drone.drone_log("Выброшенный за борт [thing_to_jettison]")
 					if(controlled_drone.drone_status == EXODRONE_IDLE)
 						thing_to_jettison.forceMove(controlled_drone.drop_location())
 					else

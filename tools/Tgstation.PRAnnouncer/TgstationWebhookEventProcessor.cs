@@ -21,7 +21,7 @@ namespace Tgstation.PRAnnouncer
 	/// <summary>
 	/// Tgstation webhook processor.
 	/// </summary>
-	sealed class TgstationWebhookEventProcessor : WebhookEventProcessor
+	sealed class TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78 : WebhookEventProcessor
 	{
 		/// <summary>
 		/// The <see cref="ITopicClient"/> to use.
@@ -31,7 +31,7 @@ namespace Tgstation.PRAnnouncer
 		/// <summary>
 		/// The <see cref="ILogger"/> to write to.
 		/// </summary>
-		readonly ILogger<TgstationWebhookEventProcessor> logger;
+		readonly ILogger<TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78> logger;
 
 		/// <summary>
 		/// The <see cref="IOptionsMonitor{TOptions}"/> for the <see cref="Settings"/>.
@@ -44,17 +44,17 @@ namespace Tgstation.PRAnnouncer
 		readonly Counter failedTopicCalls;
 
 		/// <summary>
-		/// Initializes a new instanc eof the <see cref="TgstationWebhookEventProcessor"/> class.
+		/// Initializes a new instanc eof the <see cref="TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78"/> class.
 		/// </summary>
 		/// <param name="topicClient">The value of <see cref="topicClient"/>.</param>
 		/// <param name="metricFactory">The <see cref="IMetricFactory"/> used to create metrics.</param>
 		/// <param name="options">The value of <see cref="options"/>.</param>
 		/// <param name="logger">The value of <see cref="logger"/>.</param>
-		public TgstationWebhookEventProcessor(
+		public TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78(
 			ITopicClient topicClient,
 			IMetricFactory metricFactory,
 			IOptionsMonitor<Settings> options,
-			ILogger<TgstationWebhookEventProcessor> logger)
+			ILogger<TDhL1BCnmGP3kYaM3qUDQ5yBeeVS1kcV78> logger)
 		{
 			this.topicClient = topicClient ?? throw new ArgumentNullException(nameof(topicClient));
 			ArgumentNullException.ThrowIfNull(metricFactory);

@@ -110,15 +110,15 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 	return list(carrier)
 
 /obj/item/antique
-	name = "antique"
-	desc = "Valuable and completely incomprehensible."
+	name = "античный"
+	desc = "Ценный и совершенно непонятный."
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "antique"
 
 /// Supply pack unlocker chip
 /obj/item/trade_chip
-	name = "trade contract chip"
-	desc = "Uses the station's cargo network to contact a black market supplier, allowing the purchase of a new crate type at cargo console."
+	name = "чип торгового контракта"
+	desc = "Использует грузовую сеть станции, чтобы связаться с поставщиком на черном рынке и приобрести новый тип ящиков в cargo console."
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "trade_chip"
 	/// Supply pack type enabled by this chip
@@ -134,17 +134,17 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 /obj/item/trade_chip/proc/try_to_unlock_contract(mob/user)
 	var/datum/supply_pack/pack_singleton = SSshuttle.supply_packs[unlocked_pack_type]
 	if(!unlocked_pack_type || !pack_singleton || !pack_singleton.special)
-		to_chat(user,span_danger("This chip is invalid!"))
+		to_chat(user,span_danger("Этот чип недействителен!"))
 		return
 	pack_singleton.special_enabled = TRUE
-	to_chat(user,span_notice("Contract accepted into nanotrasen supply database."))
+	to_chat(user,span_notice("Контракт внесен в базу данных по поставкам nanotrasen."))
 	qdel(src)
 
 
 /// Two handed fire lance. Melts wall after short windup.
 /obj/item/firelance
-	name = "fire lance"
-	desc = "Melts everything in front of you. Takes a while to start and operate."
+	name = "огненное копье"
+	desc = "Все тает у вас на глазах. Запуск и работа устройства занимает некоторое время."
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "firelance"
 	inhand_icon_state = "firelance"
@@ -170,18 +170,18 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 /obj/item/firelance/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ITEM_INTERACT_BLOCKING
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		to_chat(user, span_notice("You need to wield [src] in two hands before you can fire it."))
+		to_chat(user, span_notice("Вам нужно держать [src] двумя руками, прежде чем вы сможете выстрелить из него."))
 		return .
-	if(LAZYACCESS(user.do_afters, "firelance"))
+	if(LAZYACCESS(user.do_afters, "огненное копье"))
 		return .
 	if(!cell.use(0.2 * STANDARD_CELL_CHARGE))
-		to_chat(user,span_warning("[src]'s battery ran dry!"))
+		to_chat(user,span_warning("[src] батарея разрядилась!"))
 		return .
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, REF(src))
-	to_chat(user,span_notice("You begin to charge [src]..."))
+	to_chat(user,span_notice("Вы начинаете заряжать [src]..."))
 	inhand_icon_state = "firelance_charging"
 	user.update_held_items()
-	if(do_after(user,windup_time,interaction_key="firelance",extra_checks = CALLBACK(src, PROC_REF(windup_checks))))
+	if(do_after(user,windup_time,interaction_key="огненное копье",extra_checks = CALLBACK(src, PROC_REF(windup_checks))))
 		var/turf/start_turf = get_turf(user)
 		var/turf/last_turf = get_ranged_target_turf(start_turf,user.dir,melt_range)
 		start_turf.Beam(last_turf,icon_state="solar_beam",time=1 SECONDS)

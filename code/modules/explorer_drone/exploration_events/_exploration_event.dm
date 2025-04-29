@@ -3,7 +3,7 @@
 	/// These types will be ignored in event creation
 	var/root_abstract_type = /datum/exploration_event
 	///This name will show up in exploration list if it's repeatable
-	var/name = "Something interesting"
+	var/name = "Что-то интересное"
 	/// encountered at least once
 	var/visited = FALSE
 	/// Modifies site scan results by these
@@ -41,15 +41,15 @@
 /// Simple events, not a full fledged adventure, consist only of single encounter screen
 /datum/exploration_event/simple
 	root_abstract_type = /datum/exploration_event/simple
-	var/ui_image = "default"
+	var/ui_image = "по умолчанию"
 	/// Show ignore button.
 	var/skippable = TRUE
 	/// Ignore button text
-	var/ignore_text = "Ignore"
+	var/ignore_text = "Игнорировать"
 	/// Action text, can be further parametrized in get_action_text()
-	var/action_text = "encounter"
+	var/action_text = "столкновение"
 	/// Description, can be further parametrized in get_description()
-	var/description = "You encounter a bug."
+	var/description = "Вы столкнулись с ошибкой."
 
 /// On exploration, only display our information with the act/ignore options
 /datum/exploration_event/simple/encounter(obj/item/exodrone/drone)
